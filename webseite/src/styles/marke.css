@@ -1,0 +1,137 @@
+/* Marken-Grundwerte RepoCity.
+   Quelle: universe/marke/LOGO-STAND.md und das Kit "Blende" der App.
+   Nur belegte Werte - hier wird nichts dazuerfunden. */
+
+:root {
+  --grund: #030304;
+  --grund-erhoben: #0b0b0d;
+  --gold-hell: #FFFDF3;
+  --gold: #DCB25C;
+  --gold-tief: #BC8F37;
+
+  --schrift: rgba(255, 253, 243, 0.92);
+  --schrift-leise: rgba(255, 253, 243, 0.45);
+  --linie: rgba(220, 178, 92, 0.22);
+
+  --mono: "DM Mono", ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", monospace;
+  --breite: 1180px;
+  --sperrung: 0.18em;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--grund);
+  color: var(--schrift);
+  font-family: var(--mono);
+  -webkit-font-smoothing: antialiased;
+}
+
+body { overflow-x: hidden; }
+
+a { color: inherit; text-decoration: none; }
+
+.bahn {
+  width: 100%;
+  max-width: var(--breite);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Kleinschrift in Versalien mit Sperrung - das Merkmal der App-Oberflaeche */
+.marke-zeile {
+  font-size: 12px;
+  letter-spacing: var(--sperrung);
+  text-transform: uppercase;
+  color: var(--schrift-leise);
+}
+
+.gold-verlauf {
+  background: linear-gradient(180deg, var(--gold-hell) 0%, var(--gold) 52%, var(--gold-tief) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+/* ── Mias Führung ─────────────────────────────────────────────────────
+   Sie läuft ÜBER den echten Seiten: der Grund legt sich darüber und
+   schluckt Berührungen, damit darunter nichts versehentlich ausgelöst
+   wird. Die Blase sitzt unten - dort, wo der Daumen ist, und ohne die
+   Stelle zu verdecken, um die es gerade geht.
+
+   Die Stile stehen hier und nicht in oberflaeche.css, weil die Führung
+   auf beiden Grundrissen läuft: die Oberfläche liegt auf App.astro, der
+   Abo-Plan und die rechtlichen Seiten auf Grund.astro. Nur marke.css
+   haben beide. Wo ein Kit gilt, gewinnen seine Farben - deshalb steht
+   der Kit-Wert vorn und der Markenwert als Rückfall dahinter. */
+
+.fuehrung-grund {
+  position: fixed; inset: 0; z-index: 60;
+  display: flex; align-items: flex-end; justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 18px;
+}
+.fuehrung-blase {
+  width: min(560px, 100%);
+  max-height: min(70vh, 620px);
+  overflow-y: auto;
+  border: 1px solid var(--linie);
+  border-radius: 16px;
+  background: var(--grund);
+  box-shadow: 0 30px 60px -24px var(--schatten, rgba(0, 0, 0, 0.7));
+  padding: 18px 20px;
+}
+.fuehrung-kopf {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px;
+}
+.fuehrung-marke {
+  margin: 0 0 6px;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--akzent, var(--gold));
+}
+.fuehrung-zahl {
+  margin: 0;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--schrift-fein, var(--schrift-leise));
+}
+.fuehrung-gross {
+  margin: 0 0 10px;
+  font-size: 15px; line-height: 1.5; color: var(--schrift);
+}
+.fuehrung-leise {
+  margin: 0 0 8px;
+  font-size: 13px; line-height: 1.55; color: var(--schrift-leise);
+}
+.fuehrung-liste {
+  margin: 0 0 10px; padding-left: 18px;
+  font-size: 13px; line-height: 1.55; color: var(--schrift-leise);
+}
+.fuehrung-liste li { margin-bottom: 4px; }
+.fuehrung-knoepfe {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
+}
+.fuehrung-knopf {
+  font: inherit; font-size: 12px;
+  cursor: pointer;
+  color: var(--schrift);
+  background: transparent;
+  border: 1px solid var(--linie); border-radius: 999px;
+  padding: 7px 14px;
+}
+.fuehrung-knopf:hover {
+  background: var(--flaeche-unten, var(--grund-erhoben));
+}
+.fuehrung-knopf.ist-hervor {
+  color: var(--grund);
+  background: var(--akzent, var(--gold));
+  border-color: var(--akzent, var(--gold));
+}

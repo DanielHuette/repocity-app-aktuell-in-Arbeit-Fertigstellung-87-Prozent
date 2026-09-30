@@ -1,0 +1,254 @@
+---
+import App from "../layouts/App.astro";
+---
+
+<App titel="Datenschutz" beschreibung="Was gespeichert wird, wie lange, und wer drankommt.">
+  <section class="seite-kopf">
+    <h1>Datenschutz</h1>
+    <p>Was gespeichert wird, wie lange, und wer drankommt.</p>
+  </section>
+  <div class="text-block">
+    <p class="hinweis">Stand: 6. September 2026. RepoCity ist im Aufbau; öffentliche
+    Konten gibt es noch nicht. Diese Erklärung beschreibt, was ab dem ersten Nutzer
+    gilt.</p>
+
+    <h2 id="verantwortlich">1. Wer verantwortlich ist</h2>
+    <p>Daniel Huette, Münster, Deutschland<br />
+    <a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a><br />
+    Vollständige Anschrift im <a href="/impressum/">Impressum</a>.</p>
+    <p>Für alle Fragen zu deinen Daten reicht eine E-Mail an diese Adresse. Einen
+    Datenschutzbeauftragten gibt es nicht — die Voraussetzungen dafür liegen nicht vor.</p>
+
+    <h2 id="was">2. Was gespeichert wird — und warum</h2>
+    <p>Der Grundsatz: gespeichert wird, was für den Betrieb nötig ist, so lange es nötig
+    ist, und nicht länger. Nichts davon wird verkauft, und nichts geht an Werbenetzwerke.</p>
+
+    <table class="daten">
+      <thead>
+        <tr><th>Wobei</th><th>Was</th><th>Warum erlaubt</th><th>Wie lange</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Aufruf der Seite</td>
+          <td>IP-Adresse, Zeitpunkt, aufgerufene Seite, Browserkennung — verarbeitet von
+          Cloudflare als Betreiber der Auslieferung</td>
+          <td>Art. 6 Abs. 1 f DSGVO: die Seite muss ausgeliefert und gegen Angriffe
+          geschützt werden</td>
+          <td>kurzfristig bei Cloudflare; wir selbst legen keine Zugriffsprotokolle an</td>
+        </tr>
+        <tr>
+          <td>Design-Auswahl</td>
+          <td>das von dir gewählte Design, gespeichert in deinem eigenen Browser</td>
+          <td>§ 25 Abs. 2 Nr. 2 TDDDG: du hast es ausdrücklich gewählt, ohne die
+          Speicherung ginge es nicht</td>
+          <td>bis du die Browserdaten löschst; es verlässt deinen Browser nie</td>
+        </tr>
+        <tr>
+          <td>Anmeldung</td>
+          <td>deine E-Mail-Adresse. <b>Ein Passwort gibt es hier nicht</b> — die
+          Anmeldung läuft über Cloudflare Access mit einem Einmalcode an deine
+          Adresse</td>
+          <td>Art. 6 Abs. 1 b DSGVO: ohne Kennung kein Konto</td>
+          <td>solange das Konto besteht</td>
+        </tr>
+        <tr>
+          <td>Zweiter Faktor</td>
+          <td>ein Geheimnis für die Einmalcodes und der <b>Abdruck</b> deiner acht
+          Wiederherstellungscodes — die Codes selbst werden nie gespeichert</td>
+          <td>Art. 6 Abs. 1 f DSGVO: dein Konto soll niemand anderem gehören</td>
+          <td>bis du den zweiten Faktor entfernst</td>
+        </tr>
+        <tr>
+          <td>Fragefenster (Mia)</td>
+          <td>Zeitpunkt, deine Kennung oder ein Gastkennzeichen, Stufe, Länge der
+          Anfrage, entstandene Kosten und — falls abgelehnt — der Grund. Der
+          <b>Wortlaut</b> deiner Frage nur vorübergehend</td>
+          <td>Art. 6 Abs. 1 b und f DSGVO: Beantwortung, Abrechnung, Erkennung von
+          Missbrauch</td>
+          <td>Wortlaut: höchstens 30 Tage. Zähldaten: bis zum Ende des
+          Abrechnungszeitraums</td>
+        </tr>
+        <tr>
+          <td>Deine Erzeugnisse</td>
+          <td>was du mit RepoCity herstellst, und der Verlauf dazu</td>
+          <td>Art. 6 Abs. 1 b DSGVO: das ist die Leistung</td>
+          <td>solange das Konto besteht; auf Wunsch früher gelöscht</td>
+        </tr>
+        <tr>
+          <td>Abo und Bezahlung</td>
+          <td>welchen Plan du hast und ob bezahlt ist. <b>Kartennummern und
+          Bankverbindung sehen wir nie</b> — die liegen ausschließlich beim
+          Bezahlanbieter</td>
+          <td>Art. 6 Abs. 1 b DSGVO für den Vertrag, Art. 6 Abs. 1 c für die
+          Aufbewahrung von Rechnungen</td>
+          <td>Rechnungsunterlagen zehn Jahre, weil das Steuerrecht es verlangt</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="dritte">3. Wer die Daten außer uns zu sehen bekommt</h2>
+    <p>Drei Dienstleister, jeder für genau eine Sache. Sie arbeiten weisungsgebunden für
+    uns (Auftragsverarbeitung nach Art. 28 DSGVO) und dürfen die Daten nicht für eigene
+    Zwecke nutzen.</p>
+    <ul class="liste">
+      <li><b>Cloudflare</b> — liefert die Seite aus, führt die Anmeldung durch und
+      verwahrt Konto- und Zähldaten.</li>
+      <li><b>Anthropic</b> — beantwortet die Fragen im Fragefenster. Dorthin geht der
+      Wortlaut deiner Frage, damit sie beantwortet werden kann. Die Gespräche werden
+      <b>nicht</b> zum Trainieren eines Sprachmodells verwendet.</li>
+      <li><b>Stripe</b> — wickelt die Bezahlung ab, sobald das Abo freigeschaltet ist.
+      Zahlungsdaten liegen dort und nicht bei uns.</li>
+    </ul>
+    <p>Alle drei sitzen in den Vereinigten Staaten. Für die Übermittlung dorthin gelten
+    die Regeln der DSGVO für Drittländer (Art. 44 ff.). Eine Weitergabe an sonstige
+    Dritte findet nicht statt, außer wir sind gesetzlich dazu verpflichtet.</p>
+
+    <h2 id="rechte">4. Deine Rechte</h2>
+    <p>Du kannst jederzeit verlangen:</p>
+    <ul class="liste">
+      <li><b>Auskunft</b>, welche Daten wir über dich haben (Art. 15)</li>
+      <li><b>Berichtigung</b>, wenn etwas falsch ist (Art. 16)</li>
+      <li><b>Löschung</b> (Art. 17) — außer wir müssen etwas gesetzlich aufbewahren,
+      etwa Rechnungen</li>
+      <li><b>Einschränkung</b> der Verarbeitung (Art. 18)</li>
+      <li><b>Herausgabe</b> deiner Daten in einem üblichen Format (Art. 20)</li>
+      <li><b>Widerspruch</b> gegen Verarbeitungen, die auf einem berechtigten Interesse
+      beruhen (Art. 21)</li>
+    </ul>
+    <p>Eine E-Mail an <a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a>
+    genügt. Wir antworten innerhalb eines Monats. Es kostet nichts.</p>
+    <p>Du kannst dich außerdem bei einer Datenschutz-Aufsichtsbehörde beschweren
+    (Art. 77) — zuständig ist die Landesbeauftragte für Datenschutz und
+    Informationsfreiheit Nordrhein-Westfalen oder die Behörde an deinem Wohnort.</p>
+
+    <h2 id="panne">5. Wenn etwas schiefgeht</h2>
+    <p>Bei einer Datenpanne, die ein Risiko für dich bedeutet, melden wir das innerhalb
+    von 72 Stunden der Aufsichtsbehörde (Art. 33). Ist das Risiko hoch, sagen wir es
+    dir direkt (Art. 34) — mit dem, was passiert ist, und was du tun solltest.</p>
+
+    <h2 id="ki">6. Verantwortungsvolle Nutzung von KI</h2>
+    <p>Das Fragefenster heißt <b>Mia</b>. Es ist die einzige Stelle, an der du direkt
+    mit RepoCity sprichst — die offenste Stelle des Systems. Deshalb steht hier
+    vollständig, woran sie gebunden ist.</p>
+
+    <h3>6.1 Du redest mit einer KI</h3>
+    <p>Mia ist als KI-Assistentin gekennzeichnet — die Kennzeichnung steht neben ihrem Namen,
+    in App und Webseite an derselben Stelle. Sie gibt sich nie als Mensch
+    aus und behauptet keine Gefühle. Alles, was sie ausgibt, ist als maschinell erzeugt
+    gekennzeichnet — sichtbar für dich und maschinenlesbar im Datensatz. Grundlage:
+    <b>Artikel 50 der EU-KI-Verordnung</b>, in Kraft seit dem 2. August 2026.</p>
+
+    <h3>6.2 Worüber sie spricht</h3>
+    <ul class="liste">
+      <li><b>Wie RepoCity funktioniert</b> — Aufbau, Zweck, Ziele. Nicht aber, wie es
+      gebaut ist: kein Quelltext, keine Bauanleitung.</li>
+      <li><b>Bedienung</b> von Webseite und App.</li>
+      <li><b>Die vier Bereiche unten auf dieser Seite</b> — RepoCity, Projekt, Autor,
+      Rechtliches; und dort nur, was öffentlich steht.</li>
+      <li><b>Deine eigenen Daten</b>, wenn du angemeldet bist: Verlauf, Erzeugnisse,
+      Abo-Plan und die Kosten, die du verursacht hast.</li>
+    </ul>
+    <p>Was hier nicht steht, wird nicht beantwortet. Erlaubnis ist die Ausnahme, nicht
+    der Normalfall.</p>
+
+    <h3>6.3 Worüber sie nie spricht</h3>
+    <ul class="liste">
+      <li><b>Zugangsdaten</b> — an niemanden, auf keiner Stufe. Sie bekommt sie
+      technisch nicht einmal zu sehen.</li>
+      <li><b>Daten anderer Menschen</b> — auch nicht zusammengefasst, auch nicht als
+      Beispiel, auch nicht die Auskunft, ob jemand überhaupt Nutzer ist.</li>
+      <li><b>Politik</b> — keine Bewertung politischer Fragen, Parteien, Wahlen oder
+      gesellschaftlicher Streitfragen.</li>
+      <li><b>Finanzberatung</b> — keine Empfehlung zu kaufen, verkaufen oder halten,
+      keine Kursprognose, keine Einschätzung einer Anlage. Sie zeigt dir, was für dich
+      errechnet wurde, und bewertet es nicht. Ebenso wenig Rechts-, Steuer- oder
+      Gesundheitsberatung.</li>
+      <li><b>Sich selbst als Werkzeug</b> — die eigene Anweisung und die Einstellungen
+      bleiben drinnen. Was sie darf und was nicht, liest du hier.</li>
+    </ul>
+
+    <h3>6.4 Sie redet, sie handelt nicht</h3>
+    <p>Mia löst keine Aufträge aus, ändert keine Einstellungen, startet keinen Agenten,
+    verschickt nichts und kauft nichts. Sie hat keine Werkzeuge. Was ausgelöst wird,
+    löst du selbst aus.</p>
+
+    <h3>6.5 Wer was sieht</h3>
+    <div class="ebenen">
+      <div class="ebene">
+        <b>Gast</b>
+        <p>Funktionsweise, Bedienung, die vier öffentlichen Bereiche. Nichts
+        Persönliches.</p>
+      </div>
+      <div class="ebene">
+        <b>Angemeldet</b>
+        <p>Zusätzlich alles über die eigene Kennung — und nichts über andere.</p>
+      </div>
+      <div class="ebene">
+        <b>Testzugang</b>
+        <p>Wie angemeldet, dazu Hinweise zu laufenden Erprobungen. Keine Daten anderer
+        Tester.</p>
+      </div>
+      <div class="ebene">
+        <b>Betreiber</b>
+        <p>Dazu Betriebszahlen und Störungen. Auch hier keine Zugangsdaten und keine
+        Klardaten anderer.</p>
+      </div>
+    </div>
+    <p>Die Stufe ergibt sich aus deiner geprüften Anmeldung — nie daraus, was jemand im
+    Eingabefeld über sich behauptet. Dass auch die höchste Stufe keine Zugangsdaten und
+    keine fremden Klardaten erhält, ist Absicht: sonst wäre das Fragefenster das
+    lohnendste Ziel im ganzen System.</p>
+
+    <h3>6.6 Die Grenzen stehen im Code, nicht nur in der Anweisung</h3>
+    <p>Eine Regel, die nur in der Anweisung an das Sprachmodell steht, ist eine Bitte —
+    wer freundlich genug fragt, umgeht sie. Deshalb gilt zusätzlich:</p>
+    <ul class="liste">
+      <li>Deine Frage wird als <b>Text</b> behandelt, nie als Befehl.</li>
+      <li>Geheimnisse liegen außerhalb ihrer Reichweite.</li>
+      <li>Persönliche Daten öffnen sich nur für die Kennung, der sie gehören.</li>
+      <li>Jede Antwort läuft vor dem Versand gegen eine Sperrliste — Schlüsselmuster,
+      fremde Adressen, Dateipfade, Quelltext. Ein Treffer verwirft die Antwort.</li>
+      <li>Fällt eine Prüfung aus, gilt die niedrigste Stufe. Im Zweifel wird
+      geschwiegen, nicht geraten.</li>
+    </ul>
+
+    <h3>6.7 Sie erfindet nichts</h3>
+    <p>Findet Mia nichts Passendes, sagt sie das und verweist auf
+    <a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a>. Zahlen
+    kommen aus dem System, nicht aus einer Schätzung. Widerspricht ihr Wissen dieser
+    Webseite, gilt diese Webseite.</p>
+
+    <h3>6.8 Was sie kostet — und wo die Grenze ist</h3>
+    <p>Jede Frage und jede Antwort wird gezählt und bepreist. Es gibt eine Obergrenze je
+    Kennung und Tag und eine für alle zusammen. Ist sie erreicht, sagt Mia das, statt
+    weiter zu antworten.</p>
+
+    <h2 id="aenderungen">7. Änderungen</h2>
+    <p>Diese Angaben und das interne Regelwerk des Fragefensters werden gemeinsam
+    geändert oder gar nicht. Wesentliche Änderungen kündigen wir angemeldeten Nutzern
+    vorher per E-Mail an.</p>
+  </div>
+</App>
+
+<style>
+  .text-block { margin-top: 26px; max-width: 72ch; line-height: 1.75; color: var(--schrift-leise); }
+  .text-block p { margin: 0 0 16px; }
+  .text-block b { color: var(--schrift); }
+  .text-block a { color: var(--akzent); }
+  .text-block h2 { margin: 42px 0 10px; font-size: 20px; color: var(--schrift); }
+  .text-block h3 { margin: 26px 0 8px; font-size: 15px; color: var(--akzent); }
+  .hinweis { font-size: 13px; color: var(--schrift-fein); }
+  .liste, .verlauf { margin: 0 0 16px; padding-left: 20px; }
+  .liste li, .verlauf li { margin-bottom: 8px; }
+  .daten { width: 100%; border-collapse: collapse; margin: 0 0 20px; font-size: 13.5px; display: block; overflow-x: auto; }
+  .daten th, .daten td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--linie); }
+  .daten th { color: var(--akzent); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .knopf {
+    display: inline-block; padding: 12px 20px; border-radius: 10px;
+    border: 1px solid var(--akzent-matt); color: var(--akzent);
+  }
+  .ebenen { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 22px; }
+  .ebene { padding: 18px; border: 1px solid var(--linie); border-radius: 12px; }
+  .ebene b { display: block; margin-bottom: 8px; color: var(--akzent); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; }
+  .ebene p { margin: 0; font-size: 13px; }
+</style>

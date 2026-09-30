@@ -1,0 +1,272 @@
+---
+import Grund from "../../layouts/Grund.astro";
+import { STUFEN, ZAHLWEGE, euro } from "../../daten/abo.ts";
+---
+
+<Grund
+  titel="Abo-Plan — RepoCity"
+  beschreibung="Drei Stufen: Free, Creative Mind, Full Madness. Monatlich oder jährlich."
+>
+  <section class="bahn kopfteil">
+    <h1 class="ueberschrift">Abo-Plan</h1>
+    <p class="text">
+      Der Schwarm arbeitet f&uuml;r dich. Wie viel von ihm, entscheidest du hier.
+      Jederzeit k&uuml;ndbar, jederzeit wechselbar &mdash; kein Vertrag &uuml;ber Monate.
+    </p>
+
+    <div class="schalter marke-zeile" role="group" aria-label="Zahlungsweise">
+      <button type="button" data-takt="monat" class="an">Monatlich</button>
+      <button type="button" data-takt="jahr">J&auml;hrlich <em>2 Monate geschenkt</em></button>
+    </div>
+  </section>
+
+  <section class="bahn karten">
+    {STUFEN.map((s) => (
+      <article class={"karte" + (s.hervor ? " hervor" : "")} data-stufe={s.schluessel}>
+        {s.hervor && <span class="fahne marke-zeile">Meistgenommen</span>}
+
+        <h2 class="karte-name">{s.name}</h2>
+        <p class="karte-zeile">{s.zeile}</p>
+
+        <p class="preis">
+          {s.monat === 0 ? (
+            <span class="zahl">0 &euro;</span>
+          ) : (
+            <>
+              <span class="zahl" data-monat={euro(s.monat)} data-jahr={euro(s.jahr / 12)}>
+                {euro(s.monat)} &euro;
+              </span>
+              <span class="je marke-zeile">/ Monat</span>
+            </>
+          )}
+        </p>
+        <p class="preis-fuss marke-zeile" data-monat="monatlich abgerechnet"
+           data-jahr={s.jahr === 0 ? "" : euro(s.jahr) + " € einmal im Jahr"}>
+          {s.monat === 0 ? "dauerhaft kostenlos" : "monatlich abgerechnet"}
+        </p>
+
+        <button type="button" class="waehlen marke-zeile" data-stufe={s.schluessel}>
+          {s.monat === 0 ? "Kostenlos loslegen" : s.name + " nehmen"}
+        </button>
+
+        <ul class="kann">
+          {s.kann.map((z) => <li>{z}</li>)}
+          {(s.kannNicht || []).map((z) => <li class="nicht">{z}</li>)}
+        </ul>
+      </article>
+    ))}
+  </section>
+
+  <section class="bahn fussteil">
+    <p class="meldung" id="meldung" hidden></p>
+
+    <div class="wege">
+      <span class="wege-titel marke-zeile">Bezahlen mit</span>
+      <ul>
+        {ZAHLWEGE.map((w) => <li class="marke-zeile">{w.name}</li>)}
+      </ul>
+    </div>
+
+    <div class="klein">
+      <p>
+        Alle Preise in Euro, inklusive Umsatzsteuer. Die Zahlung wickelt ein
+        Bezahlanbieter ab &mdash; Kartennummer und IBAN sieht RepoCity nie.
+      </p>
+      <p>
+        Fragen zum Abo: <a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a>.
+        Es gilt das <a href="/impressum/">Impressum</a> und die
+        <a href="/datenschutz/"> Datenschutzerkl&auml;rung</a>.
+      </p>
+    </div>
+  </section>
+</Grund>
+
+<script>
+  const schalter = document.querySelectorAll(".schalter button");
+  const meldung = document.getElementById("meldung");
+  let takt = "monat";
+
+  function zeigeTakt() {
+    document.querySelectorAll(".zahl[data-monat]").forEach((el) => {
+      el.textContent = (takt === "jahr" ? el.dataset.jahr : el.dataset.monat) + " €";
+    });
+    document.querySelectorAll(".preis-fuss[data-jahr]").forEach((el) => {
+      const j = el.dataset.jahr;
+      if (!j) return;
+      el.textContent = takt === "jahr" ? j : el.dataset.monat;
+    });
+    schalter.forEach((b) => b.classList.toggle("an", b.dataset.takt === takt));
+  }
+
+  schalter.forEach((b) => {
+    b.addEventListener("click", () => { takt = b.dataset.takt; zeigeTakt(); });
+  });
+
+  function sage(text, art) {
+    meldung.textContent = text;
+    meldung.className = "meldung" + (art ? " " + art : "");
+    meldung.hidden = false;
+    meldung.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  document.querySelectorAll(".waehlen").forEach((knopf) => {
+    knopf.addEventListener("click", async () => {
+      const stufe = knopf.dataset.stufe;
+      if (stufe === "free") { location.href = "/app/"; return; }
+
+      const alt = knopf.textContent;
+      knopf.disabled = true;
+      knopf.textContent = "Kasse wird geöffnet …";
+      try {
+        const a = await fetch("/api/abo/kasse", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ stufe, takt }),
+        });
+        const d = await a.json();
+        if (d.weiter) { location.href = d.weiter; return; }
+        sage(d.hinweis || d.fehler || "Das hat nicht geklappt.", d.bereit === false ? "wartet" : "schief");
+      } catch (e) {
+        sage("Die Verbindung kam nicht zustande. Versuch es gleich noch einmal.", "schief");
+      }
+      knopf.disabled = false;
+      knopf.textContent = alt;
+    });
+  });
+
+  /* Rueckkehr von der Kasse */
+  const stand = new URLSearchParams(location.search).get("stand");
+  if (stand === "danke") {
+    sage("Danke — das Abo läuft. Der Schwarm steht dir offen.", "gut");
+  } else if (stand === "abgebrochen") {
+    sage("Abgebrochen, es wurde nichts abgebucht.", "wartet");
+  }
+
+  zeigeTakt();
+</script>
+
+<style>
+  .kopfteil { padding-top: 120px; }
+  .ueberschrift {
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 0 0 18px;
+  }
+  .text { max-width: 62ch; line-height: 1.75; color: var(--schrift-leise); margin: 0 0 34px; }
+
+  .schalter {
+    display: inline-flex;
+    border: 1px solid var(--linie);
+    border-radius: 999px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .schalter button {
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--schrift-leise);
+    padding: 10px 20px;
+    font: inherit;
+    cursor: pointer;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .schalter button em { font-style: normal; opacity: 0.75; margin-left: 8px; font-size: 0.86em; }
+  .schalter button.an { background: var(--gold); color: #16100A; }
+
+  .karten {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+    align-items: start;
+  }
+  .karte {
+    position: relative;
+    border: 1px solid var(--linie);
+    border-radius: 14px;
+    padding: 28px 24px 26px;
+    background: rgba(255, 255, 255, 0.014);
+  }
+  .karte.hervor { border-color: var(--gold); }
+  .fahne {
+    position: absolute;
+    top: -11px;
+    left: 24px;
+    background: var(--gold);
+    color: #16100A;
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 10px;
+  }
+  .karte-name { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+  .karte-zeile { color: var(--schrift-fein); margin: 0 0 22px; line-height: 1.5; min-height: 3em; }
+
+  .preis { display: flex; align-items: baseline; gap: 8px; margin: 0 0 4px; }
+  .preis .zahl { font-size: 38px; font-weight: 600; letter-spacing: -0.01em; }
+  .preis .je { color: var(--schrift-fein); }
+  .preis-fuss { color: var(--schrift-fein); margin: 0 0 22px; min-height: 1.4em; }
+
+  .waehlen {
+    display: block;
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--linie);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--schrift);
+    font: inherit;
+    cursor: pointer;
+    transition: border-color 220ms ease, color 220ms ease, background 220ms ease;
+  }
+  .waehlen:hover { border-color: var(--gold); color: var(--gold); }
+  .waehlen:disabled { opacity: 0.55; cursor: progress; }
+  .karte.hervor .waehlen { background: var(--gold); border-color: var(--gold); color: #16100A; }
+  .karte.hervor .waehlen:hover { background: transparent; color: var(--gold); }
+
+  .kann { list-style: none; margin: 24px 0 0; padding: 0; }
+  .kann li {
+    position: relative;
+    padding: 8px 0 8px 24px;
+    line-height: 1.55;
+    color: var(--schrift-leise);
+    border-bottom: 1px solid var(--linie);
+  }
+  .kann li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  .kann li.nicht { color: var(--schrift-fein); }
+  .kann li.nicht::before { content: "\2013"; color: var(--schrift-fein); }
+
+  .fussteil { margin-top: 56px; }
+  .meldung {
+    border: 1px solid var(--linie);
+    border-left-width: 3px;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 0 0 28px;
+    line-height: 1.6;
+  }
+  .meldung.gut { border-left-color: var(--gold); }
+  .meldung.wartet { border-left-color: var(--schrift-fein); }
+  .meldung.schief { border-left-color: #FF6A5E; }
+
+  .wege { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .wege-titel { color: var(--schrift-fein); }
+  .wege ul { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; margin: 0; padding: 0; }
+  .wege li {
+    border: 1px solid var(--linie);
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: var(--schrift-leise);
+  }
+
+  .klein { margin-top: 30px; max-width: 70ch; }
+  .klein p { color: var(--schrift-fein); line-height: 1.7; margin: 0 0 10px; font-size: 13px; }
+  .klein a { color: var(--schrift-leise); text-decoration: underline; }
+  .klein a:hover { color: var(--gold); }
+</style>

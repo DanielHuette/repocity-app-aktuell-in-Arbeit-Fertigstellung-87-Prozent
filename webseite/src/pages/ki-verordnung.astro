@@ -1,0 +1,92 @@
+---
+/* Die KI-Verordnung im Wortlaut.
+ *
+ * Der Text steht NICHT hier, sondern in universe/ki-verordnung.json -
+ * derselben Datei, die auch die App als Beilage traegt. Erzeugt aus der
+ * amtlichen Fassung auf EUR-Lex; wer hier hineinschreibt, verliert es beim
+ * naechsten Lauf.
+ *
+ * Warum der ganze Text und nicht nur Artikel 50: weil ein Auszug immer der
+ * Auszug dessen ist, was jemand fuer wichtig hielt. Wer nachlesen will, ob
+ * RepoCity sich daran haelt, soll nicht auf unsere Auswahl angewiesen sein.
+ */
+import App from "../layouts/App.astro";
+import gesetz from "../../../ki-verordnung.json";
+
+const artikel = gesetz.abschnitte.filter((a: any) => a.art === "artikel");
+---
+
+<App
+  titel={gesetz.titel}
+  beschreibung={gesetz.zeile}
+>
+  <section class="seite-kopf">
+    <h1>{gesetz.voll}</h1>
+    <p>{gesetz.zeile}</p>
+  </section>
+
+  <div class="gesetz-kopf">
+    <p>
+      Amtliche deutsche Fassung, geholt am {gesetz.geholt} von
+      <a href={gesetz.quelle} rel="noopener" target="_blank">EUR-Lex</a>.
+      {gesetz.rechtslage}
+    </p>
+    <p class="hinweis">
+      Wonach hier oft gesucht wird: <a href="#artikel-50">Artikel 50</a> —
+      Transparenzpflichten, die Grundlage für Mias Offenlegung.
+      <a href="#artikel-5">Artikel 5</a> — verbotene Praktiken.
+      Wie RepoCity das umsetzt, steht auf der
+      <a href="/datenschutz/#ki">Datenschutzseite</a>.
+    </p>
+  </div>
+
+  <details class="gesetz-inhalt">
+    <summary>Alle {artikel.length} Artikel</summary>
+    <ol>
+      {artikel.map((a: any) => (
+        <li><a href={"#" + a.id}>{a.titel}</a></li>
+      ))}
+    </ol>
+  </details>
+
+  <div class="gesetz">
+    {gesetz.abschnitte.map((a: any) => (
+      <section>
+        {a.art === "artikel"
+          ? <h2 id={a.id}>{a.titel}</h2>
+          : a.art === "teil"
+            ? <h3 id={a.id}>{a.titel}</h3>
+            : null}
+        {a.stuecke.map((s: any) =>
+          s.art === "liste"
+            ? <ul>{s.zeilen.map((z: string) => <li>{z}</li>)}</ul>
+            : <p>{s.text}</p>
+        )}
+      </section>
+    ))}
+  </div>
+</App>
+
+<style>
+  .gesetz-kopf { margin: 24px 0 8px; max-width: 68ch; line-height: 1.7; color: var(--schrift-leise); }
+  .gesetz-kopf a { color: var(--akzent); }
+  .gesetz-kopf .hinweis { font-size: 13px; color: var(--schrift-fein); }
+
+  .gesetz-inhalt { margin: 18px 0 28px; border-top: 1px solid var(--linie); border-bottom: 1px solid var(--linie); }
+  .gesetz-inhalt summary { cursor: pointer; padding: 13px 0; color: var(--akzent); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .gesetz-inhalt ol { margin: 0 0 16px; padding-left: 22px; columns: 2; column-gap: 32px; }
+  .gesetz-inhalt li { margin-bottom: 6px; font-size: 13px; break-inside: avoid; }
+  .gesetz-inhalt a { color: var(--schrift-leise); }
+  .gesetz-inhalt a:hover { color: var(--akzent); }
+
+  .gesetz { max-width: 74ch; line-height: 1.75; color: var(--schrift-leise); }
+  .gesetz h2 { margin: 2.6rem 0 0.8rem; font-size: 17px; color: var(--schrift); scroll-margin-top: 80px; }
+  .gesetz h3 { margin: 2.2rem 0 0.6rem; font-size: 13px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--akzent); scroll-margin-top: 80px; }
+  .gesetz p { margin: 0 0 12px; }
+  .gesetz ul { margin: 0 0 12px; padding-left: 20px; }
+  .gesetz li { margin-bottom: 6px; }
+
+  @media (max-width: 720px) {
+    .gesetz-inhalt ol { columns: 1; }
+  }
+</style>

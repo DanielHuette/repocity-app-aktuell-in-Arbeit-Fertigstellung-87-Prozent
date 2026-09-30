@@ -1,0 +1,153 @@
+---
+/* Die Frageliste.
+ *
+ * Der Inhalt steht NICHT hier, sondern in universe/faq.json - derselben
+ * Datei, aus der der Wegweiser im Worker sucht und die die App als Beilage
+ * traegt. Wer hier hineinschreibt, baut eine zweite Wahrheit.
+ *
+ * Jeder Eintrag traegt seine Kennung als Sprungmarke: findet der Wegweiser
+ * ihn, verweist er auf /faq/#<kennung> - und genau dort steht er dann auch.
+ */
+import App from "../layouts/App.astro";
+import faq from "../../../faq.json";
+
+const nachGruppe = faq.gruppen.map((gruppe: string) => ({
+  gruppe,
+  eintraege: faq.eintraege.filter((e: any) => e.gruppe === gruppe),
+}));
+---
+
+<App
+  titel="Fragen und Antworten"
+  aktiv=""
+  beschreibung="Was am häufigsten gefragt wird - mit dem Weg dorthin, wo es ausführlich steht."
+>
+  <section class="seite-kopf">
+    <h1>Fragen und Antworten</h1>
+    <p>{faq.eintraege.length} Antworten. Tipp ein Stichwort, dann bleibt nur übrig, was dazu passt.</p>
+  </section>
+
+  <div class="faq-suche">
+    <input type="search" id="faq-suche" placeholder="Wonach suchst du?"
+           autocomplete="off" aria-label="In den Fragen suchen" />
+    <span id="faq-zahl" class="faq-zahl"></span>
+  </div>
+
+  <nav class="faq-sprung" aria-label="Gruppen">
+    {faq.gruppen.map((g: string) => (
+      <a href={"#gruppe-" + g.toLowerCase().replace(/[^a-z0-9]+/g, "-")}>{g}</a>
+    ))}
+  </nav>
+
+  {nachGruppe.map(({ gruppe, eintraege }) => (
+    <section class="faq-gruppe"
+             id={"gruppe-" + gruppe.toLowerCase().replace(/[^a-z0-9]+/g, "-")}>
+      <h2>{gruppe}</h2>
+      {eintraege.map((e: any) => (
+        <details class="faq-eintrag" id={e.id}
+                 data-suchtext={(e.frage + " " + e.antwort + " " + e.stichworte.join(" ")).toLowerCase()}>
+          <summary>{e.frage}</summary>
+          <div class="faq-antwort">
+            <p>{e.antwort}</p>
+            <a class="faq-weiter" href={e.ziel + (e.marke ? "#" + e.marke : "")}>
+              Ausführlich nachlesen →
+            </a>
+          </div>
+        </details>
+      ))}
+    </section>
+  ))}
+
+  <p class="faq-schluss">
+    Nichts dabei? Frag Mia unten rechts, oder schreib an
+    <a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a>.
+  </p>
+</App>
+
+<script is:inline>
+  /* Filtern im Browser, ohne Server. Die Liste ist klein genug, dass das
+     bei jedem Tastendruck geht - gemessen: unter einer Millisekunde. */
+  (function () {
+    var feld = document.getElementById("faq-suche");
+    var zahl = document.getElementById("faq-zahl");
+    var eintraege = Array.prototype.slice.call(document.querySelectorAll(".faq-eintrag"));
+    var gruppen = Array.prototype.slice.call(document.querySelectorAll(".faq-gruppe"));
+    if (!feld) return;
+
+    function flach(s) {
+      return (s || "").toLowerCase()
+        .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss");
+    }
+
+    function filtern() {
+      var wort = flach(feld.value.trim());
+      var sichtbar = 0;
+      eintraege.forEach(function (e) {
+        var passt = !wort || flach(e.getAttribute("data-suchtext")).indexOf(wort) >= 0;
+        e.hidden = !passt;
+        if (passt) sichtbar += 1;
+        if (passt && wort) e.open = true;
+        if (!wort) e.open = false;
+      });
+      gruppen.forEach(function (g) {
+        g.hidden = !g.querySelector(".faq-eintrag:not([hidden])");
+      });
+      zahl.textContent = wort ? sichtbar + " von " + eintraege.length : "";
+    }
+    feld.addEventListener("input", filtern);
+
+    /* Kommt jemand ueber einen Verweis herein - /faq/#abo-kuendigen -, dann
+       soll der Eintrag offen sein und nicht zugeklappt dastehen. */
+    function aufklappen() {
+      var marke = location.hash.replace("#", "");
+      if (!marke) return;
+      var ziel = document.getElementById(marke);
+      if (ziel && ziel.tagName === "DETAILS") {
+        ziel.open = true;
+        ziel.scrollIntoView({ block: "center" });
+      }
+    }
+    window.addEventListener("hashchange", aufklappen);
+    aufklappen();
+  })();
+</script>
+
+<style>
+  .faq-suche { display: flex; align-items: center; gap: 12px; margin: 24px 0 8px; }
+  .faq-suche input {
+    flex: 1; max-width: 420px; padding: 11px 14px; border-radius: 10px;
+    border: 1px solid var(--linie); background: transparent; color: var(--schrift);
+  }
+  .faq-zahl { font-size: 13px; color: var(--schrift-fein); }
+
+  .faq-sprung { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 28px; }
+  .faq-sprung a {
+    font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--schrift-fein); border-bottom: 1px solid transparent;
+  }
+  .faq-sprung a:hover { color: var(--akzent); border-bottom-color: var(--akzent-matt); }
+
+  .faq-gruppe { margin-bottom: 34px; }
+  .faq-gruppe h2 {
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--akzent); margin: 0 0 12px;
+  }
+
+  .faq-eintrag { border-bottom: 1px solid var(--linie); }
+  .faq-eintrag summary {
+    cursor: pointer; padding: 13px 0; list-style: none;
+    display: flex; justify-content: space-between; gap: 16px;
+  }
+  .faq-eintrag summary::-webkit-details-marker { display: none; }
+  .faq-eintrag summary::after { content: "+"; color: var(--schrift-fein); }
+  .faq-eintrag[open] summary::after { content: "–"; }
+  .faq-eintrag[open] summary { color: var(--akzent); }
+  .faq-antwort {
+    padding: 0 0 16px; max-width: 68ch; line-height: 1.75;
+    color: var(--schrift-leise);
+  }
+  .faq-antwort p { margin: 0 0 10px; }
+  .faq-weiter { font-size: 13px; color: var(--akzent); }
+  .faq-schluss { margin-top: 40px; font-size: 14px; color: var(--schrift-fein); }
+  .faq-schluss a { color: var(--akzent); }
+</style>

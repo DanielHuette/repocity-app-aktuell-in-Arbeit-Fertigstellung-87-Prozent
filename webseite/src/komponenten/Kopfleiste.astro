@@ -1,0 +1,213 @@
+---
+/* Die Kopfleiste der öffentlichen Seiten.
+ *
+ * Aufbau wie im Vorbild, das Daniel geschickt hat: Marke links, die Punkte
+ * mittig in einer Pille, die Aktionen rechts. Auf schmalen Geräten wird
+ * daraus ein Knopf, der die Leiste aufklappt — eine Pille mit sechs Punkten
+ * passt nicht auf ein Handy.
+ *
+ * Die Klappen gehen beim Zeigen und beim Antippen auf. Reines CSS reicht
+ * dafür nicht: auf einem Handy gibt es kein Zeigen, und ein Menü, das sich
+ * nur mit der Maus öffnet, ist auf dem Handy kein Menü.
+ */
+import { menue } from "../daten/menue";
+---
+
+<header class="kopfleiste">
+  <div class="kopf-innen">
+    <a href="/" class="marke" aria-label="RepoCity">
+      <img src="/favicon.png" alt="" width="28" height="28" />
+      <span>RepoCity</span>
+    </a>
+
+    <button type="button" class="klapper" data-menue-knopf aria-expanded="false"
+            aria-controls="hauptmenue" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="pille" id="hauptmenue" data-menue>
+      {menue.map((k) => (
+        k.punkte ? (
+          <div class="klappe" data-klappe>
+            <button type="button" class="klappe-knopf" aria-expanded="false">
+              {k.titel}
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="klappe-inhalt">
+              {k.punkte.map((p) => (
+                <a href={p.link}>
+                  <strong>{p.titel}</strong>
+                  {p.zeile && <em>{p.zeile}</em>}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a class="fester-punkt" href={k.link}>{k.titel}</a>
+        )
+      ))}
+    </nav>
+
+    <div class="aktionen">
+      <a class="leise" href="/zugang/">Anmelden</a>
+      <a class="voll" href="/zugang/">Konto anlegen</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  import "../skripte/kopfleiste.js";
+</script>
+
+<style>
+  .kopfleiste {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 30;
+    backdrop-filter: blur(12px);
+    background: linear-gradient(180deg, rgba(4, 6, 6, 0.92), rgba(4, 6, 6, 0.55));
+    border-bottom: 1px solid var(--linie);
+  }
+  .kopf-innen {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 3vw, 40px);
+    height: 68px;
+  }
+
+  .marke {
+    display: flex; align-items: center; gap: .55rem;
+    font-weight: 600; letter-spacing: .02em;
+    color: var(--schrift);
+    flex: 0 0 auto;
+  }
+  .marke img { display: block; }
+
+  /* Die Pille sitzt mittig, egal wie breit Marke und Aktionen sind. */
+  .pille {
+    display: flex; align-items: center; gap: .15rem;
+    margin: 0 auto;
+    padding: .3rem .5rem;
+    border: 1px solid var(--linie);
+    border-radius: 999px;
+    background: var(--flaeche-unten);
+  }
+
+  .klappe { position: relative; }
+  .klappe-knopf, .fester-punkt {
+    display: inline-flex; align-items: center; gap: .3rem;
+    padding: .5rem .85rem;
+    border: 0; border-radius: 999px;
+    background: transparent;
+    color: var(--schrift);
+    font: inherit; font-size: .93rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .klappe-knopf:hover, .fester-punkt:hover,
+  .klappe[data-offen] .klappe-knopf { background: var(--marker); color: var(--akzent-hell); }
+  .klappe-knopf svg { transition: transform 200ms ease; }
+  .klappe[data-offen] .klappe-knopf svg { transform: rotate(180deg); }
+
+  .klappe-inhalt {
+    position: absolute;
+    top: calc(100% + .5rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    min-width: 300px;
+    padding: .4rem;
+    border: 1px solid var(--linie);
+    border-radius: 14px;
+    background: var(--grund);
+    box-shadow: 0 24px 48px -20px var(--schatten);
+    display: grid;
+    gap: .1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms;
+  }
+  .klappe[data-offen] .klappe-inhalt {
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+  }
+  .klappe-inhalt a {
+    display: grid; gap: .1rem;
+    padding: .6rem .75rem;
+    border-radius: 10px;
+    color: var(--schrift);
+  }
+  .klappe-inhalt a:hover { background: var(--marker); }
+  .klappe-inhalt strong { font-weight: 600; font-size: .92rem; }
+  .klappe-inhalt em { font-style: normal; font-size: .78rem; color: var(--schrift-leise); }
+
+  .aktionen { display: flex; align-items: center; gap: .6rem; flex: 0 0 auto; }
+  .aktionen .leise { color: var(--schrift-leise); font-size: .93rem; padding: .5rem .4rem; }
+  .aktionen .leise:hover { color: var(--schrift); }
+  .aktionen .voll {
+    padding: .55rem 1.1rem;
+    border-radius: 999px;
+    background: var(--akzent);
+    color: var(--auf-akzent);
+    font-weight: 600; font-size: .93rem;
+    white-space: nowrap;
+  }
+  .aktionen .voll:hover { background: var(--akzent-hell); }
+
+  /* Der Klappknopf — nur auf schmalen Geräten zu sehen. */
+  .klapper {
+    display: none;
+    width: 40px; height: 40px;
+    border: 1px solid var(--linie); border-radius: 10px;
+    background: transparent; cursor: pointer;
+    padding: 10px 9px;
+    margin-left: auto;
+  }
+  .klapper span {
+    display: block; height: 2px; border-radius: 2px;
+    background: var(--schrift);
+    transition: transform 200ms ease, opacity 160ms ease;
+  }
+  .klapper span + span { margin-top: 5px; }
+  .klapper[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .klapper[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .klapper[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Gemessen am Vorbild: sechs Punkte plus Marke plus zwei Knöpfe brauchen
+     rund 1180 px. Darunter klappt die Leiste auf, statt zu quetschen. */
+  @media (max-width: 1180px) {
+    .klapper { display: block; }
+    .pille {
+      position: absolute;
+      top: 68px; left: 0; right: 0;
+      margin: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      border-radius: 0;
+      border-left: 0; border-right: 0;
+      background: var(--grund);
+      padding: .5rem clamp(16px, 3vw, 40px) 1rem;
+      display: none;
+    }
+    .pille[data-offen] { display: flex; }
+    .klappe-knopf, .fester-punkt {
+      width: 100%; justify-content: space-between;
+      padding: .8rem .4rem;
+      border-radius: 8px;
+    }
+    .klappe-inhalt {
+      position: static; transform: none;
+      min-width: 0; border: 0; box-shadow: none;
+      background: transparent;
+      padding: 0 0 .4rem .8rem;
+      display: none; opacity: 1; visibility: visible;
+    }
+    .klappe[data-offen] .klappe-inhalt { display: grid; transform: none; }
+    .aktionen { display: none; }
+  }
+</style>

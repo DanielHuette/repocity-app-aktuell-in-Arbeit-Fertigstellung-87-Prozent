@@ -1,0 +1,31 @@
+---
+/* Mia — das Fragefenster. Eine Stelle für beide Grundrisse.
+ *
+ * Bis zum 14.09.2026 stand dieses Markup nur in App.astro; auf der
+ * Startseite gab es Mia darum nicht. Jetzt steht es hier und wird von
+ * beiden Layouts eingesetzt — eine Quelle, nicht zwei.
+ */
+---
+
+<button type="button" class="frage-knopf" id="frage-knopf" aria-label="Mia öffnen">Mia</button>
+<section class="frage-fenster" id="frage-fenster" aria-label="Mia">
+  <header>
+    <!-- Die Kennzeichnung steht einmal, leise, neben dem Namen - so verlangt
+         es Artikel 50 der EU-KI-Verordnung; betont wird sie nicht. -->
+    <span>Mia <small class="frage-rolle">KI-Assistentin</small></span>
+    <button type="button" id="frage-zu" aria-label="Schließen">✕</button>
+  </header>
+  <div class="frage-verlauf" id="frage-verlauf">
+    <p class="frage-hinweis">
+      Ich zeige dir in zwei Minuten, was hier wo steht.
+      <button type="button" class="fuehrung-knopf" id="fuehrung-start">Führung starten</button>
+    </p>
+    <p class="frage-hinweis">
+      Frag mich, was RepoCity ist und was es kann.
+    </p>
+  </div>
+  <form class="frage-eingabe" id="frage-form">
+    <input type="text" id="frage-text" placeholder="Deine Frage" autocomplete="off" />
+    <button type="submit">Senden</button>
+  </form>
+</section>

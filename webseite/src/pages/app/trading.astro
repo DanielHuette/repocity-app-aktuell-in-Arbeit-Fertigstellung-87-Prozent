@@ -1,0 +1,180 @@
+---
+import App from "../../layouts/App.astro";
+import { boersen } from "../../daten/boersen";
+
+/* Trading - zwei gleich grosse Felder, eins ueber dem anderen.
+   Daniel am 14.09.2026: *"auch hier ist das feld was soll gebaut werden
+   totaler unsinn! statt 'was soll gebaut werden' sollten da eher die
+   erkannten setups und hinterlegten limit orders mit den angedachten stop
+   loss und tps angezeigt werden. Das drunter sollte ein feld in gleicher
+   groesse sein mit den offenen positionen und deren stop loss und take
+   profits. es sollte dort auch realized und unrealized pnl stehen. bei den
+   setups ebenso."*
+
+   Hier wird nichts bestellt. Ein Trade entsteht aus einem Setup, nicht aus
+   einem Auftrag - der Handelsbeobachter rechnet, die Strasse legt die Order,
+   und hier steht, was daraus geworden ist.
+
+   Gefuellt wird das von handel.js: der Kurs aus den offenen Schnittstellen
+   der Boersen, Setups und Positionen aus dem Hub. Steht dort nichts, steht
+   hier ein Strich - nie eine erfundene Zahl. */
+---
+
+<App titel="RepoCity Trading" aktiv="trading" beschreibung="SK-System, Setups, Positionen">
+  <section class="seite-kopf">
+    <h1>RepoCity Trading</h1>
+    <p>SK-System, Setups, Positionen</p>
+  </section>
+
+  <div class="kopfzeile">
+    <div class="kurs">
+      <strong id="handel-kurs">--</strong>
+      <span>BTC-USDT</span>
+      <span class="quelle" id="handel-quelle">nichts eingeschaltet</span>
+    </div>
+    <div class="boersen">
+      {boersen.map((b) => (
+        <div class="boerse" data-boerse-zeile={b.id} title={b.weg}>
+          <b>{b.label}</b>
+          <span class="art">{b.art}</span>
+          <span class="stand" data-stand>an</span>
+        </div>
+      ))}
+    </div>
+  </div>
+  <p class="lage" id="handel-lage"></p>
+
+  <!-- Oben: was der Handelsbeobachter erkannt und was die Strasse hinterlegt
+       hat. Solange eine Order nicht gefuellt ist, gibt es nichts zu verdienen
+       und nichts zu verlieren - dann steht bei beiden PnL ein Strich, und
+       daneben, was auf dem Spiel stuende: Risiko bis zum Stop, Chance bis
+       zum ersten Ziel. -->
+  <section class="karte feld" aria-labelledby="setup-titel">
+    <div class="karte-kopf">
+      <h2 id="setup-titel">Erkannte Setups und liegende Orders</h2>
+      <div class="pnl-paar">
+        <span class="pnl" id="setup-pnl-un" data-vorzeichen="0">offen –</span>
+        <span class="pnl" id="setup-pnl-real" data-vorzeichen="0">realisiert –</span>
+      </div>
+    </div>
+    <div class="rollt">
+      <table class="tabelle" id="setup-tabelle">
+        <thead>
+          <tr>
+            <th>Markt</th><th>Seite</th><th>Stand</th>
+            <th>Einstieg</th><th>Stop</th>
+            <th>TP 1</th><th>TP 2</th><th>TP 3</th>
+            <th>Risiko</th><th>Chance</th>
+            <th>offen</th><th>realisiert</th>
+          </tr>
+        </thead>
+        <tbody id="setup-zeilen"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Unten, gleich gross: was wirklich laeuft. -->
+  <section class="karte feld" aria-labelledby="pos-titel">
+    <div class="karte-kopf">
+      <h2 id="pos-titel">Offene Positionen</h2>
+      <div class="pnl-paar">
+        <span class="pnl" id="pos-pnl-un" data-vorzeichen="0">offen –</span>
+        <span class="pnl" id="pos-pnl-real" data-vorzeichen="0">realisiert –</span>
+      </div>
+    </div>
+    <div class="rollt">
+      <table class="tabelle" id="pos-tabelle">
+        <thead>
+          <tr>
+            <th>Markt</th><th>Seite</th><th>Größe</th>
+            <th>Einstieg</th><th>Stop</th>
+            <th>TP 1</th><th>TP 2</th><th>TP 3</th>
+            <th>Risiko</th><th>Chance</th>
+            <th>offen</th><th>realisiert</th>
+          </tr>
+        </thead>
+        <tbody id="pos-zeilen"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="karte" aria-labelledby="verlauf-titel">
+    <div class="karte-kopf">
+      <h2 id="verlauf-titel">Geschlossene Trades</h2>
+      <span class="pnl" id="verlauf-pnl" data-vorzeichen="0">gesamt –</span>
+    </div>
+    <div class="rollt">
+      <table class="tabelle" id="verlauf-tabelle">
+        <thead>
+          <tr><th>Wann</th><th>Markt</th><th>Seite</th><th>Einstieg</th><th>Ausstieg</th><th>realisiert</th></tr>
+        </thead>
+        <tbody id="verlauf-zeilen"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="../../skripte/handel.js"></script>
+</App>
+
+<style>
+  .kopfzeile {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap;
+    padding: .9rem 1.1rem; border-radius: 12px; border: 1px solid var(--linie);
+    background: linear-gradient(180deg, var(--flaeche-oben) 0%, var(--flaeche-unten) 100%);
+  }
+  .kurs { display: flex; align-items: baseline; gap: .6rem; }
+  .kurs strong { font-size: 1.7rem; color: var(--akzent); letter-spacing: .02em; }
+  .kurs span { font-size: .78rem; color: var(--schrift-fein); }
+  .boersen { display: flex; gap: .6rem; flex-wrap: wrap; }
+  .boerse {
+    display: grid; grid-template-columns: auto auto; gap: .1rem .6rem; align-items: center;
+    padding: .45rem .7rem; border: 1px solid var(--linie); border-radius: 10px;
+    font-size: .8rem;
+  }
+  .boerse b { color: var(--schrift); }
+  .boerse .art { grid-column: 1; font-size: .7rem; color: var(--schrift-fein); }
+  .boerse .stand {
+    grid-column: 2; grid-row: 1 / span 2;
+    font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
+    padding: .15rem .5rem; border: 1px solid var(--akzent); color: var(--akzent);
+    border-radius: 999px; white-space: nowrap;
+  }
+  .boerse[data-aus="ja"] { opacity: .5; }
+  .boerse[data-aus="ja"] .stand { border-color: var(--linie); color: var(--schrift-fein); }
+  .lage { margin: .7rem 0 1rem; font-size: .85rem; color: var(--schrift-gedaempft); min-height: 1em; }
+  .quelle { font-size: .72rem; color: var(--schrift-fein); }
+
+  .karte {
+    margin-top: 1rem; padding: 1rem 1.1rem; border-radius: 12px; border: 1px solid var(--linie);
+    background: linear-gradient(180deg, var(--flaeche-oben) 0%, var(--flaeche-unten) 100%);
+  }
+  /* Gleich gross, wie verlangt: beide Felder bekommen dieselbe Hoehe, egal
+     wie viele Zeilen darin stehen. Wird es mehr, rollt die Tabelle innen -
+     das Feld waechst nicht und schiebt das andere nicht aus dem Bild. */
+  .karte.feld { display: flex; flex-direction: column; min-height: 20rem; }
+  .karte.feld .rollt { flex: 1; overflow-y: auto; }
+  .rollt { overflow-x: auto; }
+  .karte-kopf { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .7rem; }
+  .karte h2 { margin: 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--akzent); font-weight: 500; }
+  .pnl-paar { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .pnl { font-size: .95rem; font-weight: 600; color: var(--schrift-leise); white-space: nowrap; }
+  .pnl[data-vorzeichen="1"] { color: var(--akzent); }
+  .pnl[data-vorzeichen="-1"] { color: var(--alarm); }
+  .tabelle { width: 100%; border-collapse: collapse; font-size: .84rem; }
+  .tabelle th { text-align: left; font-weight: 500; font-size: .7rem; letter-spacing: .06em;
+                text-transform: uppercase; color: var(--schrift-fein); padding: .3rem .4rem;
+                border-bottom: 1px solid var(--linie); white-space: nowrap;
+                position: sticky; top: 0;
+                background: var(--grund); }
+  .tabelle td { padding: .45rem .4rem; border-bottom: 1px solid var(--linie); color: var(--schrift-leise); white-space: nowrap; }
+  .tabelle td.plus { color: var(--akzent); }
+  .tabelle td.minus { color: var(--alarm); }
+  .tabelle td.ziel { color: var(--akzent); }
+  .tabelle td.stop { color: var(--alarm); }
+  .tabelle tr.leer td { color: var(--schrift-fein); font-size: .82rem; border-bottom: 0; white-space: normal; }
+  .tabelle .stand-marke {
+    font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
+    padding: .1rem .45rem; border-radius: 999px; border: 1px solid var(--linie);
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+/* Die Quellen der Wohnungssuche — woher die Angebote kommen.
+
+   Dieselbe Ansicht wie in der App (ui/bereiche/QuellenScreen.kt). Was auf
+   der einen Seite dazukommt, kommt auch auf die andere.
+
+   Der Bildschirm versteckt nichts: solange eine Quelle still ist, steht
+   hier, woran es liegt. Ein Nutzer, der glaubt es liefe und dem nichts
+   kommt, ist schlechter dran als einer, der weiß, dass noch etwas fehlt. */
+import App from "../../layouts/App.astro";
+import {
+  gesuchLaenge,
+  gesuchWoraufEsAnkommt,
+  gutesGesuch,
+  quellen,
+  woRepoCityAufhoert,
+  zubringerTitel,
+} from "../../daten/quellen";
+
+const bereit = quellen.filter((q) => q.wasFehlt.length === 0).length;
+---
+
+<App titel="Quellen der Wohnungssuche" aktiv="quellen"
+     beschreibung="Woher RepoCity Wohnungsangebote bekommt — und was noch fehlt, damit es losgeht.">
+  <section class="seite-kopf">
+    <h1>Quellen der Wohnungssuche</h1>
+    <p>Woher die Angebote kommen</p>
+  </section>
+
+  <div class="quelle-kopf feld">
+    <span class="etikett">Wo RepoCity aufhört</span>
+    <p>{woRepoCityAufhoert}</p>
+    <p class={bereit === 0 ? "quelle-still" : "quelle-bereit"}>
+      {bereit} von {quellen.length} Quellen sind bereit.
+    </p>
+  </div>
+
+  <ul class="quelle-liste">
+    {quellen.map((q) => (
+      <li class="feld">
+        <div class="quelle-zeile">
+          <div>
+            <strong class={q.wasFehlt.length === 0 ? "quelle-bereit" : ""}>
+              {q.name}
+            </strong>
+            <small>{zubringerTitel[q.zubringer]}</small>
+          </div>
+          <span class={"quelle-marke " + (q.wasFehlt.length === 0 ? "gut" : "")}>
+            {q.wasFehlt.length === 0 ? "bereit" : "still"}
+          </span>
+        </div>
+        {q.hinweis && <p class="quelle-hinweis">{q.hinweis}</p>}
+        {q.wasFehlt.length > 0 && (
+          <p class="quelle-offen">Noch offen: {q.wasFehlt.join(" · ")}</p>
+        )}
+      </li>
+    ))}
+  </ul>
+
+  <div class="quelle-gesuch feld">
+    <span class="etikett">Was in eine Anfrage gehört</span>
+    <ul>{gutesGesuch.map((z) => <li>{z}</li>)}</ul>
+    <p class="quelle-fein">Länge: {gesuchLaenge}</p>
+    <p class="quelle-fein">{gesuchWoraufEsAnkommt}</p>
+  </div>
+</App>
+
+<style>
+  .quelle-kopf { padding: 1rem 1.1rem; margin-bottom: .8rem; }
+  .etikett {
+    font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--schrift-fein);
+  }
+  .quelle-kopf p { margin: .5rem 0 0; font-size: .85rem; color: var(--schrift-leise); }
+  .quelle-bereit { color: var(--akzent); }
+  .quelle-still { color: var(--alarm); }
+
+  .quelle-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+  .quelle-liste li { padding: .9rem 1.1rem; }
+  .quelle-zeile {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .quelle-zeile strong { display: block; font-size: .95rem; }
+  .quelle-zeile small {
+    display: block; margin-top: 2px; font-size: .74rem; color: var(--schrift-fein);
+  }
+  .quelle-marke {
+    font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--schrift-fein); white-space: nowrap;
+  }
+  .quelle-marke.gut { color: var(--akzent); }
+  .quelle-hinweis {
+    margin: .5rem 0 0; font-size: .78rem; color: var(--schrift-leise);
+  }
+  .quelle-offen { margin: .5rem 0 0; font-size: .78rem; color: var(--alarm); }
+
+  .quelle-gesuch { margin-top: .8rem; padding: 1rem 1.1rem; }
+  .quelle-gesuch ul { margin: .5rem 0 0; padding-left: 1.1rem; }
+  .quelle-gesuch li { font-size: .82rem; color: var(--schrift-leise); margin: 2px 0; }
+  .quelle-fein { margin: .5rem 0 0; font-size: .76rem; color: var(--schrift-fein); }
+</style>

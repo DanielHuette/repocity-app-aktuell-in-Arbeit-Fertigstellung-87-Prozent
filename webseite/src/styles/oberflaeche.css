@@ -1,0 +1,281 @@
+/* Gerippe der Oberfläche: Leiste links, Inhalt rechts, Fuß unten.
+   Alle Farben kommen aus dem gewählten Kit — hier steht keine einzige feste Farbe. */
+
+body {
+  background: var(--grund);
+  color: var(--schrift);
+}
+
+.gerippe { display: flex; min-height: 100vh; }
+
+/* ── Leiste ─────────────────────────────────────────────── */
+.leiste {
+  width: 232px;
+  flex: 0 0 232px;
+  border-right: 1px solid var(--linie);
+  background: linear-gradient(180deg, var(--grund) 0%, var(--grund-tief) 100%);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+/* Die Marke: das Logo fuellt die Leistenhoehe fast aus (40 von 56), steht
+   nicht in der Ecke, und der Name heisst RepoCity - nicht REPOCITY. */
+.leiste-marke {
+  display: flex; align-items: center; gap: 12px;
+  height: 56px; box-sizing: border-box; padding: 0 18px 0 26px;
+  font-size: 16px; font-weight: 600; letter-spacing: 0.03em;
+  color: var(--schrift);
+  border-bottom: 1px solid var(--linie);
+}
+.leiste-marke img { width: auto; height: 40px; border-radius: 8px; }
+.leiste-punkte { display: flex; flex-direction: column; padding: 10px 0; flex: 0 0 auto; }
+.leiste-punkt {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 10px 18px;
+  font-size: 13px;
+  color: var(--schrift-leise);
+  border-left: 2px solid transparent;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+.leiste-punkt .nr {
+  font-family: var(--mono); font-size: 10px; color: var(--schrift-fein);
+  letter-spacing: 0.1em;
+}
+.leiste-punkt:hover { color: var(--schrift); background: var(--flaeche-unten); }
+.leiste-punkt.an {
+  color: var(--akzent);
+  border-left-color: var(--akzent);
+  background: var(--flaeche-unten);
+}
+.leiste-punkt.an .nr { color: var(--akzent-matt); }
+.leiste-fuss { padding: 14px 14px 18px; margin-top: 8px; border-top: 1px solid var(--linie); }
+
+/* Elf Kits untereinander machen die Leiste hoeher als der Schirm:
+   11 Knoepfe zu 31 px und 10 Abstaende zu 5 px sind 391 px, damit wird
+   die Leiste 831 px hoch und faengt schon bei 720 px Schirmhoehe an zu
+   rollen. In zwei Spalten sind es 6 Reihen, also 6*31 + 5*5 = 211 px -
+   die Leiste bleibt bei 651 px und steht still.
+   Passt der laengste Name hinein? Gemessen im Browser: "Silberblatt"
+   ist in dieser Schrift 75 px breit, dazu 2*10 px Polster = 95 px. Zur
+   Verfuegung stehen (203 - 5) / 2 = 99 px. Passt. */
+.kit-wahl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+.kit-wahl button {
+  width: 100%;
+  text-align: left;
+  font: inherit; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 8px 10px;
+  color: var(--schrift-fein);
+  background: var(--flaeche-unten);
+  border: 1px solid var(--linie);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+.kit-wahl button:hover { color: var(--schrift); }
+.kit-wahl button[aria-pressed="true"] { color: var(--akzent); border-color: var(--akzent-matt); }
+
+/* ── Rumpf ──────────────────────────────────────────────── */
+.rumpf { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.kopf {
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 24px; height: 56px;
+  border-bottom: 1px solid var(--linie);
+  position: sticky; top: 0; z-index: 10;
+  background: var(--grund);
+}
+.kopf-titel { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--schrift-leise); }
+.kopf-zugang, .kopf-app {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--akzent);
+  border: 1px solid var(--akzent-matt);
+  border-radius: 8px;
+  padding: 7px 14px;
+  white-space: nowrap;
+}
+/* Links neben dem Login: die App zum Herunterladen - bis sie da ist, ein
+   Platzhalter, der zu den Einstellungen fuehrt. */
+.kopf-app { margin-left: auto; color: var(--schrift-leise); border-color: var(--linie); }
+.kopf-zugang { margin-left: 10px; }
+@media (max-width: 600px) { .kopf-app { display: none; } }
+.leiste-schalter {
+  display: none;
+  font: inherit; font-size: 16px; line-height: 1;
+  background: none; border: 0; color: var(--schrift); cursor: pointer;
+}
+.inhalt { flex: 1; padding: 32px 24px 72px; max-width: 1180px; width: 100%; }
+
+/* ── Felder ─────────────────────────────────────────────── */
+.felder {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: 16px;
+  margin-top: 26px;
+}
+.feld {
+  display: block;
+  position: relative;
+  padding: 20px 20px 22px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--flaeche-oben) 0%, var(--flaeche-unten) 100%);
+  border: 1px solid var(--linie);
+  box-shadow: 0 14px 30px -18px var(--schatten), inset 0 1px 0 var(--kante);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease;
+}
+.feld::after {
+  content: "";
+  position: absolute; inset: 0 0 55% 0;
+  border-radius: 14px 14px 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,calc(var(--glanz) * 0.5)) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+.feld:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 40px -20px var(--schatten), inset 0 1px 0 var(--kante);
+}
+.feld .nr {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+  color: var(--akzent);
+}
+.feld h3 { margin: 10px 0 6px; font-size: 18px; font-weight: 600; color: var(--schrift); }
+.feld p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--schrift-leise); }
+
+/* ── Seiteninhalt ───────────────────────────────────────── */
+.seite-kopf { border-bottom: 1px solid var(--linie); padding-bottom: 20px; }
+.seite-kopf h1 {
+  margin: 0 0 8px; font-size: clamp(24px, 3.4vw, 38px); font-weight: 600;
+  text-transform: var(--anzeige-versalien); letter-spacing: var(--anzeige-sperrung);
+}
+.seite-kopf p { margin: 0; color: var(--schrift-leise); max-width: 62ch; line-height: 1.7; }
+.platz {
+  margin-top: 28px; padding: 28px;
+  border: 1px dashed var(--linie); border-radius: 14px;
+  color: var(--schrift-fein); font-size: 13px;
+}
+
+/* ── Fuß ────────────────────────────────────────────────── */
+.fuss { border-top: 1px solid var(--linie); padding: 34px 24px 26px; margin-top: auto; }
+.fuss-raster {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px; max-width: 1180px;
+}
+.fuss-raster div { display: flex; flex-direction: column; gap: 8px; }
+.fuss-raster b {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--schrift-fein); font-weight: 500;
+}
+.fuss-raster a { font-size: 13px; color: var(--schrift-leise); }
+.fuss-raster a:hover { color: var(--akzent); }
+.fuss-zeile {
+  display: flex; justify-content: space-between; gap: 12px;
+  margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--linie);
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--schrift-fein);
+}
+
+/* ── Fragefenster ───────────────────────────────────────── */
+.frage-knopf {
+  position: fixed; right: 22px; bottom: 22px; z-index: 40;
+  height: 44px; padding: 0 20px; border-radius: 22px;
+  font: inherit; font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--auf-akzent); background: var(--akzent);
+  border: 0; cursor: pointer;
+  box-shadow: 0 12px 26px -10px var(--schatten);
+}
+.frage-fenster[hidden] { display: none; }
+.frage-fenster {
+  position: fixed; right: 22px; bottom: 82px; z-index: 41;
+  width: min(360px, calc(100vw - 44px));
+  height: min(480px, calc(100vh - 140px));
+  display: flex; flex-direction: column;
+  border: 1px solid var(--linie); border-radius: 16px;
+  background: var(--grund);
+  box-shadow: 0 30px 60px -24px var(--schatten);
+  overflow: hidden;
+}
+.frage-fenster header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-bottom: 1px solid var(--linie);
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--schrift-leise);
+}
+.frage-fenster header button { font: inherit; background: none; border: 0; color: var(--schrift-fein); cursor: pointer; }
+.frage-rolle { margin-left: 8px; font-size: 9px; letter-spacing: 0.1em; color: var(--schrift-fein); text-transform: none; }
+.frage-verlauf { flex: 1; overflow-y: auto; padding: 14px; font-size: 13px; line-height: 1.6; }
+.frage-hinweis { color: var(--schrift-fein); margin: 0; }
+.frage-du, .frage-antwort { margin: 0 0 12px; padding: 9px 12px; border-radius: 10px; }
+.frage-du { background: var(--flaeche-unten); color: var(--schrift); }
+.frage-antwort { border: 1px solid var(--linie); color: var(--schrift-leise); }
+/* Der Wegweiser antwortet mit einem Verweis auf die Stelle, an der es
+   ausfuehrlich steht. Er steht unter der Antwort, nicht darin. */
+.frage-verweis {
+  display: block; margin: -4px 0 14px; padding: 0 12px;
+  font-size: 13px; color: var(--akzent);
+}
+.frage-verweis:hover { text-decoration: underline; }
+.frage-eingabe { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--linie); }
+.frage-eingabe input {
+  flex: 1; font: inherit; font-size: 13px; padding: 9px 11px;
+  color: var(--schrift); background: var(--flaeche-unten);
+  border: 1px solid var(--linie); border-radius: 9px;
+}
+.frage-eingabe button {
+  font: inherit; font-size: 12px; padding: 9px 14px;
+  color: var(--auf-akzent); background: var(--akzent);
+  border: 0; border-radius: 9px; cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .leiste {
+    position: fixed; z-index: 30; left: 0; top: 0;
+    transform: translateX(-100%);
+    transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .leiste.offen { transform: translateX(0); }
+  .leiste-schalter { display: block; }
+  .inhalt { padding: 24px 16px 64px; }
+}
+
+/* ── Abo-Sperre ─────────────────────────────────────────
+   Gesperrte Bereiche werden nicht versteckt. Sie bleiben stehen, treten
+   zurueck und tragen ein Schloss und den Namen der Stufe, die sie aufmacht.
+   Wer nichts gebucht hat, soll sehen, was es gibt — nicht eine leere Leiste.
+   Gesetzt werden die Merkmale von skripte/abo-sperre.js; die Sperre selbst
+   steht im Worker. */
+
+.leiste-punkt[data-gesperrt="ja"] { color: var(--schrift-fein); }
+.leiste-punkt[data-gesperrt="ja"] .txt::after {
+  content: "\1F512";                 /* Schloss */
+  margin-left: 6px;
+  font-size: 9px;
+  opacity: 0.75;
+}
+
+.feld[data-gesperrt="ja"] { border-style: dashed; }
+.feld[data-gesperrt="ja"] h3,
+.feld[data-gesperrt="ja"] p { color: var(--schrift-fein); }
+.feld[data-gesperrt="ja"]::before {
+  content: "\1F512\00A0" attr(data-stufe-name);
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--akzent);
+  border: 1px solid var(--akzent-matt);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+/* ── Kostenseite: Kategorien vom Rechner ─────────────────── */
+.kosten-kategorien { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 10px; font-size: 12px; color: var(--schrift-leise); }
+.kosten-kategorien b { color: var(--schrift); font-weight: 600; }
+.kosten-kategorien .kosten-warn { color: var(--alarm); }

@@ -1,0 +1,236 @@
+---
+import App from "../../layouts/App.astro";
+import { boersen } from "../../daten/boersen";
+import { wurzeln, kinder } from "../../daten/module";
+
+const kits = [
+  { id: "blende", label: "Blende", rolle: "Auftritt" },
+  { id: "rossi", label: "Rossi", rolle: "Arbeiten" },
+  { id: "glashaus", label: "Glashaus", rolle: "Hell" },
+  { id: "karawane", label: "Karawane", rolle: "Gelände" },
+  { id: "silberblatt", label: "Silberblatt", rolle: "Still" },
+  { id: "schmiede", label: "Schmiede", rolle: "Werkstatt" },
+  { id: "stadtkrone", label: "Stadtkrone", rolle: "Weitblick" },
+  { id: "wunderwald", label: "Wunderwald", rolle: "Fabel" },
+  { id: "rechenwerk", label: "Rechenwerk", rolle: "Rechnen" },
+  { id: "gipfelsturm", label: "Gipfelsturm", rolle: "Aufstieg" },
+  { id: "morgentau", label: "Morgentau", rolle: "Anfang" },
+];
+const baeume = wurzeln().map((w) => ({ wurzel: w, kinder: kinder(w.id) }));
+---
+
+<App titel="Einstellungen" aktiv="einstellungen" beschreibung="Design, Betrieb, Meldungen — modular">
+  <section class="seite-kopf">
+    <h1>Einstellungen</h1>
+    <p>Design, Betrieb, Meldungen — modular</p>
+  </section>
+
+  <!-- ── Design ──────────────────────────────────────────────────── -->
+  <div class="karte">
+    <h3>Design</h3>
+    <div class="kit-reihe" role="group" aria-label="Design">
+      {kits.map((k) => (
+        <button type="button" class="kit-chip" data-kit-knopf={k.id}>
+          <strong>{k.label}</strong>
+          <em>{k.rolle}</em>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- ── Betrieb ─────────────────────────────────────────────────── -->
+  <div class="karte">
+    <h3>Betrieb</h3>
+    <label class="schalter-zeile">
+      <span>
+        <strong>Echtbetrieb</strong>
+        <em data-zeile="echt">trocken: nichts verlässt das Haus</em>
+      </span>
+      <input type="checkbox" data-schalter="echtbetrieb" />
+    </label>
+    <label class="schalter-zeile">
+      <span>
+        <strong>Startbildschirm zeigen</strong>
+        <em>Anflug auf RepoCity beim Öffnen</em>
+      </span>
+      <input type="checkbox" data-schalter="startbildschirm" />
+    </label>
+  </div>
+
+  <!-- ── Die Teile des Universe ──────────────────────────────────── -->
+  <section class="abschnitt-kopf">
+    <h2>Das Universe, Teil für Teil</h2>
+  </section>
+
+  <div class="legende" aria-hidden="true">
+    <span>Betrieb</span>
+    <span>Meldung</span>
+  </div>
+
+  {baeume.map(({ wurzel, kinder: kids }) => (
+    <div class="karte modulkarte">
+      <div class="modul-zeile" data-modul={wurzel.id}>
+        <span class="modul-text">
+          <strong>{wurzel.name}</strong>
+          <em data-aufgabe={wurzel.aufgabe}>{wurzel.aufgabe}</em>
+        </span>
+        {wurzel.kostet && <span class="kostet" title="Kostet Geld">€</span>}
+        <input type="checkbox" data-betrieb={wurzel.id} aria-label={`${wurzel.name} Betrieb`} />
+        <input type="checkbox" data-meldung={wurzel.id} aria-label={`${wurzel.name} Meldungen`} />
+      </div>
+      {kids.map((k) => (
+        <div class="modul-zeile eingerueckt" data-modul={k.id}>
+          <span class="modul-text">
+            <strong>{k.name}</strong>
+            <em data-aufgabe={k.aufgabe}>{k.aufgabe}</em>
+          </span>
+          {k.kostet && <span class="kostet" title="Kostet Geld">€</span>}
+          <input type="checkbox" data-betrieb={k.id} data-eltern={wurzel.id} aria-label={`${k.name} Betrieb`} />
+          <input type="checkbox" data-meldung={k.id} data-eltern={wurzel.id} aria-label={`${k.name} Meldungen`} />
+        </div>
+      ))}
+    </div>
+  ))}
+
+  <!-- ── Börsen ──────────────────────────────────────────────────── -->
+  <div class="karte">
+    <h3>Börsen</h3>
+    <p class="hinweis">
+      Wer hier ausgeschaltet ist, wird weder beobachtet noch gehandelt — auf
+      dieser Seite und in der App gilt dieselbe Regel.
+    </p>
+    {boersen.map((b) => (
+      <label class="schalter-zeile">
+        <span>
+          <strong>{b.label}</strong>
+          <em>{b.art}</em>
+        </span>
+        <input type="checkbox" data-boerse={b.id} />
+      </label>
+    ))}
+  </div>
+
+  <!-- ── Tiefenrecherche ────────────────────────────── -->
+  <div class="karte" data-tr-kasten>
+    <h3>Tiefenrecherche</h3>
+    <p class="hinweis">
+      Sucht im Netz nach Fachseiten und legt das Gefundene als belegte Notizen
+      ins zweite Gehirn. Anders als die Schalter darüber liegen diese beiden am
+      Hub — der Rechner liest sie dort, sonst hielten sie nichts an.
+      750 Suchen im Monat sind frei; jede weitere kostet 1,6 Cent.
+    </p>
+
+    <p class="hinweis" data-tr-anmeldung hidden>
+      Dafür brauchst du ein Konto: die Einstellung hängt an deinem Konto, nicht
+      an diesem Browser. <a href="/zugang/">Anmelden oder Konto anlegen</a>
+    </p>
+
+    <div data-tr-schalter hidden>
+      <label class="schalter-zeile">
+        <span>
+          <strong>Tiefenrecherche läuft</strong>
+          <em>ab Werk aus — eingeschaltet wird sie, nicht ausgeschaltet</em>
+        </span>
+        <input type="checkbox" data-tr="an" />
+      </label>
+      <label class="schalter-zeile">
+        <span>
+          <strong>Nach den 750 freien Suchen weitersuchen</strong>
+          <em>erst hiermit wird überhaupt etwas abgerechnet</em>
+        </span>
+        <input type="checkbox" data-tr="ueber" />
+      </label>
+      <p class="hinweis" data-tr-hinweis></p>
+    </div>
+  </div>
+
+  <script src="../../skripte/handel.js"></script>
+  <script src="../../skripte/einstellungen.js"></script>
+  <script src="../../skripte/tiefenrecherche.js"></script>
+</App>
+
+<style>
+  .karte {
+    background: linear-gradient(180deg, var(--flaeche-oben) 0%, var(--flaeche-unten) 100%);
+    border: 1px solid var(--linie);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 14px 30px -18px var(--schatten), inset 0 1px 0 var(--kante);
+  }
+  .karte h3 { margin: 0 0 .3rem; font-size: 1rem; }
+  .abschnitt-kopf { margin: 1.8rem 0 .6rem; }
+  .abschnitt-kopf h2 { margin: 0 0 .3rem; font-size: 1.15rem; }
+
+  /* Elf Kits in einer Reihe Pillen brechen ungleich um: bei 1095 px
+     Inhaltsbreite standen neun in der ersten und zwei in der zweiten
+     Zeile. Als Raster sind alle Felder gleich breit.
+     Wie schmal darf eine Spalte sein? Der breiteste Eintrag misst im
+     Browser gemessene 133 px ("Silberblatt", "Gipfelsturm") - 140 px
+     reichen ihm. Und auf dem Handy sind es gemessene 306 px Inhalt:
+     zwei Spalten brauchen 2*140 + 8 px Abstand = 288 px, passt. Mit
+     150 px waeren es 308 px gewesen, und der Kasten haette eine
+     einzige lange Spalte gezeigt. */
+  .kit-reihe {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: .5rem;
+    margin-top: .8rem;
+  }
+  .kit-chip {
+    display: flex; flex-direction: column; align-items: flex-start; gap: .1rem;
+    padding: .45rem .8rem; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--linie);
+    background: var(--flaeche-unten);
+    color: var(--schrift);
+    font: inherit;
+  }
+  .kit-chip em { font-style: normal; font-size: .72rem; color: var(--schrift-leise); }
+  .kit-chip[aria-pressed="true"] {
+    background: var(--akzent); border-color: var(--akzent); color: var(--auf-akzent);
+  }
+  .kit-chip[aria-pressed="true"] em { color: var(--auf-akzent); opacity: .8; }
+
+  .schalter-zeile {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--linie); cursor: pointer;
+  }
+  .schalter-zeile span { display: flex; flex-direction: column; gap: .15rem; }
+  .schalter-zeile em { font-style: normal; font-size: .78rem; color: var(--schrift-leise); }
+  .schalter-zeile input { width: 2.6rem; height: 1.4rem; accent-color: var(--akzent); cursor: pointer; }
+
+  .legende {
+    display: flex; justify-content: flex-end; gap: .45rem;
+    padding: 0 calc(1.1rem + 1px) .35rem; font-size: .66rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--schrift-leise);
+  }
+  .legende span + span::before { content: "\00b7"; margin-right: .45rem; }
+
+  .modulkarte { padding: .35rem 1.1rem; }
+  .modul-zeile {
+    display: flex; align-items: center; gap: .6rem;
+    padding: .65rem 0; border-top: 1px solid var(--linie);
+  }
+  .modulkarte .modul-zeile:first-child { border-top: 0; }
+  .modul-zeile.eingerueckt { padding-left: 1.1rem; }
+  .modul-text { display: flex; flex-direction: column; gap: .1rem; flex: 1 1 auto; min-width: 0; }
+  .modul-text strong { font-size: .95rem; font-weight: 600; }
+  .modul-zeile.eingerueckt .modul-text strong { font-size: .88rem; font-weight: 500; }
+  .modul-text em { font-style: normal; font-size: .76rem; color: var(--schrift-leise); }
+  .modul-zeile input { width: 2.6rem; height: 1.4rem; accent-color: var(--akzent); cursor: pointer; flex: 0 0 auto; }
+  .modul-zeile input:disabled { cursor: default; opacity: .38; }
+  .modul-zeile[data-aus="ja"] .modul-text strong { color: var(--schrift-leise); }
+  .kostet {
+    flex: 0 0 auto; font-size: .72rem; line-height: 1;
+    padding: .2rem .35rem; border-radius: 4px;
+    background: var(--marker); color: var(--akzent);
+  }
+
+  .hinweis { font-size: .84rem; color: var(--schrift-leise); max-width: 62ch; }
+  .fuss { margin-top: 1.2rem; }
+
+  @media (max-width: 520px) {
+    .modul-zeile { flex-wrap: wrap; }
+    .modul-text { flex: 1 1 100%; }
+  }
+</style>

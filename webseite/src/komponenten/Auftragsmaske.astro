@@ -1,0 +1,331 @@
+---
+/* Die Auftragsmaske - ein und dieselbe in Kreativwerkstatt, Life Automation
+   und Trading; nur die Auftragsarten sind je Feld andere (feldFuerAuftrag in
+   module.ts, dieselbe Regel wie Auftragsart.feld in der App). Daniel,
+   11.09.2026: Bewerbung, Wohnungssuche und Trading haben in der
+   Kreativwerkstatt nichts verloren.
+
+   Die Auftragsarten stehen im Universe genau einmal: universe/auftragsarten.json
+   (dieselbe Tabelle wie in Auftrag.kt der App, eine Pruefung haelt beide
+   zusammen). Dieser Baustein liest sie beim Bauen von dort. Hier wird KEINE
+   zweite Liste gefuehrt - die wuerde irgendwann auseinanderlaufen. */
+import { existsSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
+import { feldFuerAuftrag } from "../daten/module";
+
+/* Der Ordner universe/, in dem auftragsarten.json und kosten.json liegen.
+   Beim Bauen liegt diese Datei nicht mehr unter src/komponenten, sondern als
+   Bruchstueck unter dist/.prerender/chunks - darum wird nicht mit einer festen
+   Zahl von "../" gerechnet, sondern nach oben gesucht, bis die Datei da ist. */
+function universeOrdner(von: string): string {
+  let ordner = von;
+  for (let i = 0; i < 8; i++) {
+    if (existsSync(resolve(ordner, "auftragsarten.json"))) return ordner;
+    ordner = resolve(ordner, "..");
+  }
+  throw new Error("auftragsarten.json nicht gefunden - oberhalb von " + von);
+}
+
+interface Props {
+  /** Die route des Feldes: kreativwerkstatt, life oder trading. */
+  feld: string;
+}
+const { feld } = Astro.props;
+
+const universe = universeOrdner(dirname(fileURLToPath(import.meta.url)));
+const quelle = JSON.parse(
+  readFileSync(resolve(universe, "auftragsarten.json"), "utf-8")
+);
+
+/* Was ein Endbild kostet, steht in universe/kosten.json - gemessen, nicht
+   geschaetzt. Von dort kommt die Zahl, mit der der Regler seinen Preis
+   ausrechnet. Auch hier keine zweite Liste. */
+const geld = JSON.parse(
+  readFileSync(resolve(universe, "kosten.json"), "utf-8")
+);
+const endbildEur =
+  (geld.preise?.["fal-ai/flux/dev"] ?? 0) * (geld.usd_zu_eur ?? 1);
+
+const arten = Object.keys(quelle.arten)
+  .filter((schluessel) => feldFuerAuftrag(quelle.arten[schluessel].modul) === feld)
+  .map((schluessel) => {
+    const a = quelle.arten[schluessel];
+    const wer = quelle.wer_arbeitet[a.modul];
+    const r = (quelle.regler || {})[a.modul];
+    return {
+      schluessel,
+      label: a.label,
+      modul: a.modul,
+      /* Wer anlaeuft, steht in derselben Datei - nicht geraten. */
+      agent: wer ? wer.agent : "",
+      /* Und wie lang es werden soll - auch das steht dort. */
+      regler: r || null,
+    };
+  });
+---
+
+  <section class="auftrag-kasten" aria-labelledby="auftrag-titel">
+    <h2 id="auftrag-titel" class="auftrag-titel">Auftrag an den Sekretär</h2>
+
+    <fieldset class="arten">
+      {arten.map((a, i) => (
+        <label class="art">
+          <input type="radio" name="art" value={a.schluessel}
+                 data-agent={a.agent}
+                 data-regler={a.regler ? JSON.stringify(a.regler) : ""}
+                 checked={i === 0} />
+          <span>{a.label}</span>
+        </label>
+      ))}
+    </fieldset>
+
+    <!-- Wie lang es werden soll. Der Block zeigt sich nur, wenn die gewaehlte
+         Art einen Regler hat — Bereich, Schritt und Voreinstellung kommen aus
+         auftragsarten.json, nicht von hier. -->
+    <div class="laenge-block" id="laenge-block" data-endbild-eur={endbildEur.toFixed(6)} hidden>
+      <label class="feld-name" for="auftrag-laenge">
+        <span id="laenge-frage">Wie lang?</span>
+        <strong class="laenge-wert" id="laenge-wert"></strong>
+      </label>
+      <input type="range" id="auftrag-laenge" class="laenge-regler" />
+      <p class="laenge-rand">
+        <span id="laenge-von"></span>
+        <span id="laenge-bis"></span>
+      </p>
+      <p class="laenge-satz" id="laenge-satz"></p>
+      <p class="laenge-preis" id="laenge-preis" hidden></p>
+    </div>
+
+    <div class="feld-block">
+      <label class="feld-name" for="auftrag-text">Was soll gebaut werden?</label>
+
+      <div class="feld-rahmen">
+        <textarea
+          id="auftrag-text"
+          name="auftrag-text"
+          rows="4"
+          placeholder="Beschreib es in eigenen Worten — so ausführlich du magst."
+        ></textarea>
+
+        <!-- Nur dieses eine Feld wird diktiert. Der Knopf verschwindet von
+             selbst, wenn der Browser keine Spracherkennung mitbringt. -->
+        <button type="button" id="sprach-knopf" class="sprach-knopf"
+                aria-pressed="false" aria-controls="auftrag-text"
+                aria-label="Mit der Stimme diktieren">
+          <span class="mikro" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                 stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+              <rect x="9" y="3" width="6" height="11" rx="3" />
+              <path d="M5 11a7 7 0 0 0 14 0" />
+              <path d="M12 18v3" />
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <p class="sprach-stand" id="sprach-stand" data-art="bereit" role="status" aria-live="polite">
+        Bereit. Tipp auf das Mikrofon und sprich.
+      </p>
+    </div>
+
+    <p class="laeuft-an" id="laeuft-an"></p>
+
+    <div class="knoepfe">
+      <button type="button" id="auftrag-senden" class="knopf voll">Absenden</button>
+      <button type="button" id="auftrag-leeren" class="knopf">Leeren</button>
+    </div>
+
+    <p class="auftrag-hinweis" id="auftrag-hinweis" hidden></p>
+
+    <!-- Der Fortschritt des zuletzt abgeschickten Auftrags. Daniel, 10.09.:
+         statt eines Textes ein Balken, der weiterrueckt, wenn der Ablauf die
+         naechste Station erreicht. Gefuellt von auftrag.js aus dem Hub. -->
+    <div class="lauf" id="auftrag-lauf" hidden>
+      <div class="lauf-kopf">
+        <span id="lauf-station">wartet auf den Sekretär</span>
+        <span id="lauf-prozent">0 %</span>
+      </div>
+      <div class="lauf-balken"><div id="lauf-fuellung"></div></div>
+      <ol class="lauf-stationen" id="lauf-stationen"></ol>
+
+      <!-- Die Rueckfrage des Sekretaers: er hat den Auftrag nicht verstanden
+           und fragt, bevor er baut (seit 11.09.2026). Die Antwort geht als
+           Entscheidung an den Hub; der Sekretaer haengt sie an den Auftrag. -->
+      <div class="rueckfrage" id="rueckfrage" hidden>
+        <p class="rueckfrage-text" id="rueckfrage-text"></p>
+        <textarea id="rueckfrage-antwort" rows="2"
+                  placeholder="Deine Antwort - ich hänge sie an den Auftrag und lasse ihn dann laufen."></textarea>
+        <div class="knoepfe">
+          <button type="button" id="rueckfrage-senden" class="knopf voll">Antwort absenden</button>
+          <button type="button" id="rueckfrage-zurueck" class="knopf">Zurückziehen</button>
+        </div>
+        <p class="auftrag-hinweis" id="rueckfrage-hinweis" hidden></p>
+      </div>
+    </div>
+  </section>
+
+<script>
+  import "../skripte/spracheingabe.js";
+  import "../skripte/auftrag.js";
+</script>
+
+<style>
+  .auftrag-kasten {
+    margin-top: 28px;
+    padding: 22px 22px 20px;
+    border-radius: 14px;
+    border: 1px solid var(--linie);
+    background: linear-gradient(180deg, var(--flaeche-oben) 0%, var(--flaeche-unten) 100%);
+  }
+  .auftrag-titel {
+    margin: 0 0 16px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--akzent); font-weight: 500;
+  }
+
+  .arten { border: 0; margin: 0 0 20px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .arten-legende {
+    padding: 0; margin: 0 0 10px; width: 100%;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--schrift-fein);
+  }
+  .art input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .art span {
+    display: inline-block;
+    padding: 7px 13px;
+    font-size: 12px;
+    border: 1px solid var(--linie);
+    border-radius: 999px;
+    color: var(--schrift-leise);
+    cursor: pointer;
+    transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+  .art span:hover { color: var(--schrift); }
+  .art input:checked + span {
+    color: var(--auf-akzent); background: var(--akzent); border-color: var(--akzent);
+  }
+  .art input:focus-visible + span { outline: 2px solid var(--akzent); outline-offset: 2px; }
+
+  .feld-name {
+    display: block; margin-bottom: 8px;
+    font-size: 13px; color: var(--schrift-leise);
+  }
+
+  .laenge-block { margin: 0 0 20px; }
+  .laenge-block .feld-name {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  }
+  .laenge-wert { color: var(--schrift); font-size: 15px; font-weight: 500; }
+  .laenge-regler {
+    display: block; width: 100%; margin: 0; accent-color: var(--akzent);
+    cursor: pointer;
+  }
+  .laenge-regler:focus-visible { outline: 2px solid var(--akzent); outline-offset: 4px; }
+  .laenge-rand {
+    display: flex; justify-content: space-between;
+    margin: 4px 0 0; font-size: 11px; color: var(--schrift-fein);
+  }
+  .laenge-satz {
+    margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: var(--schrift-fein);
+  }
+  .laenge-preis {
+    margin: 6px 0 0; font-size: 12px; line-height: 1.5; color: var(--schrift-leise);
+  }
+  .feld-rahmen {
+    position: relative;
+    border: 1px solid var(--linie);
+    border-radius: 12px;
+    background: var(--grund-tief);
+  }
+  .feld-rahmen:focus-within { border-color: var(--akzent-matt); }
+  .feld-rahmen textarea {
+    display: block; width: 100%; box-sizing: border-box;
+    padding: 14px 52px 14px 14px;
+    font: inherit; font-size: 14px; line-height: 1.6;
+    color: var(--schrift); background: transparent;
+    border: 0; border-radius: 12px; resize: vertical;
+  }
+  .feld-rahmen textarea:focus { outline: none; }
+  .feld-rahmen textarea::placeholder { color: var(--schrift-fein); }
+
+  .sprach-knopf {
+    position: absolute; top: 9px; right: 9px;
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--linie); border-radius: 9px;
+    background: var(--flaeche-unten); color: var(--schrift-leise);
+    cursor: pointer;
+    transition: color 180ms ease, border-color 180ms ease;
+  }
+  .sprach-knopf:hover { color: var(--akzent); border-color: var(--akzent-matt); }
+  .sprach-knopf:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+  .sprach-knopf.hoert {
+    color: var(--auf-akzent); background: var(--akzent); border-color: var(--akzent);
+  }
+  .sprach-knopf.hoert .mikro { animation: pochen 1.4s ease-in-out infinite; }
+  @keyframes pochen { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+  @media (prefers-reduced-motion: reduce) {
+    .sprach-knopf.hoert .mikro { animation: none; }
+  }
+  .mikro { display: flex; }
+
+  .sprach-stand { margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: var(--schrift-fein); }
+  .sprach-stand[data-art="hoert"] { color: var(--akzent); }
+  .sprach-stand[data-art="erkannt"] { color: var(--schrift-leise); }
+  .sprach-stand[data-art="fehler"] { color: var(--schrift); }
+
+  .lauf { margin-top: 18px; }
+  .lauf-kopf { display: flex; justify-content: space-between; gap: 12px;
+               font-size: 12px; color: var(--schrift-leise); margin-bottom: 6px; }
+  .lauf-kopf #lauf-prozent { font-family: var(--mono); color: var(--akzent); }
+  .lauf-balken { height: 8px; border-radius: 4px; background: var(--linie); overflow: hidden; }
+  .lauf-balken div { height: 100%; width: 0; border-radius: 4px; background: var(--akzent);
+                     transition: width 600ms ease; }
+  .lauf[data-zustand="fehler"] .lauf-balken div { background: var(--alarm); }
+  .lauf-stationen { display: flex; flex-wrap: wrap; gap: 6px 14px; list-style: none;
+                    margin: 10px 0 0; padding: 0; font-size: 11px; color: var(--schrift-fein); }
+  .lauf-stationen li::before { content: "\2713\00a0"; color: var(--akzent); }
+  .lauf-stationen li.laeuft::before { content: "\2026\00a0"; color: var(--schrift-leise); }
+  .rueckfrage {
+    margin-top: 14px; padding: 14px;
+    border: 1px solid var(--akzent-matt); border-radius: 12px;
+    background: var(--grund-tief);
+  }
+  .rueckfrage[hidden] { display: none; }
+  .rueckfrage-text { margin: 0 0 10px; font-size: 13px; line-height: 1.6; color: var(--schrift); white-space: pre-line; }
+  .rueckfrage textarea {
+    display: block; width: 100%; box-sizing: border-box;
+    padding: 10px 12px; font: inherit; font-size: 13px; line-height: 1.5;
+    color: var(--schrift); background: transparent;
+    border: 1px solid var(--linie); border-radius: 10px; resize: vertical;
+  }
+  .rueckfrage textarea:focus { outline: none; border-color: var(--akzent-matt); }
+  .rueckfrage .knoepfe { margin-top: 10px; }
+  .laeuft-an {
+    margin: 16px 0 0;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em;
+    color: var(--schrift-fein);
+  }
+
+  .knoepfe { display: flex; gap: 10px; margin-top: 18px; }
+  .knopf {
+    font: inherit; font-size: 12px;
+    padding: 10px 18px;
+    border: 1px solid var(--linie); border-radius: 999px;
+    background: transparent; color: var(--schrift-leise);
+    cursor: pointer;
+    transition: color 180ms ease, border-color 180ms ease;
+  }
+  .knopf:hover { color: var(--schrift); border-color: var(--akzent-matt); }
+  .knopf.voll {
+    background: var(--akzent); border-color: var(--akzent); color: var(--auf-akzent);
+  }
+  .knopf:disabled { opacity: 0.55; cursor: progress; }
+
+  .auftrag-hinweis {
+    margin: 14px 0 0; font-size: 13px; line-height: 1.6;
+    color: var(--schrift-leise);
+  }
+  .auftrag-hinweis[hidden] { display: none; }
+</style>

@@ -1,0 +1,43 @@
+{
+ "hinweis": "Noch nicht endgültig. Erweitern und aussieben — jede Zeile ist eine Entscheidung, keine Vollständigkeit. 'aktiv': false schaltet eine Quelle ab, ohne sie zu verlieren.",
+ "quellen": [
+  {"name": "Anthropic News", "art": "feed", "url": "https://www.anthropic.com/rss.xml", "kategorie": "anbieter", "themen": ["claude", "agenten", "sicherheit"], "lizenz": "Urheberrecht Anthropic, Zitat mit Quelle", "aktiv": true},
+  {"name": "Anthropic Engineering", "art": "seite", "url": "https://www.anthropic.com/engineering", "kategorie": "anbieter", "themen": ["agenten", "kontext", "werkzeuge"], "lizenz": "Urheberrecht Anthropic", "aktiv": true},
+  {"name": "OpenAI Blog", "art": "feed", "url": "https://openai.com/blog/rss.xml", "kategorie": "anbieter", "themen": ["modelle", "api"], "lizenz": "Urheberrecht OpenAI", "aktiv": true},
+  {"name": "Google DeepMind Blog", "art": "feed", "url": "https://deepmind.google/blog/rss.xml", "kategorie": "anbieter", "themen": ["forschung", "modelle"], "lizenz": "Urheberrecht Google", "aktiv": true},
+  {"name": "Hugging Face Blog", "art": "feed", "url": "https://huggingface.co/blog/feed.xml", "kategorie": "anbieter", "themen": ["offene modelle", "werkzeuge"], "lizenz": "meist offen", "aktiv": true},
+  {"name": "Mistral News", "art": "seite", "url": "https://mistral.ai/news", "kategorie": "anbieter", "themen": ["offene modelle"], "lizenz": "Urheberrecht Mistral", "aktiv": true},
+
+  {"name": "Simon Willison", "art": "feed", "url": "https://simonwillison.net/atom/everything/", "kategorie": "fachleute", "themen": ["llm werkzeuge", "praxis", "prompt"], "lizenz": "CC BY 4.0", "aktiv": true},
+  {"name": "Lil'Log (Lilian Weng)", "art": "feed", "url": "https://lilianweng.github.io/index.xml", "kategorie": "fachleute", "themen": ["agenten", "grundlagen"], "lizenz": "Urheberrecht Autorin", "aktiv": true},
+  {"name": "Ahead of AI (Sebastian Raschka)", "art": "feed", "url": "https://magazine.sebastianraschka.com/feed", "kategorie": "fachleute", "themen": ["training", "grundlagen"], "lizenz": "Urheberrecht Autor", "aktiv": true},
+  {"name": "Andrej Karpathy", "art": "feed", "url": "https://karpathy.bearblog.dev/feed/", "kategorie": "fachleute", "themen": ["grundlagen", "atome"], "lizenz": "Urheberrecht Autor", "aktiv": true},
+  {"name": "Eugene Yan", "art": "feed", "url": "https://eugeneyan.com/rss/", "kategorie": "fachleute", "themen": ["evaluation", "rag", "praxis"], "lizenz": "Urheberrecht Autor", "aktiv": true},
+  {"name": "Chip Huyen", "art": "feed", "url": "https://huyenchip.com/feed.xml", "kategorie": "fachleute", "themen": ["betrieb", "architektur"], "lizenz": "Urheberrecht Autorin", "aktiv": true},
+  {"name": "Interconnects (Nathan Lambert)", "art": "feed", "url": "https://www.interconnects.ai/feed", "kategorie": "fachleute", "themen": ["nachtraining", "offene modelle"], "lizenz": "Urheberrecht Autor", "aktiv": true},
+  {"name": "Hamel Husain", "art": "feed", "url": "https://hamel.dev/index.xml", "kategorie": "fachleute", "themen": ["evaluation", "praxis"], "lizenz": "Urheberrecht Autor", "aktiv": true},
+
+  {"name": "arXiv cs.AI", "art": "feed", "url": "https://rss.arxiv.org/rss/cs.AI", "kategorie": "forschung", "themen": ["forschung"], "lizenz": "je Aufsatz, Metadaten CC0", "aktiv": true},
+  {"name": "arXiv cs.CL", "art": "feed", "url": "https://rss.arxiv.org/rss/cs.CL", "kategorie": "forschung", "themen": ["sprache"], "lizenz": "je Aufsatz, Metadaten CC0", "aktiv": true},
+  {"name": "arXiv cs.MA (Multiagent)", "art": "feed", "url": "https://rss.arxiv.org/rss/cs.MA", "kategorie": "forschung", "themen": ["multi-agent"], "lizenz": "je Aufsatz, Metadaten CC0", "aktiv": true},
+  {"name": "Papers with Code", "art": "seite", "url": "https://paperswithcode.com/latest", "kategorie": "forschung", "themen": ["forschung", "code"], "lizenz": "CC BY-SA", "aktiv": true},
+
+  {"name": "Wikipedia (de)", "art": "api", "url": "https://de.wikipedia.org/w/api.php", "kategorie": "freies wissen", "themen": ["begriffe"], "lizenz": "CC BY-SA 4.0", "aktiv": true},
+  {"name": "Wikipedia (en)", "art": "api", "url": "https://en.wikipedia.org/w/api.php", "kategorie": "freies wissen", "themen": ["begriffe"], "lizenz": "CC BY-SA 4.0", "aktiv": true},
+  {"name": "OpenAlex", "art": "api", "url": "https://api.openalex.org/works", "kategorie": "freies wissen", "themen": ["forschung", "zitate"], "lizenz": "CC0", "aktiv": true},
+  {"name": "Zenodo", "art": "api", "url": "https://zenodo.org/api/records", "kategorie": "freies wissen", "themen": ["daten", "offene arbeiten"], "lizenz": "je Werk, meist offen", "aktiv": true},
+  {"name": "Internet Archive", "art": "api", "url": "https://archive.org/advancedsearch.php", "kategorie": "freies wissen", "themen": ["archiv"], "lizenz": "je Werk", "aktiv": true},
+  {"name": "EUR-Lex", "art": "seite", "url": "https://eur-lex.europa.eu", "kategorie": "recht", "themen": ["ki-verordnung", "urheberrecht"], "lizenz": "EU-Weiterverwendung, Beschluss 2011/833/EU", "aktiv": true},
+  {"name": "EU AI Act Explorer", "art": "seite", "url": "https://artificialintelligenceact.eu/de/das-gesetz/", "kategorie": "recht", "themen": ["ki-verordnung"], "lizenz": "CC BY 4.0", "aktiv": true},
+
+  {"name": "Hacker News (Algolia)", "art": "api", "url": "https://hn.algolia.com/api/v1/search_by_date", "kategorie": "portale", "themen": ["neuheiten", "werkzeuge"], "lizenz": "Metadaten offen, Inhalte extern", "aktiv": true},
+  {"name": "Lobsters", "art": "feed", "url": "https://lobste.rs/t/ai.rss", "kategorie": "portale", "themen": ["neuheiten"], "lizenz": "je Beitrag", "aktiv": true},
+  {"name": "heise online", "art": "feed", "url": "https://www.heise.de/rss/heise-atom.xml", "kategorie": "portale", "themen": ["deutsche it-nachrichten"], "lizenz": "Urheberrecht heise, nur Zitat", "aktiv": true},
+  {"name": "The Decoder (de)", "art": "feed", "url": "https://the-decoder.de/feed/", "kategorie": "portale", "themen": ["ki-nachrichten deutsch"], "lizenz": "Urheberrecht Verlag", "aktiv": true},
+  {"name": "MIT Technology Review AI", "art": "feed", "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed", "kategorie": "portale", "themen": ["einordnung"], "lizenz": "Urheberrecht Verlag", "aktiv": true},
+
+  {"name": "LangChain Blog", "art": "feed", "url": "https://blog.langchain.com/rss/", "kategorie": "werkzeuge", "themen": ["agenten", "langgraph"], "lizenz": "Urheberrecht LangChain", "aktiv": true},
+  {"name": "Model Context Protocol", "art": "seite", "url": "https://modelcontextprotocol.io", "kategorie": "werkzeuge", "themen": ["mcp", "konnektoren"], "lizenz": "MIT/CC", "aktiv": true},
+  {"name": "n8n Blog", "art": "feed", "url": "https://blog.n8n.io/rss/", "kategorie": "werkzeuge", "themen": ["automatisierung"], "lizenz": "Urheberrecht n8n", "aktiv": true}
+ ]
+}

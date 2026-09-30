@@ -1,0 +1,400 @@
+---
+import App from "../../layouts/App.astro";
+import { findeBereich } from "../../daten/bereiche";
+import { module_ } from "../../daten/module";
+
+/* Life Automation — E-Mail, Bewerbungen, Wohnungssuche, Terminkoordinator.
+ *
+ * Hier wird nichts "gebaut". Hier gibt der Nutzer vor, wonach die vier
+ * Agenten arbeiten sollen, und sieht gegen, was sie daraus gemacht haben.
+ * Die Auftragsmaske der Kreativwerkstatt stand hier bis zum 14.09.2026 und
+ * war irreführend — Daniel: "es gibt dort nichts zu bauen".
+ *
+ * Vier Reiter, je einer für einen Agenten. Was der jeweilige Agent tut,
+ * steht im Reiter selbst, nicht mehr in einer Liste darunter.
+ */
+const b = findeBereich("life");
+const dienste = module_.filter((m) => m.bereich === "life");
+const aufgabe = (id: string) => dienste.find((m) => m.id === id)?.aufgabe ?? "";
+---
+
+<App titel={b.voll} aktiv="life" beschreibung={b.zeile}>
+  <section class="seite-kopf">
+    <h1>{b.voll}</h1>
+    <p>{b.zeile}</p>
+  </section>
+
+  <div class="reiter" role="tablist" aria-label="Bereiche">
+    <button type="button" role="tab" data-reiter="post" aria-selected="true">E-Mail</button>
+    <button type="button" role="tab" data-reiter="bewerbung" aria-selected="false">Bewerbungen</button>
+    <button type="button" role="tab" data-reiter="wohnung" aria-selected="false">Wohnungssuche</button>
+    <button type="button" role="tab" data-reiter="kalender" aria-selected="false">Termine</button>
+  </div>
+
+  <p class="melder" data-melder hidden></p>
+
+  <!-- ══ E-Mail ══════════════════════════════════════════════════════ -->
+  <section class="tafel" data-feld="post">
+    <p class="was">{aufgabe("post")}</p>
+
+    <div class="karte">
+      <div class="unterreiter" role="tablist">
+        <button type="button" role="tab" data-ton="email-formell" aria-selected="true">Offiziell</button>
+        <button type="button" role="tab" data-ton="email-normal" aria-selected="false">Normal</button>
+        <button type="button" role="tab" data-ton="email-casual" aria-selected="false">Locker</button>
+      </div>
+
+      <div data-tonfeld="email-formell">
+        <label>
+          <span>Vorlage — der Rahmen, den jede offizielle Antwort bekommt</span>
+          <textarea rows="6" data-muster="email-formell"
+            placeholder="Sehr geehrte Damen und Herren,&#10;&#10;…&#10;&#10;Mit freundlichen Grüßen&#10;Daniel Huette"></textarea>
+        </label>
+      </div>
+      <div data-tonfeld="email-normal" hidden>
+        <label>
+          <span>Vorlage — die gewöhnliche Antwort</span>
+          <textarea rows="6" data-muster="email-normal"
+            placeholder="Hallo …,&#10;&#10;…&#10;&#10;Viele Grüße&#10;Daniel"></textarea>
+        </label>
+      </div>
+      <div data-tonfeld="email-casual" hidden>
+        <label>
+          <span>Vorlage — locker, unter Bekannten</span>
+          <textarea rows="6" data-muster="email-casual"
+            placeholder="Hi …,&#10;&#10;…&#10;&#10;Gruß&#10;Daniel"></textarea>
+        </label>
+      </div>
+
+      <div class="ablage">
+        <h4>Schriftproben hochladen</h4>
+        <p class="hinweis">
+          Eigene Mails oder Briefe, an denen RepoCity deine Ausdrucksweise
+          lernt. Je Tonlage ein paar Stück reichen. PDF, Word oder Text.
+        </p>
+        <input type="file" data-hochladen="vorlage" data-wofuer="email"
+               accept=".pdf,.doc,.docx,.txt,.md,.eml" multiple />
+        <ul class="dateiliste" data-liste="vorlage" data-wofuer="email"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Bewerbungen ═════════════════════════════════════════════════ -->
+  <section class="tafel" data-feld="bewerbung" hidden>
+    <p class="was">{aufgabe("bewerbung")}</p>
+
+    <div class="karte">
+      <h3>Dein Bewerbungsmuster</h3>
+      <p class="hinweis">
+        Lade deine eigene Bewerbung hoch — Anschreiben, Lebenslauf, was dazu
+        gehört. Sie liegt in deinem Bereich und dient als Muster: der
+        Bewerbungsagent passt sie für andere Stellen an, statt eine fremde
+        Vorlage zu benutzen.
+      </p>
+      <input type="file" data-hochladen="vorlage" data-wofuer="bewerbung"
+             accept=".pdf,.doc,.docx" multiple />
+      <ul class="dateiliste" data-liste="vorlage" data-wofuer="bewerbung"></ul>
+
+      <label class="dazu">
+        <span>Was in keiner Bewerbung von dir stehen soll</span>
+        <textarea rows="4" data-muster="bewerbung"
+          placeholder="Zum Beispiel: keine Floskeln wie „hiermit bewerbe ich mich“, kein Wort über … , Gehaltsvorstellung nur wenn gefragt."></textarea>
+      </label>
+    </div>
+
+    <div class="karte">
+      <h3>Zum Gegenlesen</h3>
+      <p class="hinweis">
+        Was der Agent für eine Stelle gebaut hat. Nichts davon geht hinaus,
+        bevor du es freigegeben hast.
+      </p>
+      <ul class="dateiliste entwuerfe" data-liste="entwurf" data-wofuer="bewerbung"></ul>
+    </div>
+  </section>
+
+  <!-- ══ Wohnungssuche ═══════════════════════════════════════════════ -->
+  <section class="tafel" data-feld="wohnung" hidden>
+    <p class="was">{aufgabe("wohnung")}</p>
+
+    <div class="karte">
+      <h3>Deine Antwort auf ein Wohnungsangebot</h3>
+      <p class="hinweis">
+        Wie deine Anfrage aussehen soll. RepoCity setzt die Angaben der
+        jeweiligen Wohnung ein und schickt sie los — bei Portalen, die das
+        erlauben, in Sekunden nach der Meldung. Das ist der ganze Vorteil.
+      </p>
+      <label>
+        <span>Muster</span>
+        <textarea rows="10" data-muster="wohnung"
+          placeholder="Guten Tag,&#10;&#10;die Wohnung in … interessiert mich sehr. Ich bin … , arbeite als … und kann … .&#10;&#10;Unterlagen (Schufa, Gehaltsnachweise, Mietschuldenfreiheit) habe ich vorbereitet und bringe sie zur Besichtigung mit.&#10;&#10;Über eine Einladung freue ich mich.&#10;&#10;Mit freundlichen Grüßen&#10;…"></textarea>
+      </label>
+
+      <div class="ablage">
+        <h4>Unterlagen</h4>
+        <p class="hinweis">
+          Was du ohnehin jedes Mal mitschickst — Selbstauskunft, Nachweise.
+          Liegt bereit, wird aber nur verschickt, wenn du es freigibst.
+        </p>
+        <input type="file" data-hochladen="vorlage" data-wofuer="wohnung"
+               accept=".pdf,.doc,.docx,.jpg,.png" multiple />
+        <ul class="dateiliste" data-liste="vorlage" data-wofuer="wohnung"></ul>
+      </div>
+    </div>
+
+    <div class="karte">
+      <h3>Zum Gegenlesen</h3>
+      <ul class="dateiliste entwuerfe" data-liste="entwurf" data-wofuer="wohnung"></ul>
+    </div>
+  </section>
+
+  <!-- ══ Termine ═════════════════════════════════════════════════════ -->
+  <section class="tafel" data-feld="kalender" hidden>
+    <p class="was">{aufgabe("kalender")}</p>
+
+    <div class="karte">
+      <h3>Neuer Termin</h3>
+      <form class="terminform" data-terminform>
+        <label>
+          <span>Was</span>
+          <input type="text" name="titel" required placeholder="Besichtigung Hammer Str. 12" />
+        </label>
+        <label>
+          <span>Art</span>
+          <select name="art">
+            <option value="besichtigung">Besichtigung</option>
+            <option value="vorstellung">Vorstellungsgespräch</option>
+            <option value="arbeit">Arbeit</option>
+            <option value="privat">Privat</option>
+            <option value="frist">Frist</option>
+            <option value="sonstiges" selected>Sonstiges</option>
+          </select>
+        </label>
+        <label>
+          <span>Beginn</span>
+          <input type="datetime-local" name="beginn" required />
+        </label>
+        <label>
+          <span>Ende</span>
+          <input type="datetime-local" name="ende" />
+        </label>
+        <label>
+          <span>Ort</span>
+          <input type="text" name="ort" placeholder="Hammer Str. 12, Münster" />
+        </label>
+        <label>
+          <span>Wecken</span>
+          <select name="weckenMin">
+            <option value="0">nicht</option>
+            <option value="15">15 Minuten vorher</option>
+            <option value="60" selected>1 Stunde vorher</option>
+            <option value="240">4 Stunden vorher</option>
+            <option value="1440">1 Tag vorher</option>
+          </select>
+        </label>
+        <label class="breit">
+          <span>Beschreibung</span>
+          <textarea rows="3" name="beschreibung" placeholder="Worum es geht, was mitzubringen ist"></textarea>
+        </label>
+        <button type="submit">Termin eintragen</button>
+      </form>
+    </div>
+
+    <div class="karte">
+      <div class="kalenderkopf">
+        <button type="button" data-monat="-1" aria-label="Vorheriger Monat">‹</button>
+        <h3 data-monatstitel>—</h3>
+        <button type="button" data-monat="1" aria-label="Nächster Monat">›</button>
+      </div>
+      <div class="wochentage" aria-hidden="true">
+        <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+      </div>
+      <div class="raster" data-raster></div>
+      <ul class="terminliste" data-terminliste></ul>
+    </div>
+
+    <div class="karte">
+      <h3>Fremde Kalender verknüpfen</h3>
+      <p class="hinweis">
+        Eine Kalenderadresse im ICS-Format — Google, Apple, Outlook und
+        Nextcloud geben sie in ihren Einstellungen unter „Kalender
+        abonnieren“ oder „geheime Adresse im iCal-Format“ heraus. RepoCity
+        liest von dort und trägt deine eigenen Termine dorthin zurück,
+        soweit der Anbieter Schreiben erlaubt.
+      </p>
+      <label>
+        <span>Adresse</span>
+        <input type="url" data-kalenderadresse placeholder="https://…/basic.ics" />
+      </label>
+      <button type="button" data-kalenderspeichern>Verknüpfen</button>
+      <ul class="dateiliste" data-kalenderliste></ul>
+    </div>
+  </section>
+
+  <!-- Der Weckruf im Browser. Auf dem Handy übernimmt das die App und legt
+       ihn auf den Sperrbildschirm. -->
+  <div class="wecker" data-wecker hidden role="alertdialog" aria-live="assertive">
+    <strong data-weckertitel></strong>
+    <span data-weckerzeit></span>
+    <p data-weckertext></p>
+    <button type="button" data-weckerzu>Gesehen</button>
+  </div>
+
+  <script>
+    import "../../skripte/life.js";
+  </script>
+</App>
+
+<style>
+  .reiter {
+    display: flex; gap: .3rem; flex-wrap: wrap;
+    margin: 18px 0 14px;
+    border-bottom: 1px solid var(--linie);
+  }
+  .reiter button {
+    border: 0; background: transparent; color: var(--schrift-leise);
+    font: inherit; font-size: 14px; cursor: pointer;
+    padding: .6rem 1rem; border-bottom: 2px solid transparent;
+  }
+  .reiter button:hover { color: var(--schrift); }
+  .reiter button[aria-selected="true"] {
+    color: var(--akzent); border-bottom-color: var(--akzent);
+  }
+
+  .melder {
+    margin: 0 0 12px; padding: .6rem .9rem;
+    border-radius: 10px; border: 1px solid var(--linie);
+    background: var(--flaeche-unten);
+    font-size: 13px; color: var(--schrift-leise);
+  }
+  .melder.schlimm { border-color: var(--alarm); color: var(--alarm); }
+
+  .was {
+    margin: 0 0 14px; font-size: 13px; color: var(--schrift-fein);
+  }
+
+  .karte {
+    margin-bottom: 16px; padding: 18px 22px;
+    border-radius: 14px; border: 1px solid var(--linie);
+    background: linear-gradient(180deg, var(--flaeche-oben) 0%, var(--flaeche-unten) 100%);
+  }
+  .karte h3 { margin: 0 0 .3rem; font-size: 15px; }
+  .karte h4 { margin: 1.2rem 0 .3rem; font-size: 13px; }
+  .hinweis { margin: 0 0 .9rem; font-size: 12.5px; line-height: 1.6; color: var(--schrift-fein); }
+
+  label { display: block; margin-bottom: .8rem; }
+  label > span { display: block; margin-bottom: .3rem; font-size: 12px; color: var(--schrift-leise); }
+  textarea, input[type="text"], input[type="url"], input[type="datetime-local"], select {
+    width: 100%; box-sizing: border-box;
+    padding: .6rem .7rem;
+    border: 1px solid var(--linie); border-radius: 10px;
+    background: var(--grund-tief, var(--grund)); color: var(--schrift);
+    font: inherit; font-size: 13.5px; line-height: 1.6;
+  }
+  textarea { resize: vertical; }
+  textarea:focus, input:focus, select:focus { outline: 1px solid var(--akzent); }
+  input[type="file"] { font-size: 13px; color: var(--schrift-leise); }
+
+  button[type="submit"], [data-kalenderspeichern] {
+    padding: .6rem 1.2rem; border: 0; border-radius: 999px;
+    background: var(--akzent); color: var(--auf-akzent);
+    font: inherit; font-weight: 600; font-size: 13.5px; cursor: pointer;
+  }
+
+  .unterreiter { display: flex; gap: .3rem; margin: .2rem 0 .9rem; }
+  .unterreiter button {
+    border: 1px solid var(--linie); border-radius: 999px;
+    background: transparent; color: var(--schrift-leise);
+    font: inherit; font-size: 12.5px; padding: .35rem .9rem; cursor: pointer;
+  }
+  .unterreiter button[aria-selected="true"] {
+    background: var(--akzent); border-color: var(--akzent); color: var(--auf-akzent);
+  }
+
+  .dateiliste { list-style: none; margin: .8rem 0 0; padding: 0; display: grid; gap: .4rem; }
+  .dateiliste li {
+    display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+    padding: .5rem .7rem; border-radius: 10px;
+    border: 1px solid var(--linie); background: var(--flaeche-unten);
+    font-size: 13px;
+  }
+  .dateiliste .name { flex: 1 1 12rem; color: var(--schrift); }
+  .dateiliste .klein { font-size: 11.5px; color: var(--schrift-fein); }
+  .dateiliste button {
+    border: 1px solid var(--linie); border-radius: 999px;
+    background: transparent; color: var(--schrift-leise);
+    font: inherit; font-size: 12px; padding: .25rem .7rem; cursor: pointer;
+  }
+  .dateiliste button:hover { color: var(--akzent); border-color: var(--akzent); }
+  .dateiliste .ja { color: var(--akzent); border-color: var(--akzent); }
+  .stand-freigegeben { color: var(--akzent); }
+  .stand-verworfen { color: var(--schrift-fein); text-decoration: line-through; }
+
+  .terminform { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+  .terminform .breit, .terminform button { grid-column: 1 / -1; }
+  .terminform button { justify-self: start; }
+
+  .kalenderkopf { display: flex; align-items: center; gap: 1rem; margin-bottom: .8rem; }
+  .kalenderkopf h3 { flex: 1 1 auto; text-align: center; margin: 0; }
+  .kalenderkopf button {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--linie); background: transparent;
+    color: var(--schrift); font-size: 18px; cursor: pointer;
+  }
+  .wochentage, .raster { display: grid; grid-template-columns: repeat(7, 1fr); gap: .3rem; }
+  .wochentage span {
+    text-align: center; font-size: 11px; letter-spacing: .1em;
+    color: var(--schrift-fein); padding-bottom: .3rem;
+  }
+  .raster .tag {
+    min-height: 68px; padding: .35rem .4rem;
+    border: 1px solid var(--linie); border-radius: 8px;
+    background: var(--flaeche-unten);
+    font-size: 12px;
+  }
+  .raster .tag.leer { border-color: transparent; background: transparent; }
+  .raster .tag.heute { border-color: var(--akzent); }
+  .raster .tag .zahl { color: var(--schrift-leise); }
+  .raster .punkt {
+    display: block; margin-top: .2rem; padding: .1rem .3rem;
+    border-radius: 4px; background: var(--marker);
+    color: var(--schrift); font-size: 11px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  .terminliste { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .4rem; }
+  .terminliste li {
+    display: flex; align-items: center; gap: .7rem; flex-wrap: wrap;
+    padding: .55rem .8rem; border-radius: 10px;
+    border: 1px solid var(--linie); background: var(--flaeche-unten);
+    font-size: 13px;
+  }
+  .terminliste .zeit { color: var(--akzent); font-variant-numeric: tabular-nums; }
+  .terminliste .titel { flex: 1 1 10rem; }
+  .terminliste button {
+    border: 1px solid var(--linie); border-radius: 999px;
+    background: transparent; color: var(--schrift-leise);
+    font: inherit; font-size: 12px; padding: .2rem .7rem; cursor: pointer;
+  }
+
+  .wecker {
+    position: fixed; right: 20px; bottom: 20px; z-index: 60;
+    width: min(360px, calc(100vw - 40px));
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--akzent); border-radius: 14px;
+    background: var(--grund);
+    box-shadow: 0 24px 48px -18px var(--schatten);
+  }
+  .wecker strong { display: block; font-size: 14px; }
+  .wecker span { display: block; margin: .2rem 0 .5rem; font-size: 12px; color: var(--akzent); }
+  .wecker p { margin: 0 0 .8rem; font-size: 12.5px; color: var(--schrift-leise); }
+  .wecker button {
+    padding: .4rem 1rem; border: 0; border-radius: 999px;
+    background: var(--akzent); color: var(--auf-akzent);
+    font: inherit; font-size: 12.5px; cursor: pointer;
+  }
+
+  @media (max-width: 720px) {
+    .terminform { grid-template-columns: 1fr; }
+    .raster .tag { min-height: 52px; }
+  }
+</style>

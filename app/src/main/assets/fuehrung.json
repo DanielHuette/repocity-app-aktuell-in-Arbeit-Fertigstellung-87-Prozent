@@ -1,0 +1,234 @@
+{
+  "_hinweis": "Mias Fuehrung durch RepoCity - die eine Quelle fuer alle Texte, die sie beim ersten Start und beim Nachschlagen sagt. App und Webseite lesen genau diese Datei: die App bekommt sie als Beilage ins Paket (app/src/main/assets/fuehrung.json, byteweise dieselbe), die Webseite liest sie beim Bauen. Kein Satz steht zweimal. Wer hier etwas aendert, aendert es einmal.",
+  "_gebunden_an": "Die Pruefungen in universe/mia/pruefungen.py halten diese Datei an den anderen Quellen fest: jede Route muss es in webseite/src/daten/bereiche.ts geben, die Stufe muss die dortige sein, jedes Feld muss genau einen Halt haben, und jede genannte Strasse muss in funktionen.json stehen. Erfundene Felder, erfundene Stufen und erfundene Strassen werden rot.",
+  "fassung": 2,
+  "stand": "2026-09-10",
+  "name": "Mia",
+  "eroeffnung": {
+    "gruss": "Hi, ich bin Mia. Schön, dass du da bist. Komm, ich zeig dir in zwei Minuten, was hier wo steht.",
+    "hinweis": "Wenn's gerade nicht passt, schick mich einfach weg. Ich bin unten rechts, wann immer du mich brauchst.",
+    "weiter": "Zeig mir das",
+    "abbruch": "Später",
+    "_offenlegung": "Seit dem 10.09. abends klingt Mia wie ein Mensch (Daniel: 'sie soll so menschlich wie möglich wirken'). Die Offenlegung nach EU-KI-Verordnung Artikel 50 Absatz 1 steht darum nicht mehr im Gruß, sondern einmal und leise unter ihrem Namen im Fenster ('KI-Assistentin') - dieselbe Stelle in App und Webseite (mia/regeln.json: offenlegung)."
+  },
+  "halte": [
+    {
+      "nr": 1,
+      "route": "landing",
+      "stufe": "free",
+      "titel": "Die Übersicht",
+      "kurz": "Zehn Felder, eines je Aufgabe. Was deine Stufe noch nicht aufmacht, steht trotzdem hier – mit Schloss und der Stufe, die es öffnet.",
+      "einstellen": [],
+      "warum": "Damit du nie suchen musst. Die Reihenfolge ist in App und Webseite dieselbe: das siebte Feld ist überall das siebte.",
+      "mehr": "Unten rechts findest du mich – tipp mich einfach an, wenn du was wissen willst. Und die Einstellungen stehen immer ganz unten, egal welche Stufe."
+    },
+    {
+      "nr": 2,
+      "route": "life",
+      "titel": "Was dir Arbeit abnimmt",
+      "stufe": "free",
+      "kurz": "Post, Termine, Bewerbungen, Wohnungssuche. Die vier arbeiten im Hintergrund und melden sich, wenn etwas für dich dabei ist. Sonst lassen sie dich in Ruhe.",
+      "einstellen": [
+        "Welche der vier überhaupt arbeiten sollen — das steht in den Einstellungen.",
+        "Ob RepoCity selbst abschicken darf, je Bereich — und höchstens wie oft am Tag.",
+        "Bei der Wohnungssuche den Rahmen: Ort, Preis, Größe. Ohne ihn geht keine Anfrage raus.",
+        "Ob du jede Meldung sehen willst oder nur die, bei denen du entscheiden musst."
+      ],
+      "warum": "Weil hier als Einzigem etwas rausgeht, das ein Mensch liest. Eine Wohnungsanfrage zum Beispiel. Was du nicht einstellst, bleibt stehen — das ist so gewollt.",
+      "mehr": "Ob abgeschickt oder vorgelegt wird, entscheidest du je Bereich in den Einstellungen unter „Selbst abschicken\". Voreingestellt lege ich dir alles vor: du sagst ja oder nein. Wo du es einschaltest, schicke ich selbst — und nur so oft am Tag, wie du sagst; ohne diese Zahl bleibt es beim Vorlegen. Beim Nein gehört ein Satz dazu, warum. Aus dem lernt der Agent; ein blankes Nein sagt ihm nur, dass etwas falsch war, und das hilft ihm ungefähr so viel wie dir ein Kopfschütteln ohne Erklärung.",
+      "strassen": [
+        "bewerbung",
+        "wohnungsalarm"
+      ]
+    },
+    {
+      "nr": 3,
+      "route": "kreativwerkstatt",
+      "titel": "Hier wird bestellt",
+      "stufe": "creative",
+      "kurz": "Du sagst oben, was es werden soll, stellst die Länge ein und schreibst dann in eigenen Worten, was du dir vorstellst. Verteilen macht der Sekretär – der kennt seine Leute.",
+      "einstellen": [
+        "Die Auftragsart. Sie entscheidet, wer anläuft.",
+        "Die Länge, wo es einen Regler gibt. Beim guten Video steht der geschätzte Betrag daneben.",
+        "Den Text. Je genauer du bist, desto weniger muss geraten werden."
+      ],
+      "warum": "Weil hier das Geld anfängt zu laufen. Eine Stunde Video kostet ein Vielfaches von einer Minute — und das siehst du vorher, nicht hinterher auf der Rechnung. So rum ist es angenehmer.",
+      "mehr": "Weiter unten siehst du, was gerade in Arbeit ist. Ein Auftrag geht durch feste Zustände: gesendet, angenommen, läuft, in Prüfung, liegt dir vor. Vor dem ersten Cent wirst du gefragt. Und der Qualitätsmanager sieht jedes Stück, bevor du es siehst.",
+      "strassen": [
+        "clip",
+        "video",
+        "musik",
+        "lernprogramm",
+        "praesentation",
+        "software",
+        "social",
+        "recherche",
+        "bewerbung",
+        "webseite"
+      ]
+    },
+    {
+      "nr": 4,
+      "route": "trading",
+      "titel": "Der Handel",
+      "stufe": "madness",
+      "kurz": "Signale, Positionen, das SK-System. RepoCity zeigt dir, was es sieht. Handeln tust du – an dein Geld geht hier niemand.",
+      "einstellen": [
+        "Die Zugänge zu deinen Handelsplätzen.",
+        "Deine Grenzen: was höchstens im Feuer stehen darf."
+      ],
+      "warum": "Weil hier echtes Geld liegt. RepoCity gibt keine Anlageempfehlung und löst von sich aus nichts aus. Dafür bräuchte es jemanden mit Zulassung.",
+      "mehr": "Was du hier siehst, ist eine Auswertung, kein Rat. Die Entscheidung bleibt bei dir, und das Drücken auch."
+    },
+    {
+      "nr": 5,
+      "route": "dashboard",
+      "stufe": "free",
+      "titel": "Die Zahlen",
+      "kurz": "Was läuft, was fertig ist, was es gekostet hat – und wie viele deiner Urteile schon zu einem Lehrsatz gereicht haben.",
+      "einstellen": [],
+      "warum": "Weil man ein System nur führen kann, wenn man es sieht. Hier steht der Verlauf der letzten Tage, nicht die Bestellung – die ist in der Kreativwerkstatt.",
+      "mehr": "Aus drei gleichen Urteilen wird ein Lehrsatz. Der Balken unten zeigt, wie weit der nächste ist. Was auf dich wartet, steht ganz unten – Ja oder Nein mit Grund, mehr braucht es nicht."
+    },
+    {
+      "nr": 6,
+      "route": "organigramm",
+      "titel": "Wer hier arbeitet",
+      "stufe": "free",
+      "kurz": "Ein Bild von der Belegschaft: wer was macht und wem er berichtet. Angucken kostet nichts.",
+      "einstellen": [
+        "Nichts. Eigene Agenten eintragen ist die höchste Stufe."
+      ],
+      "warum": "Weil du wissen solltest, wer in deinem Auftrag arbeitet, bevor du ihm etwas übergibst.",
+      "mehr": "Das Bild nimmt dein Design an. Es trägt keine festen Farben, sondern Platzhalter, die App und Webseite beim Anzeigen füllen — deshalb sieht es in jedem der elf Designs richtig aus und nicht in einem gut und in zehn daneben."
+    },
+    {
+      "nr": 7,
+      "route": "kosten",
+      "titel": "Was es kostet",
+      "stufe": "free",
+      "kurz": "Was gelaufen ist, was es gekostet hat, und deine Grenze. RepoCity setzt dir keine — die setzt du.",
+      "einstellen": [
+        "Eine Marke je Straße oder je Kette: wie viel im Monat, wie viel je Lauf.",
+        "Ob die Marke überhaupt gelten soll."
+      ],
+      "warum": "Weil ohne Marke nichts anhält. Setzt du keine, läuft alles weiter. Darfst du so machen – dann war's aber deine Entscheidung und keine Voreinstellung.",
+      "mehr": "Bei achtzig Prozent bekommst du eine Meldung, und es läuft weiter. An der Marke fängt nichts Neues mehr an; was schon läuft, wird fertig. Beim Doppelten der Lauf-Marke bricht auch das ab."
+    },
+    {
+      "nr": 8,
+      "route": "abo",
+      "titel": "Was freigeschaltet ist",
+      "stufe": "free",
+      "kurz": "Drei Stufen. Was deine kann, steht hier — und was die nächste dazu aufmacht.",
+      "einstellen": [
+        "Die Stufe. Alles andere ergibt sich daraus."
+      ],
+      "warum": "Weil ein gesperrter Knopf sonst aussieht wie ein Fehler. Hier steht, warum er zu ist.",
+      "mehr": "Diese Seite ist immer offen, auch in der untersten Stufe. Eine Sperre davor wäre eine Tür, deren Schlüssel dahinter liegt."
+    },
+    {
+      "nr": 9,
+      "route": "einstellungen",
+      "titel": "Der Schalterkasten",
+      "stufe": "free",
+      "kurz": "Hier stellst du ein, wie es aussieht, und schaltest einzelne Teile an oder ab. Und du entscheidest, was dich überhaupt erreichen darf.",
+      "einstellen": [
+        "Das Design — elf Stück, die Änderung siehst du sofort.",
+        "Betrieb je Teil: was aus ist, arbeitet nicht.",
+        "Meldungen je Teil: was aus ist, arbeitet weiter, sagt dir aber nichts.",
+        "Trocken oder echt. Trocken heißt: alles läuft, nichts kostet, nichts geht raus."
+      ],
+      "warum": "Weil trocken der Zustand ist, in dem du gefahrlos alles ausprobieren kannst. Stell es erst um, wenn du gesehen hast, was dabei passiert.",
+      "mehr": "Ein abgeschaltetes Elternteil schaltet seine Kinder mit ab. Das ist Absicht: wer die Produktion abschaltet, will nicht, dass eine einzelne Straße munter weitermacht."
+    },
+    {
+      "nr": 10,
+      "route": "social",
+      "titel": "Deine Kanäle",
+      "stufe": "madness",
+      "kurz": "Beiträge planen, schreiben und einplanen – für deine Kanäle, in deinem Ton. Raus geht nichts, was du nicht vorher gesehen hast.",
+      "einstellen": [
+        "Die Zugänge zu deinen Kanälen.",
+        "Wie oft am Tag etwas rausgehen darf."
+      ],
+      "warum": "Weil hier etwas in deinem Namen veröffentlicht wird. Deshalb liegt dir jeder Beitrag vor, bevor er rausgeht.",
+      "mehr": "Was du ablehnst, bekommt einen Satz dazu, warum – daraus wird der nächste Beitrag besser."
+    }
+  ],
+  "abschluss": {
+    "text": "Das war's schon. Wenn du irgendwo hängst, sag Bescheid – ich bin auf jedem Bildschirm unten rechts.",
+    "weiter": "Fertig",
+    "nochmal": "Nochmal von vorn"
+  },
+  "upgrade": {
+    "_regel": "Einmal je gesperrter Funktion, danach zu dieser Funktion nie wieder. Von Daniel am 09.09. so entschieden. In den Einstellungen und im Abo-Plan sagt Mia von sich aus nichts - dort steht es ohnehin.",
+    "einmal_je_funktion": true,
+    "orte": [
+      "fragefenster",
+      "einstellungen",
+      "abo"
+    ],
+    "spricht_von_selbst_bei": [
+      "fragefenster"
+    ],
+    "text": "{funktion} gehört zur Stufe {stufe}. Was da sonst noch dazugehört, steht im Abo-Plan. Ich sag's dir einmal, dann nerv ich nicht mehr damit.",
+    "knopf": "Zeig mir den Abo-Plan",
+    "abwinken": "Passt schon"
+  },
+  "abschnitte": [
+    {
+      "kennung": "kreatives_setup",
+      "titel": "Bevor du das erste Mal was bauen lässt",
+      "schritte": [
+        "Wähl die Auftragsart. Sie entscheidet, wer anläuft.",
+        "Stell die Länge ein, wo es einen Regler gibt — und sieh dir beim Video den Betrag daneben an.",
+        "Setz dir eine Kostenmarke, bevor du von trocken auf echt umstellst. Danach ist es zu spät dafür.",
+        "Schreib den Auftrag in eigenen Worten. Was du nicht sagst, wird geraten.",
+        "Lass den ersten Lauf trocken durchgehen. Dann siehst du den ganzen Weg, ohne dass es einen Cent kostet."
+      ]
+    },
+    {
+      "kennung": "datenschutz",
+      "titel": "Was mit deinen Daten passiert",
+      "schritte": [
+        "Deine Aufträge und Ergebnisse liegen bei dir, nicht bei mir.",
+        "Von dir sehe ich nur, was zu deiner Kennung gehört. Von anderen gar nichts.",
+        "Unsere Gespräche werden nicht zum Trainieren verwendet.",
+        "Den vollen Text findest du auf der Webseite unter Datenschutz."
+      ],
+      "weiterfuehrt_zu": "datenschutz"
+    },
+    {
+      "kennung": "agb",
+      "titel": "Die Bedingungen",
+      "schritte": [
+        "Was RepoCity zusagt und was nicht, steht in den Nutzungsbedingungen.",
+        "Ich fasse sie dir gern zusammen – verbindlich ist aber der Text auf der Webseite, nicht meine Zusammenfassung.",
+        "Rechtsauskunft kann ich dir nicht geben. Dafür brauchst du jemanden mit Zulassung."
+      ],
+      "weiterfuehrt_zu": "agb"
+    },
+    {
+      "kennung": "funktionsdokumentation",
+      "titel": "Wie es genau arbeitet",
+      "schritte": [
+        "Zu jeder Straße steht dort, was sie tut, wie lange sie braucht und was sie kostet.",
+        "Wo eine Zeit geschätzt ist, steht das dabei. Geraten wird nicht.",
+        "Frag mich zu einer einzelnen Straße, dann mach ich es kurz."
+      ],
+      "weiterfuehrt_zu": "funktionsweise"
+    },
+    {
+      "kennung": "zugaenge",
+      "titel": "Warum ich morgens deine Zugänge ansehe",
+      "schritte": [
+        "Einmal am Tag sehe ich nach, ob deine Zugänge noch halten — Postfach, Portale, alles, was gebraucht wird.",
+        "Anmeldungen laufen ab, Passwörter ändern sich, Anbieter warten ihre Server. Das merkt man sonst erst mitten in einem Auftrag.",
+        "Und bevor du etwas bestellst, sehe ich noch einmal genau für diese Straße nach. Fehlt etwas, sage ich es vorher — nicht, wenn das Geld schon weg ist.",
+        "Was fehlt, trägst du in derselben Maske nach wie beim ersten Start."
+      ]
+    }
+  ],
+  "_ordnung": "Von Daniel am 10.09.2026 festgelegt: 01 Landing, 02 Life Automation, 03 Kreativwerkstatt, 04 Trading, 05 Dashboard, 06 Organigramm, 07 Kostenübersicht, 08 Abo-Plan, 09 Einstellungen - und am Abend dazu 10 Social Media Automation. Wissensdatenbank, Ausbildung und Webseiten-Feld sind weggefallen."
+}

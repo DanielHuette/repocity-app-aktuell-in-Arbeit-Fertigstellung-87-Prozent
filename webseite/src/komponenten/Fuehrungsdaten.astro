@@ -1,0 +1,29 @@
+---
+/* Die Daten, die Mias Führung braucht - an einer Stelle, für beide Grundrisse.
+   Ohne sie zeichnet `skripte/fuehrung.js` nichts; ein Halt auf einer Seite
+   ohne diese Kästen bliebe stumm.
+
+   Quellen, alle gelesen und keine hier nachgebaut:
+     universe/fuehrung.json        was Mia sagt (dieselbe Datei wie in der App)
+     src/daten/abo.ts              die Reihenfolge der Stufen
+*/
+import fuehrung from "../../../fuehrung.json";
+import { STUFEN, STUFE_UNTEN } from "../daten/abo";
+
+const stufenRaenge = {
+  unten: STUFE_UNTEN,
+  raenge: Object.fromEntries(STUFEN.map((s) => [s.schluessel, s.rang])),
+  namen: Object.fromEntries(STUFEN.map((s) => [s.schluessel, s.name])),
+};
+
+/* Nur, was die Anzeige braucht. Die Kommentare der Quelle bleiben draußen. */
+const fuehrungFuerDieSeite = {
+  name: fuehrung.name,
+  eroeffnung: fuehrung.eroeffnung,
+  abschluss: fuehrung.abschluss,
+  halte: fuehrung.halte,
+};
+---
+
+<script type="application/json" id="stufen-raenge" set:html={JSON.stringify(stufenRaenge)}></script>
+<script type="application/json" id="fuehrung" set:html={JSON.stringify(fuehrungFuerDieSeite)}></script>

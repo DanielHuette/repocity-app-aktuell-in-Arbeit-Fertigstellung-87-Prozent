@@ -1,0 +1,151 @@
+---
+/* Was RepoCity kostet — und wo der Nutzer selbst die Grenze zieht.
+
+   Dieselbe Ansicht wie im neunten Feld der App (ui/bereiche/KostenScreen.kt).
+   Was auf der einen Seite dazukommt, kommt auch auf die andere — von Daniel
+   am 07.09. so festgelegt.
+
+   Aufgeführt wird, was überhaupt Geld kostet: die Straßen mit `kostet` und
+   jede Kette. Ein Modul ohne Kosten in einer Kostenliste wäre eine Zeile
+   ohne Aussage.
+
+   Was in diesem Monat wirklich geflossen ist, führt das Verbrauchsbuch am
+   Hub (universe/kern/verbrauch.py). Bis der Hub angeschlossen ist, steht
+   hier der gemessene Preis eines Laufs — damit der Nutzer seine Marke an
+   etwas Echtem ausrichten kann statt an einer geratenen Zahl. */
+import App from "../../layouts/App.astro";
+import { module_ } from "../../daten/module";
+import { ketten } from "../../daten/ketten";
+
+const zeilen = [
+  ...module_
+    .filter((m) => m.kostet)
+    .map((m) => ({
+      kennung: m.id,
+      titel: m.name,
+      zeile: m.aufgabe,
+      verbrauchtEur: 0,
+      jeLaufEur: 0,
+      istKette: false,
+    })),
+  ...ketten.map((k) => ({
+    kennung: k.kennung,
+    titel: k.titel,
+    zeile: k.zeile,
+    verbrauchtEur: 0,
+    jeLaufEur: k.jeLaufMitZusatzEur,
+    istKette: true,
+  })),
+];
+---
+
+<App titel="Was RepoCity kostet" aktiv="kosten"
+     beschreibung="Was gelaufen ist, was es kostete, und wo du selbst die Grenze ziehst — RepoCity setzt keine.">
+  <section class="seite-kopf">
+    <h1>Was RepoCity kostet</h1>
+    <p>Was gelaufen ist, was es kostete, deine Marke</p>
+  </section>
+
+  <div class="kosten-kopf feld">
+    <span class="etikett">In diesem Monat <small id="kosten-seit"></small></span>
+    <strong class="kosten-summe" id="kosten-summe">0,00 €</strong>
+    <div class="kosten-kategorien" id="kosten-kategorien">Zahlen kommen vom Rechner …</div>
+    <p>
+      Was du ausgibst, entscheidest du. RepoCity setzt keine Grenze. Willst du
+      eine, setz sie hier — für jede Straße und jede Kette einzeln.
+    </p>
+  </div>
+
+  <ul class="kosten-liste" id="kosten-liste">
+    {zeilen.map((z) => (
+      <li class="kosten-zeile feld" data-kennung={z.kennung}
+          data-je-lauf={z.jeLaufEur} data-verbraucht={z.verbrauchtEur}>
+        <button type="button" class="kosten-kopfzeile" aria-expanded="false">
+          <span class="kosten-name">
+            {z.titel}
+            {z.istKette && <span class="kosten-art">Kette</span>}
+            <small>{z.zeile}</small>
+          </span>
+          <span class="kosten-betrag" data-rolle="betrag">0,00 €</span>
+        </button>
+
+        <div class="kosten-stand" data-rolle="stand" hidden>
+          <div class="kosten-balken"><i data-rolle="balken"></i></div>
+          <p data-rolle="standtext"></p>
+        </div>
+
+        <div class="kosten-marke" data-rolle="marke" hidden>
+          <label class="kosten-schalter">
+            <span>Eigene Marke</span>
+            <input type="checkbox" data-rolle="anaus" />
+          </label>
+          <div data-rolle="regler" hidden>
+            <input type="range" data-rolle="schieber" min="1" max="200" value="20" />
+            <p class="kosten-erklaerung" data-rolle="reglertext"></p>
+            <p class="kosten-fein">
+              Bei 80 % bekommst du eine Meldung, es läuft weiter. An der Marke
+              fängt nichts Neues mehr an; was läuft, wird fertig. Du kannst sie
+              jederzeit hochsetzen oder lösen.
+            </p>
+          </div>
+          <p class="kosten-fein" data-rolle="ohnetext"></p>
+        </div>
+      </li>
+    ))}
+  </ul>
+
+  <script src="../../skripte/kosten.js"></script>
+</App>
+
+<style>
+  .kosten-kopf { padding: 1rem 1.1rem; margin-bottom: .8rem; }
+  .kosten-kopf .etikett {
+    font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--schrift-fein);
+  }
+  .kosten-summe {
+    display: block; font-size: 2rem; line-height: 1.1; margin: .25rem 0 .5rem;
+    color: var(--akzent);
+  }
+  .kosten-kopf p { margin: 0; font-size: .82rem; color: var(--schrift-leise); }
+
+  .kosten-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+  .kosten-zeile { padding: 0; overflow: hidden; }
+
+  .kosten-kopfzeile {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    width: 100%; padding: .9rem 1.1rem; cursor: pointer;
+    font: inherit; text-align: left; color: inherit;
+    background: none; border: 0;
+  }
+  .kosten-name { display: flex; flex-direction: column; gap: 2px; }
+  .kosten-name small { font-size: .74rem; color: var(--schrift-fein); }
+  .kosten-art {
+    display: inline-block; margin-left: .4rem;
+    font-size: 9px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--akzent-matt);
+  }
+  .kosten-betrag { font-variant-numeric: tabular-nums; color: var(--schrift-leise); }
+  .kosten-betrag[data-stufe="warnung"] { color: var(--akzent); }
+  .kosten-betrag[data-stufe="stopp"] { color: var(--alarm); }
+
+  .kosten-stand, .kosten-marke { padding: 0 1.1rem 1rem; }
+  .kosten-balken {
+    height: 6px; border-radius: 6px; background: var(--linie); overflow: hidden;
+  }
+  .kosten-balken i {
+    display: block; height: 100%; width: 0; background: var(--akzent);
+    transition: width 220ms ease;
+  }
+  .kosten-stand p { margin: .35rem 0 0; font-size: .76rem; color: var(--schrift-leise); }
+  .kosten-stand p[data-stufe="stopp"] { color: var(--alarm); }
+
+  .kosten-schalter {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; font-size: .85rem; cursor: pointer;
+  }
+  .kosten-marke input[type="range"] { width: 100%; margin: .6rem 0 .2rem; accent-color: var(--akzent); }
+  .kosten-erklaerung { margin: 0; font-size: .78rem; color: var(--schrift-leise); }
+  .kosten-fein { margin: .35rem 0 0; font-size: .74rem; color: var(--schrift-fein); }
+
+</style>

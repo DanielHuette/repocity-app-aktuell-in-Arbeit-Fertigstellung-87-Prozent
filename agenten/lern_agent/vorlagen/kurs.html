@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITEL__</title>
+<style>
+:root{
+  --grund:#030304; --tief:#000; --flaeche:rgba(255,255,255,.055);
+  --kante:rgba(255,255,255,.10); --schrift:#EDF2F8; --leise:#9AA6B4; --fein:#5E6875;
+  --akzent:#F0B463; --akzent-hell:#FFD79B; --auf-akzent:#16100A; --alarm:#FF6A5E;
+  --gut:#7BD88F;
+  --mono:"DM Mono",ui-monospace,"Cascadia Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--grund);color:var(--schrift);
+  font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--akzent)}
+.buehne{min-height:100vh;display:flex;flex-direction:column}
+.bahn{width:100%;max-width:860px;margin:0 auto;padding:0 22px}
+
+/* Kopf mit Fortschritt */
+.kopf{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,var(--grund) 70%,transparent);
+  border-bottom:1px solid var(--kante)}
+.kopf-innen{display:flex;align-items:center;gap:14px;height:58px}
+.kopf-titel{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--leise);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xp{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--akzent);white-space:nowrap}
+.balken{height:3px;background:var(--flaeche)}
+.balken i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--akzent),var(--akzent-hell));
+  transition:width .5s cubic-bezier(.16,1,.3,1)}
+
+.inhalt{flex:1;padding:38px 0 90px}
+h1{font-size:clamp(26px,4.4vw,40px);line-height:1.15;margin:0 0 12px;font-weight:650}
+h2{font-size:clamp(20px,3vw,27px);margin:0 0 10px;font-weight:600}
+p{margin:0 0 16px;color:var(--leise)}
+.lehrtext{color:var(--schrift);font-size:17px}
+
+.karte{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid var(--kante);border-radius:16px;padding:24px;margin:22px 0;
+  box-shadow:0 18px 40px -24px #000}
+.marke-zeile{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fein)}
+
+.knopf{display:inline-block;font:inherit;font-size:14px;padding:13px 24px;border:0;border-radius:11px;
+  background:var(--akzent);color:var(--auf-akzent);cursor:pointer;font-weight:600}
+.knopf[disabled]{opacity:.35;cursor:not-allowed}
+.knopf.leer{background:transparent;color:var(--akzent);border:1px solid var(--kante)}
+.knopf-zeile{display:flex;gap:12px;align-items:center;margin-top:24px;flex-wrap:wrap}
+
+input[type=text]{font:inherit;font-size:15px;padding:13px 15px;width:100%;max-width:340px;
+  background:var(--flaeche);border:1px solid var(--kante);border-radius:11px;color:var(--schrift)}
+input[type=range]{width:100%;accent-color:var(--akzent)}
+
+video{width:100%;border-radius:12px;background:#000;display:block}
+audio{width:100%;margin-top:14px}
+.standbild{width:100%;border-radius:12px;display:block;background:#0a0a0c;
+  aspect-ratio:16/9;display:grid;place-items:center;color:var(--fein);font-family:var(--mono);font-size:12px;
+  border:1px dashed var(--kante)}
+
+/* Aufgaben */
+.aufgabe{border-top:1px solid var(--kante);margin-top:28px;padding-top:24px}
+.faecher{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
+.fach{border:1px dashed var(--kante);border-radius:12px;padding:12px;min-height:96px}
+.fach b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fein);margin-bottom:8px}
+.begriffe{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.stein{font-size:13px;padding:9px 13px;border-radius:9px;background:var(--flaeche);
+  border:1px solid var(--kante);cursor:grab;user-select:none}
+.stein.gesetzt{cursor:pointer}
+.stein.an{border-color:var(--akzent);color:var(--akzent)}
+.wahl{display:grid;gap:10px;margin-top:14px}
+.wahl button{font:inherit;font-size:14px;text-align:left;padding:14px 16px;border-radius:11px;
+  background:var(--flaeche);border:1px solid var(--kante);color:var(--schrift);cursor:pointer}
+.wahl button.an{border-color:var(--akzent)}
+.reihe{display:grid;gap:8px;margin-top:14px}
+.reihe .stein{cursor:pointer;display:flex;gap:10px;align-items:center}
+.reihe .nr{font-family:var(--mono);font-size:11px;color:var(--akzent)}
+.reglerwert{font-family:var(--mono);font-size:22px;color:var(--akzent);margin-top:10px}
+
+.rueckmeldung{margin-top:18px;padding:14px 16px;border-radius:11px;font-size:14px;display:none}
+.rueckmeldung.zeigen{display:block}
+.rueckmeldung.gut{border:1px solid rgba(123,216,143,.4);color:var(--gut)}
+.rueckmeldung.schlecht{border:1px solid rgba(255,106,94,.4);color:var(--alarm)}
+
+.fuss{border-top:1px solid var(--kante);padding:20px 0;color:var(--fein);font-size:12px}
+.fuss-innen{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.verborgen{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="buehne">
+  <header class="kopf">
+    <div class="bahn kopf-innen">
+      <span class="kopf-titel" id="kopf-titel">__TITEL__</span>
+      <span class="xp" id="xp">0 XP</span>
+    </div>
+    <div class="balken"><i id="balken"></i></div>
+  </header>
+
+  <main class="inhalt"><div class="bahn" id="bereich"></div></main>
+
+  <footer class="fuss"><div class="bahn fuss-innen">
+    <span class="marke-zeile">__FUSS__</span>
+    <span class="marke-zeile" id="fuss-stand"></span>
+  </div></footer>
+</div>
+
+<script id="kursdaten" type="application/json">__DATEN__</script>
+<script>
+(function(){
+"use strict";
+var K = JSON.parse(document.getElementById("kursdaten").textContent);
+var bereich = document.getElementById("bereich");
+var xpFeld = document.getElementById("xp");
+var balken = document.getElementById("balken");
+var fussStand = document.getElementById("fuss-stand");
+
+var stand = { name:"", level:0, xp:0, geloest:{} };
+try { var alt = localStorage.getItem("kurs_"+K.id); if (alt) stand = JSON.parse(alt); } catch(e){}
+function sichern(){ try { localStorage.setItem("kurs_"+K.id, JSON.stringify(stand)); } catch(e){} }
+
+function zeichneKopf(){
+  var gesamt = K.level.length;
+  xpFeld.textContent = stand.xp + " XP";
+  balken.style.width = (gesamt ? Math.min(100, (stand.level / gesamt) * 100) : 0) + "%";
+  fussStand.textContent = stand.name ? (stand.name + " · Level " + Math.min(stand.level+1, gesamt) + " von " + gesamt) : "";
+}
+
+function leer(){ bereich.innerHTML = ""; }
+function el(art, klasse, text){
+  var e = document.createElement(art);
+  if (klasse) e.className = klasse;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+/* ---------- Start ---------- */
+function zeigeStart(){
+  leer();
+  var k = el("div","karte");
+  k.appendChild(el("p","marke-zeile", K.untertitel || "Schulung"));
+  k.appendChild(el("h1", null, K.titel));
+  if (K.einleitung) k.appendChild(el("p","lehrtext", K.einleitung));
+
+  var feld = document.createElement("input");
+  feld.type = "text"; feld.placeholder = "Dein Name"; feld.value = stand.name || "";
+  k.appendChild(feld);
+
+  var zeile = el("div","knopf-zeile");
+  var los = el("button","knopf", stand.level > 0 ? "Weitermachen" : "Schulung starten");
+  los.onclick = function(){
+    stand.name = (feld.value || "").trim() || "Teilnehmer";
+    sichern(); zeigeLevel(stand.level);
+  };
+  zeile.appendChild(los);
+  if (stand.level > 0) {
+    var neu = el("button","knopf leer","Von vorn");
+    neu.onclick = function(){ stand = {name:stand.name, level:0, xp:0, geloest:{}}; sichern(); zeigeStart(); };
+    zeile.appendChild(neu);
+  }
+  k.appendChild(zeile);
+  bereich.appendChild(k);
+  zeichneKopf();
+}
+
+/* ---------- Level ---------- */
+function zeigeLevel(nr){
+  if (nr >= K.level.length) return zeigeEnde();
+  stand.level = nr; sichern(); zeichneKopf();
+  var lv = K.level[nr];
+  leer();
+
+  var kopf = el("div", null);
+  kopf.appendChild(el("p","marke-zeile","Level " + (nr+1) + " von " + K.level.length));
+  kopf.appendChild(el("h2", null, lv.titel));
+  if (lv.lernziel) kopf.appendChild(el("p", null, lv.lernziel));
+  bereich.appendChild(kopf);
+
+  var k = el("div","karte");
+  if (lv.video) {
+    var v = document.createElement("video");
+    v.src = lv.video; v.controls = true; v.playsInline = true; v.preload = "metadata";
+    k.appendChild(v);
+  } else if (lv.bild_hinweis) {
+    k.appendChild(el("div","standbild", lv.bild_hinweis));
+  }
+  if (lv.lehrtext) {
+    var abs = String(lv.lehrtext).split(/\n{2,}/);
+    for (var i=0;i<abs.length;i++) k.appendChild(el("p","lehrtext", abs[i]));
+  }
+  if (lv.ton) {
+    var a = document.createElement("audio");
+    a.src = lv.ton; a.controls = true; k.appendChild(a);
+  }
+  bereich.appendChild(k);
+
+  if (lv.aufgabe) zeigeAufgabe(lv, nr);
+  else {
+    var zeile = el("div","knopf-zeile");
+    var w = el("button","knopf","Weiter");
+    w.onclick = function(){ zeigeLevel(nr+1); };
+    zeile.appendChild(w);
+    bereich.appendChild(zeile);
+  }
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ---------- Aufgaben ---------- */
+function zeigeAufgabe(lv, nr){
+  var a = lv.aufgabe;
+  var kasten = el("div","aufgabe");
+  kasten.appendChild(el("p","marke-zeile","Aufgabe"));
+  kasten.appendChild(el("h2", null, a.frage || "Wende an, was du gelernt hast"));
+
+  var rueck = el("div","rueckmeldung");
+  var weiter = el("button","knopf","Weiter");
+  weiter.disabled = true;
+  weiter.onclick = function(){ zeigeLevel(nr+1); };
+
+  function fertig(richtig, text){
+    rueck.className = "rueckmeldung zeigen " + (richtig ? "gut" : "schlecht");
+    rueck.textContent = text;
+    if (richtig && !stand.geloest[nr]) {
+      stand.geloest[nr] = true;
+      stand.xp += (a.punkte || 10);
+      sichern(); zeichneKopf();
+    }
+    if (richtig) weiter.disabled = false;
+  }
+
+  var pruefe = el("button","knopf leer","Prüfen");
+  var bauer = { zuordnen: bauZuordnen, regler: bauRegler, wahl: bauWahl, reihenfolge: bauReihenfolge };
+  var bau = bauer[a.art] || bauWahl;
+  var pruefer = bau(kasten, a);
+  pruefe.onclick = function(){
+    var e = pruefer();
+    fertig(e.richtig, e.richtig
+      ? (a.lob || "Richtig. " + (a.punkte || 10) + " XP.")
+      : (e.text || a.hinweis || "Das passt noch nicht. Sieh dir den Text oben noch einmal an."));
+  };
+
+  kasten.appendChild(rueck);
+  var zeile = el("div","knopf-zeile");
+  zeile.appendChild(pruefe); zeile.appendChild(weiter);
+  kasten.appendChild(zeile);
+  bereich.appendChild(kasten);
+
+  if (stand.geloest[nr]) { weiter.disabled = false; }
+}
+
+function bauWahl(kasten, a){
+  var d = a.daten || {}, gewaehlt = -1;
+  var box = el("div","wahl");
+  (d.antworten || []).forEach(function(text, i){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = text;
+    b.onclick = function(){
+      gewaehlt = i;
+      Array.prototype.forEach.call(box.children, function(c){ c.classList.remove("an"); });
+      b.classList.add("an");
+    };
+    box.appendChild(b);
+  });
+  kasten.appendChild(box);
+  return function(){
+    if (gewaehlt < 0) return { richtig:false, text:"Wähle zuerst eine Antwort." };
+    return { richtig: gewaehlt === d.loesung };
+  };
+}
+
+function bauRegler(kasten, a){
+  var d = a.daten || {};
+  var r = document.createElement("input");
+  r.type = "range"; r.min = d.von != null ? d.von : 0; r.max = d.bis != null ? d.bis : 100;
+  r.value = d.start != null ? d.start : Math.round(((+r.min) + (+r.max)) / 2);
+  var wert = el("div","reglerwert", r.value + (d.einheit || ""));
+  r.oninput = function(){ wert.textContent = r.value + (d.einheit || ""); };
+  kasten.appendChild(r); kasten.appendChild(wert);
+  return function(){
+    var tol = d.toleranz != null ? d.toleranz : 5;
+    var ab = Math.abs((+r.value) - (+d.loesung));
+    return { richtig: ab <= tol,
+             text: ab <= tol * 2 ? "Nah dran, aber noch nicht genau." : "Das liegt weit daneben." };
+  };
+}
+
+function bauReihenfolge(kasten, a){
+  var d = a.daten || {};
+  var reihe = (d.schritte || []).map(function(t, i){ return { text:t, nr:i }; });
+  var box = el("div","reihe");
+  function zeichne(){
+    box.innerHTML = "";
+    reihe.forEach(function(s, i){
+      var e = el("div","stein");
+      e.appendChild(el("span","nr", (i+1) + "."));
+      e.appendChild(el("span", null, s.text));
+      e.onclick = function(){
+        if (i === 0) return;
+        var t = reihe[i-1]; reihe[i-1] = reihe[i]; reihe[i] = t; zeichne();
+      };
+      box.appendChild(e);
+    });
+  }
+  zeichne();
+  kasten.appendChild(el("p", null, "Tippe einen Schritt an, um ihn nach oben zu schieben."));
+  kasten.appendChild(box);
+  return function(){
+    var ist = reihe.map(function(s){ return s.nr; });
+    var soll = d.loesung || ist;
+    return { richtig: JSON.stringify(ist) === JSON.stringify(soll) };
+  };
+}
+
+function bauZuordnen(kasten, a){
+  var d = a.daten || {}, zuordnung = {}, aktiv = null;
+  var vorrat = el("div","begriffe");
+  var faecher = el("div","faecher");
+
+  function zeichne(){
+    vorrat.innerHTML = ""; faecher.innerHTML = "";
+    (d.begriffe || []).forEach(function(b){
+      if (zuordnung[b]) return;
+      var s = el("div","stein" + (aktiv === b ? " an" : ""), b);
+      s.onclick = function(){ aktiv = (aktiv === b ? null : b); zeichne(); };
+      vorrat.appendChild(s);
+    });
+    (d.faecher || []).forEach(function(f){
+      var kasten2 = el("div","fach");
+      kasten2.appendChild(el("b", null, f));
+      Object.keys(zuordnung).forEach(function(b){
+        if (zuordnung[b] !== f) return;
+        var s = el("div","stein gesetzt", b);
+        s.onclick = function(){ delete zuordnung[b]; zeichne(); };
+        kasten2.appendChild(s);
+      });
+      kasten2.onclick = function(e){
+        if (e.target !== kasten2 && e.target.tagName !== "B") return;
+        if (aktiv) { zuordnung[aktiv] = f; aktiv = null; zeichne(); }
+      };
+      faecher.appendChild(kasten2);
+    });
+  }
+  zeichne();
+  kasten.appendChild(el("p", null, "Erst den Begriff antippen, dann das Fach."));
+  kasten.appendChild(vorrat);
+  kasten.appendChild(faecher);
+  return function(){
+    var soll = d.loesung || {};
+    var namen = Object.keys(soll);
+    var offen = namen.filter(function(b){ return !zuordnung[b]; });
+    if (offen.length) return { richtig:false, text:"Es fehlen noch " + offen.length + " Begriffe." };
+    var falsch = namen.filter(function(b){ return zuordnung[b] !== soll[b]; });
+    if (!falsch.length) return { richtig:true };
+    return { richtig:false, text:"Davon passt noch nicht alles — sieh dir " + falsch[0] + " noch einmal an." };
+  };
+}
+
+/* ---------- Ende ---------- */
+function zeigeEnde(){
+  leer();
+  var k = el("div","karte");
+  k.appendChild(el("p","marke-zeile","Geschafft"));
+  k.appendChild(el("h1", null, "Fertig, " + (stand.name || "") + "."));
+  k.appendChild(el("p","lehrtext",
+    "Du hast alle " + K.level.length + " Level abgeschlossen und " + stand.xp + " XP gesammelt."));
+  if (K.abschluss) k.appendChild(el("p", null, K.abschluss));
+  var zeile = el("div","knopf-zeile");
+  var neu = el("button","knopf leer","Noch einmal");
+  neu.onclick = function(){ stand.level = 0; stand.xp = 0; stand.geloest = {}; sichern(); zeigeStart(); };
+  zeile.appendChild(neu);
+  k.appendChild(zeile);
+  bereich.appendChild(k);
+  balken.style.width = "100%";
+}
+
+zeigeStart();
+})();
+</script>
+</body>
+</html>

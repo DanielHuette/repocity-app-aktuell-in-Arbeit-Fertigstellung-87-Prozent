@@ -1,0 +1,20 @@
+{
+  "name": "repocity-webseite",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "vorschau": "astro preview",
+    "veroeffentlichen": "python ../kern/bau.py webseite"
+  },
+  "dependencies": {
+    "astro": "^7.3.1",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.185.4",
+    "wrangler": "^4.129.0"
+  }
+}

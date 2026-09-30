@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "RepoCity Wissensdatenbank",
+  "behavior": "create",
+  "noteContentFormat": "{{content}}",
+  "noteNameFormat": "{{title|safe_name}}",
+  "path": "eingang/dokumente/_neu",
+  "properties": [
+    { "name": "title", "value": "{{title}}", "type": "text" },
+    { "name": "source", "value": "{{url}}", "type": "text" },
+    { "name": "author", "value": "{{author|split:\", \"|wikilink|join}}", "type": "multitext" },
+    { "name": "published", "value": "{{published}}", "type": "date" },
+    { "name": "geclippt_am", "value": "{{date}}", "type": "date" },
+    { "name": "typ", "value": "geclippt", "type": "text" },
+    { "name": "erfasst_von", "value": "obsidian-clipper", "type": "text" }
+  ],
+  "triggers": []
+}

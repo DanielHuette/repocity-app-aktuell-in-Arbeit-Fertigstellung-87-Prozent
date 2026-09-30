@@ -1,0 +1,127 @@
+---
+import "../styles/marke.css";
+import "../styles/kits.css";
+---
+
+<!doctype html>
+<html lang="de" data-kit="blende">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intro — RepoCity</title>
+    <meta name="description" content="Der Anflug auf RepoCity." />
+    <link rel="icon" href="/favicon.png" />
+    <script is:inline>
+      try { var k = localStorage.getItem("rc_kit"); if (k) document.documentElement.setAttribute("data-kit", k); } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <main class="buehne">
+      <video
+        id="film"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+      ></video>
+      <button type="button" class="starten" id="start" hidden>Abspielen</button>
+      <a href="/app/" class="weiter" id="weiter">Überspringen →</a>
+    </main>
+
+    <style>
+      html, body { margin: 0; height: 100%; background: #020204; overflow: hidden; }
+      .buehne {
+        position: fixed; inset: 0;
+        display: grid; place-items: center;
+        background: #020204;
+      }
+      /* Es gibt zwei Fassungen: hochkant fuers Handy, quer fuer den Schirm.
+         Welche laeuft, entscheidet das Skript unten nach dem Bildformat. */
+      video {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .weiter {
+        position: fixed; right: 22px; bottom: 22px; z-index: 3;
+        font-family: "DM Mono", ui-monospace, monospace;
+        font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+        color: rgba(255, 253, 243, 0.62);
+        border: 1px solid rgba(220, 178, 92, 0.32);
+        border-radius: 10px;
+        padding: 11px 18px;
+        background: rgba(3, 3, 4, 0.55);
+        backdrop-filter: blur(8px);
+        transition: color 200ms ease, border-color 200ms ease;
+      }
+      .weiter:hover { color: #DCB25C; border-color: #DCB25C; }
+
+      /* Nur zu sehen, wenn der Browser das Abspielen von selbst verweigert. */
+      .starten {
+        position: fixed; left: 50%; top: 50%; z-index: 4;
+        transform: translate(-50%, -50%);
+        font-family: "DM Mono", ui-monospace, monospace;
+        font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+        color: #FFFDF3;
+        background: rgba(3, 3, 4, 0.72);
+        border: 1px solid rgba(220, 178, 92, 0.55);
+        border-radius: 12px;
+        padding: 16px 30px;
+        cursor: pointer;
+      }
+      .starten[hidden] { display: none; }
+    </style>
+
+    <script is:inline>
+      (function () {
+        var film = document.getElementById("film");
+        var start = document.getElementById("start");
+        if (!film) return;
+
+        /* Quer, wenn der Schirm breiter als hoch ist - sonst die hochkante
+           Fassung. So wird nie beschnitten und nie geraendert. */
+        film.src = (window.innerWidth >= window.innerHeight)
+          ? "/intro16zu9.mp4" : "/intro.mp4";
+
+        function weiter() { location.href = "/app/"; }
+
+        /* Manche Browser lassen auch ein stummes Video nicht von allein
+           anlaufen. Dann geschah hier gar nichts: kein Bild, kein Fehler,
+           kein Weiterkommen. Jetzt wird das Abspielen angestossen - und wenn
+           der Browser ablehnt, erscheint ein Knopf statt einer schwarzen
+           Flaeche. */
+        function anstossen() {
+          var versuch = film.play();
+          if (versuch && typeof versuch.catch === "function") {
+            versuch.catch(function () { if (start) start.hidden = false; });
+          }
+        }
+        if (start) {
+          start.addEventListener("click", function () {
+            start.hidden = true;
+            anstossen();
+          });
+        }
+        film.addEventListener("playing", function () { if (start) start.hidden = true; });
+        anstossen();
+
+        film.addEventListener("ended", weiter);
+        film.addEventListener("error", weiter);
+
+        /* Weiter nur, wer es auch will. Vorher brach jeder Klick und jede
+           Beruehrung irgendwo auf der Seite das Intro sofort ab - auf dem
+           Handy genuegte ein Wischen. */
+        var knopf = document.getElementById("weiter");
+        if (knopf) {
+          knopf.addEventListener("click", function (e) {
+            e.preventDefault();
+            weiter();
+          });
+        }
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") weiter();
+        });
+      })();
+    </script>
+  </body>
+</html>

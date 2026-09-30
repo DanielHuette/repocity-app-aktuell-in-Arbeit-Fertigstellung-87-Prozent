@@ -1,0 +1,105 @@
+---
+/* Die Funktionsweise zum Nachlesen.
+
+   Der Inhalt steht NICHT hier. Er wird aus universe/funktionen.json erzeugt
+   (python universe/kern/funktionsdoku.py) und liegt daneben als
+   funktionsdokumentation.html. Wer hier hineinschreibt, verliert es beim
+   naechsten Lauf - und die Pruefung funktionsdoku pruefen wird rot.
+
+   Damit lesen App, Dokument und Webseite dieselbe Erklaerung. Zwei Stellen,
+   die dasselbe wissen, laufen auseinander. */
+import App from "../layouts/App.astro";
+import erklaerung from "../daten/funktionsdokumentation.html?raw";
+---
+
+<App
+  titel="Funktionsdokumentation"
+  beschreibung="Jeder Ablauf mit Uhr, Herkunft und Rechnung - nachlesbar, nicht behauptet."
+>
+  <section class="seite-kopf">
+    <h1>Funktionsdokumentation</h1>
+    <p>Jeder Ablauf mit Uhr, Herkunft und Rechnung.</p>
+  </section>
+
+  <div class="text-block">
+    <p class="hinweis">
+      Diese Seite wird aus derselben Quelle erzeugt wie die Sollwerte, gegen die
+      der Pruefstand misst. Steht hier eine Zeit, ist sie entweder gemessen,
+      gerechnet oder ausdruecklich als geraten gekennzeichnet. Was als geraten
+      dasteht, darf nicht scharf geschaltet werden.
+    </p>
+
+    <div class="funktionsdoku" set:html={erklaerung} />
+  </div>
+</App>
+
+<script>
+  /* Jede Ablauf-Fassung meldet ihre Hoehe, sobald sie steht - der Rahmen
+     nimmt sie an. Bis dahin gilt das Seitenverhaeltnis aus dem Bild. */
+  window.addEventListener("message", function (e) {
+    var d = e.data;
+    if (!d || d.repocity !== "ablauf" || !(d.hoehe > 0)) return;
+    var rahmen = document.querySelectorAll(".ablauf-rahmen iframe");
+    for (var i = 0; i < rahmen.length; i++) {
+      if (rahmen[i].contentWindow === e.source) {
+        rahmen[i].parentElement.style.aspectRatio = "auto";
+        rahmen[i].parentElement.style.height = Math.ceil(d.hoehe) + "px";
+      }
+    }
+  });
+</script>
+
+<style>
+  .funktionsdoku :global(h1) { display: none; }
+  /* Der Ablauf als laufendes Bild - dunkel, wie die anfassbare Fassung. */
+  .funktionsdoku :global(.ablauf-rahmen) {
+    width: 100%;
+    margin: 0.4rem 0 1.4rem;
+    border-radius: 0.9rem;
+    overflow: hidden;
+    background: #0b1220;
+    border: 1px solid rgba(128, 128, 128, 0.28);
+  }
+  .funktionsdoku :global(.ablauf-rahmen iframe) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #0b1220;
+    color-scheme: dark;
+  }
+  .funktionsdoku :global(h2) { margin-top: 2.4rem; }
+  .funktionsdoku :global(h3) { margin-top: 1.8rem; }
+  .funktionsdoku :global(blockquote) {
+    margin: 0.8rem 0;
+    padding: 0.7rem 1rem;
+    border-left: 2px solid currentColor;
+    opacity: 0.85;
+    font-size: 0.92em;
+  }
+  .funktionsdoku :global(.tabelle-rahmen) {
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  .funktionsdoku :global(table) {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9em;
+  }
+  .funktionsdoku :global(th),
+  .funktionsdoku :global(td) {
+    text-align: left;
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.28);
+    vertical-align: top;
+  }
+  .funktionsdoku :global(code) {
+    font-size: 0.88em;
+    word-break: break-word;
+  }
+  .funktionsdoku :global(hr) {
+    border: 0;
+    border-top: 1px solid rgba(128, 128, 128, 0.28);
+    margin: 2rem 0;
+  }
+</style>

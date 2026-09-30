@@ -1,0 +1,2419 @@
+{
+  "_hinweis": "Die Frageliste von RepoCity. EINE Quelle fuer drei Leser: die Seite /faq/, der FAQ-Bildschirm der App und der Wegweiser im Worker. Wer hier einen Eintrag aendert, aendert ihn ueberall.\n\nWarum es diese Datei gibt: Am 09.09.2026 entschieden - Mia bekommt die Seitentexte NICHT mitgeschickt, sondern verweist auf die Stelle. Findet die Suche hier einen Eintrag, geht die Antwort samt Verweis hinaus, ohne dass ein Modell gefragt wird. Das kostet nichts. Nur was hier nicht steht, geht ans Modell.\n\nFelder je Eintrag:\n  id          Sprungmarke auf /faq/ und in der App\n  gruppe      Ueberschrift, unter der er auf der Seite steht\n  frage       wie sie auf der Seite steht\n  antwort     die Antwort selbst - kurz, aus den eigenen Seiten belegt\n  ziel        wohin es weitergeht (Webadresse)\n  marke       Sprungmarke auf der Zielseite, leer heisst Seitenanfang\n  app         der Bildschirm in der App, der demselben Ziel entspricht\n  stichworte  woran die Suche den Eintrag erkennt\n  beispiele   ganze Saetze, wie jemand fragen wuerde - die Suche vergleicht damit, das faengt Umschreibungen, an die keine Stichwortliste denkt",
+  "fassung": 1,
+  "stand": "2026-09-10",
+  "gruppen": [
+    "Einstieg",
+    "Konto und Anmeldung",
+    "Abo und Bezahlen",
+    "Kosten",
+    "Auftraege",
+    "Produktion",
+    "Life Automation",
+    "Wissen",
+    "Trading",
+    "Einstellungen",
+    "Datenschutz und Mia",
+    "App und Stoerungen"
+  ],
+  "eintraege": [
+    {
+      "id": "was-ist-repocity",
+      "gruppe": "Einstieg",
+      "frage": "Was ist RepoCity?",
+      "antwort": "Ein Schwarm von Agenten, der Wissen sammelt, anwendet und daraus etwas herstellt: Videos, Musik, Lernprogramme, Praesentationen, Beitraege, Webseiten. Daneben nimmt er dir Alltaegliches ab - Post, Termine, Bewerbungen, Wohnungssuche. Jeder Agent hat eine Aufgabe und meldet, was er getan hat.",
+      "ziel": "/funktionsweise/",
+      "marke": "",
+      "app": "funktionsweise",
+      "stichworte": [
+        "was ist",
+        "repocity",
+        "worum geht",
+        "ueberblick",
+        "erklaerung",
+        "was macht das",
+        "wofuer",
+        "zweck",
+        "idee",
+        "konzept"
+      ],
+      "beispiele": [
+        "Was ist RepoCity eigentlich?",
+        "Worum geht es hier?",
+        "Was macht ihr?",
+        "Erklaer mir das mal kurz",
+        "Wofuer ist diese Seite da?"
+      ]
+    },
+    {
+      "id": "wie-anfangen",
+      "gruppe": "Einstieg",
+      "frage": "Wie fange ich an?",
+      "antwort": "Konto anlegen, anmelden, und in der Kreativwerkstatt den ersten Auftrag anstossen. Free kostet nichts und laesst dich Post, Termine, Bewerbungen und Wohnungssuche laufen.",
+      "ziel": "/zugang/",
+      "marke": "dein-konto",
+      "app": "zugang",
+      "stichworte": [
+        "anfangen",
+        "loslegen",
+        "starten",
+        "erste schritte",
+        "beginnen",
+        "einstieg",
+        "wie fange ich an",
+        "wo anfangen"
+      ],
+      "beispiele": [
+        "Wie fange ich an?",
+        "Wo fange ich am besten an?",
+        "Wie kann ich loslegen?",
+        "Was muss ich als erstes tun?"
+      ]
+    },
+    {
+      "id": "was-kostet-einstieg",
+      "gruppe": "Einstieg",
+      "frage": "Kostet RepoCity etwas?",
+      "antwort": "Free kostet dauerhaft nichts. Creative Mind kostet 14,99 Euro im Monat, Full Madness 29,99 Euro im Monat. Jaehrlich gezahlt sind zwei Monate geschenkt: 149,90 bzw. 299,90 Euro. Alle Preise in Euro, inklusive Umsatzsteuer.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "kostet",
+        "preis",
+        "preise",
+        "gratis",
+        "kostenlos",
+        "umsonst",
+        "was kostet",
+        "teuer",
+        "guenstig",
+        "euro",
+        "bezahlen"
+      ],
+      "beispiele": [
+        "Was kostet das?",
+        "Ist das kostenlos?",
+        "Muss ich dafuer zahlen?",
+        "Wie teuer ist RepoCity?",
+        "Gibt es eine Gratisversion?"
+      ]
+    },
+    {
+      "id": "fuehrung-starten",
+      "gruppe": "Einstieg",
+      "frage": "Gibt es eine Fuehrung durch die App?",
+      "antwort": "Ja. Beim ersten Start geht sie von selbst auf und laeuft ueber den echten Bildschirmen. Spaeter startest du sie im Fragefenster ueber den Knopf 'Fuehrung starten'.",
+      "ziel": "/app/",
+      "marke": "",
+      "app": "dashboard",
+      "stichworte": [
+        "fuehrung",
+        "tour",
+        "rundgang",
+        "einfuehrung",
+        "zeig mir",
+        "durchgehen",
+        "assistent",
+        "hilfe beim einrichten"
+      ],
+      "beispiele": [
+        "Gibt es eine Fuehrung?",
+        "Kannst du mir die App zeigen?",
+        "Wie starte ich die Tour nochmal?",
+        "Zeig mir mal alles"
+      ]
+    },
+    {
+      "id": "wer-steckt-dahinter",
+      "gruppe": "Einstieg",
+      "frage": "Wer steckt hinter RepoCity?",
+      "antwort": "Daniel Huette aus Muenster. Kontakt: info@speedofthespirit.dev",
+      "ziel": "/autor/",
+      "marke": "",
+      "app": "autor",
+      "stichworte": [
+        "wer",
+        "autor",
+        "entwickler",
+        "macher",
+        "dahinter",
+        "firma",
+        "betreiber",
+        "wem gehoert",
+        "impressum",
+        "wer seid ihr"
+      ],
+      "beispiele": [
+        "Wer steckt dahinter?",
+        "Wer hat das gebaut?",
+        "Von wem ist das?",
+        "Ist das eine Firma?"
+      ]
+    },
+    {
+      "id": "kontakt",
+      "gruppe": "Einstieg",
+      "frage": "Wie erreiche ich euch?",
+      "antwort": "Per E-Mail an info@speedofthespirit.dev - fuer Fragen, Fehler, Abo, Datenschutz und Einladungscodes gleichermassen.",
+      "ziel": "/kontakt/",
+      "marke": "",
+      "app": "kontakt",
+      "stichworte": [
+        "kontakt",
+        "erreichen",
+        "email",
+        "e-mail",
+        "schreiben",
+        "melden",
+        "anschreiben",
+        "support",
+        "hilfe",
+        "ansprechpartner"
+      ],
+      "beispiele": [
+        "Wie erreiche ich euch?",
+        "An wen kann ich mich wenden?",
+        "Gibt es eine Kontaktadresse?",
+        "Wo kann ich mich beschweren?"
+      ]
+    },
+    {
+      "id": "hilfe-bekommen",
+      "gruppe": "Einstieg",
+      "frage": "Wo bekomme ich Hilfe, wenn etwas nicht geht?",
+      "antwort": "Auf der Support-Seite steht, was zu tun ist. Kommst du nicht weiter: info@speedofthespirit.dev",
+      "ziel": "/support/",
+      "marke": "",
+      "app": "support",
+      "stichworte": [
+        "hilfe",
+        "support",
+        "problem",
+        "geht nicht",
+        "funktioniert nicht",
+        "fehler",
+        "haengt",
+        "kaputt",
+        "stoerung"
+      ],
+      "beispiele": [
+        "Wo bekomme ich Hilfe?",
+        "Etwas geht nicht, was jetzt?",
+        "An wen wende ich mich bei Problemen?"
+      ]
+    },
+    {
+      "id": "quelltext-offen",
+      "gruppe": "Einstieg",
+      "frage": "Ist der Quelltext oeffentlich?",
+      "antwort": "Das Projekt liegt auf GitHub unter DanielHuette. Was dort liegt und was nicht, steht auf der Credits-Seite.",
+      "ziel": "/credits/",
+      "marke": "",
+      "app": "credits",
+      "stichworte": [
+        "quelltext",
+        "quellcode",
+        "open source",
+        "github",
+        "code",
+        "offen",
+        "repository",
+        "repo"
+      ],
+      "beispiele": [
+        "Ist der Code offen?",
+        "Gibt es das auf GitHub?",
+        "Ist RepoCity Open Source?"
+      ]
+    },
+    {
+      "id": "entwicklungsstand",
+      "gruppe": "Einstieg",
+      "frage": "Wie weit ist RepoCity?",
+      "antwort": "Im Aufbau. Oeffentliche Konten gibt es noch nicht. Die Entwicklungshistorie zeigt, was wann dazugekommen ist.",
+      "ziel": "/historie/",
+      "marke": "",
+      "app": "historie",
+      "stichworte": [
+        "fertig",
+        "stand",
+        "entwicklung",
+        "historie",
+        "wie weit",
+        "beta",
+        "fertigstellung",
+        "wann fertig",
+        "roadmap",
+        "versionen"
+      ],
+      "beispiele": [
+        "Wie weit seid ihr?",
+        "Ist das schon fertig?",
+        "Wann kommt das raus?",
+        "Was ist neu dazugekommen?"
+      ]
+    },
+    {
+      "id": "wie-arbeitet-es",
+      "gruppe": "Einstieg",
+      "frage": "Wie arbeitet RepoCity genau?",
+      "antwort": "Jeder Ablauf steht nachlesbar mit Uhr, Herkunft und Rechnung - was er ausloest, wie lange er dauert, was er kostet und wo er aufhoert.",
+      "ziel": "/funktionsweise/",
+      "marke": "",
+      "app": "funktionsweise",
+      "stichworte": [
+        "wie arbeitet",
+        "wie funktioniert",
+        "ablauf",
+        "ablaeufe",
+        "funktionsweise",
+        "dokumentation",
+        "im detail",
+        "genau"
+      ],
+      "beispiele": [
+        "Wie funktioniert das genau?",
+        "Wie laeuft das ab?",
+        "Gibt es eine Dokumentation?",
+        "Wo kann ich Details nachlesen?"
+      ]
+    },
+    {
+      "id": "konto-anlegen",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Wie lege ich ein Konto an?",
+      "antwort": "In der App: E-Mail und Passwort, gefuehrt ueber den Hub.",
+      "ziel": "/zugang/",
+      "marke": "dein-konto",
+      "app": "zugang",
+      "stichworte": [
+        "konto anlegen",
+        "registrieren",
+        "anmelden",
+        "account",
+        "registrierung",
+        "neues konto",
+        "erstellen",
+        "sich anmelden"
+      ],
+      "beispiele": [
+        "Wie lege ich ein Konto an?",
+        "Wie registriere ich mich?",
+        "Kann ich mich anmelden?",
+        "Wo erstelle ich einen Account?"
+      ]
+    },
+    {
+      "id": "passwort-setzen",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Wie setze ich mein Passwort?",
+      "antwort": "Auf der Zugangsseite unter 'Passwort setzen'.",
+      "ziel": "/zugang/",
+      "marke": "dein-konto",
+      "app": "zugang",
+      "stichworte": [
+        "passwort setzen",
+        "passwort aendern",
+        "neues passwort",
+        "kennwort"
+      ],
+      "beispiele": [
+        "Wie setze ich ein Passwort?",
+        "Kann ich mein Passwort aendern?"
+      ]
+    },
+    {
+      "id": "passwort-vergessen",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Ich habe mein Passwort vergessen.",
+      "antwort": "In der App auf 'Passwort vergessen' tippen. Dann geht ein Link an deine Adresse, und ueber den setzt du auf der Zugangsseite ein neues. Der Link gilt eine halbe Stunde; danach forderst du einen neuen an.",
+      "ziel": "/zugang/",
+      "marke": "ich-komme-nicht-rein",
+      "app": "zugang",
+      "stichworte": [
+        "passwort vergessen",
+        "passwort verloren",
+        "komme nicht rein",
+        "eingesperrt",
+        "zugang verloren",
+        "kennwort vergessen",
+        "aussperrt"
+      ],
+      "beispiele": [
+        "Ich habe mein Passwort vergessen",
+        "Ich komme nicht mehr rein",
+        "Passwort verloren, was jetzt?",
+        "Wie setze ich mein Passwort zurueck?"
+      ]
+    },
+    {
+      "id": "zweiter-faktor",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Was ist der zweite Faktor?",
+      "antwort": "Die Anmeldung sagt, wer anklopft. Der zweite Faktor beweist, dass auch das Geraet dazugehoert: eine sechsstellige Zahl aus Google Authenticator, die sich alle 30 Sekunden aendert.",
+      "ziel": "/zugang/",
+      "marke": "zweiter-faktor",
+      "app": "zugang",
+      "stichworte": [
+        "zweiter faktor",
+        "2fa",
+        "zwei faktor",
+        "authenticator",
+        "sechsstellig",
+        "einmalcode",
+        "code",
+        "totp",
+        "zusaetzliche sicherheit"
+      ],
+      "beispiele": [
+        "Was ist der zweite Faktor?",
+        "Wofuer brauche ich 2FA?",
+        "Was soll dieser Code?",
+        "Warum will die App noch eine Zahl?"
+      ]
+    },
+    {
+      "id": "zweiter-faktor-einrichten",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Wie richte ich den zweiten Faktor ein?",
+      "antwort": "In Google Authenticator auf Plus tippen und den QR-Code auf der Zugangsseite scannen. Geht das Scannen nicht, stattdessen 'Einrichtungsschluessel eingeben' waehlen, Name RepoCity, Typ Zeitbasiert, und den Schluessel eintippen. Danach die sechs Ziffern bestaetigen - vorher gilt der zweite Faktor nicht.",
+      "ziel": "/zugang/",
+      "marke": "zweiter-faktor",
+      "app": "zugang",
+      "stichworte": [
+        "zweiten faktor einrichten",
+        "qr code",
+        "authenticator einrichten",
+        "scannen",
+        "einrichtungsschluessel",
+        "2fa einrichten"
+      ],
+      "beispiele": [
+        "Wie richte ich den zweiten Faktor ein?",
+        "Wo ist der QR-Code?",
+        "Das Scannen geht nicht, was nun?"
+      ]
+    },
+    {
+      "id": "wiederherstellungscodes",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Was sind die Wiederherstellungscodes?",
+      "antwort": "Acht Codes, die du beim Einrichten des zweiten Faktors bekommst. Sie sind der einzige Weg zurueck, wenn dein Handy weg ist. Sie werden nie wieder gezeigt - also ausdrucken oder abschreiben und getrennt vom Handy aufbewahren. Jeder Code gilt genau einmal.",
+      "ziel": "/zugang/",
+      "marke": "zweiter-faktor",
+      "app": "zugang",
+      "stichworte": [
+        "wiederherstellungscodes",
+        "notfallcodes",
+        "acht codes",
+        "ersatzcodes",
+        "backup codes",
+        "handy verloren"
+      ],
+      "beispiele": [
+        "Was sind die Wiederherstellungscodes?",
+        "Wozu die acht Codes?",
+        "Wo bekomme ich neue Notfallcodes?"
+      ]
+    },
+    {
+      "id": "handy-verloren",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Mein Handy mit dem Authenticator ist weg.",
+      "antwort": "Dafuer sind die Wiederherstellungscodes da. Gib einen davon auf der Zugangsseite ein: der zweite Faktor wird entfernt, danach richtest du ihn neu ein und bekommst acht neue Codes. Hast du auch die Codes nicht mehr: info@speedofthespirit.dev",
+      "ziel": "/zugang/",
+      "marke": "ich-komme-nicht-rein",
+      "app": "zugang",
+      "stichworte": [
+        "handy verloren",
+        "handy weg",
+        "telefon verloren",
+        "authenticator weg",
+        "geraet verloren",
+        "neues handy",
+        "zweiten faktor entfernen"
+      ],
+      "beispiele": [
+        "Mein Handy ist weg, wie komme ich rein?",
+        "Ich habe ein neues Handy",
+        "Authenticator ist geloescht, was tun?"
+      ]
+    },
+    {
+      "id": "fehlversuche",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Warum werde ich nach mehreren Versuchen ausgesperrt?",
+      "antwort": "Fuenf Fehlversuche je Stunde, danach ist eine Stunde Ruhe. Das schuetzt dein Konto davor, dass jemand Passwoerter durchprobiert.",
+      "ziel": "/zugang/",
+      "marke": "ich-komme-nicht-rein",
+      "app": "zugang",
+      "stichworte": [
+        "ausgesperrt",
+        "gesperrt",
+        "fehlversuche",
+        "zu viele versuche",
+        "eine stunde",
+        "warten",
+        "blockiert"
+      ],
+      "beispiele": [
+        "Warum bin ich gesperrt?",
+        "Ich habe mich zu oft vertippt",
+        "Wie lange muss ich warten?"
+      ]
+    },
+    {
+      "id": "ebenen",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Welche Zugangsebenen gibt es?",
+      "antwort": "Drei: Admin steuert das ganze Universe und ist nur fuer den Betreiber. Beta-Tester sehen fertige Produktionsstrassen und die App, bevor sie oeffentlich sind. Nutzer sehen die oeffentliche Seite und den Abo-Plan.",
+      "ziel": "/zugang/",
+      "marke": "",
+      "app": "zugang",
+      "stichworte": [
+        "ebenen",
+        "rollen",
+        "admin",
+        "beta",
+        "nutzer",
+        "berechtigung",
+        "rechte",
+        "zugangsebene",
+        "stufen"
+      ],
+      "beispiele": [
+        "Welche Rollen gibt es?",
+        "Was ist der Unterschied zwischen Beta und Nutzer?",
+        "Wer darf was?"
+      ]
+    },
+    {
+      "id": "betatester-werden",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Wie werde ich Beta-Tester?",
+      "antwort": "Mit einem Einladungscode. Wer einen moechte, schreibt an info@speedofthespirit.dev",
+      "ziel": "/zugang/",
+      "marke": "",
+      "app": "zugang",
+      "stichworte": [
+        "betatester",
+        "beta tester",
+        "einladungscode",
+        "einladung",
+        "tester werden",
+        "frueher zugang",
+        "beta"
+      ],
+      "beispiele": [
+        "Wie werde ich Beta-Tester?",
+        "Bekomme ich einen Einladungscode?",
+        "Kann ich vorab testen?"
+      ]
+    },
+    {
+      "id": "konto-loeschen",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Wie loesche ich mein Konto?",
+      "antwort": "Eine E-Mail an info@speedofthespirit.dev genuegt. Deine Erzeugnisse und der Verlauf werden mitgeloescht; nur Rechnungsunterlagen muessen zehn Jahre bleiben, weil das Steuerrecht es verlangt.",
+      "ziel": "/datenschutz/",
+      "marke": "rechte",
+      "app": "datenschutz",
+      "stichworte": [
+        "konto loeschen",
+        "account loeschen",
+        "daten loeschen",
+        "abmelden endgueltig",
+        "loeschung",
+        "weg damit"
+      ],
+      "beispiele": [
+        "Wie loesche ich mein Konto?",
+        "Ich will alle meine Daten loeschen",
+        "Wie werde ich euch wieder los?"
+      ]
+    },
+    {
+      "id": "anmeldung-app-web",
+      "gruppe": "Konto und Anmeldung",
+      "frage": "Melde ich mich in der App oder auf der Webseite an?",
+      "antwort": "Angemeldet wird in der App - E-Mail und Passwort, gefuehrt ueber den Hub. Im Browser laeuft die Anmeldung ueber einen Einmalcode an deine Adresse.",
+      "ziel": "/zugang/",
+      "marke": "",
+      "app": "zugang",
+      "stichworte": [
+        "anmelden app",
+        "anmelden webseite",
+        "wo anmelden",
+        "browser",
+        "einmalcode",
+        "unterschied app webseite"
+      ],
+      "beispiele": [
+        "Wo melde ich mich an?",
+        "Geht die Anmeldung auch im Browser?",
+        "Brauche ich die App zum Anmelden?"
+      ]
+    },
+    {
+      "id": "welche-stufen",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Welche Stufen gibt es?",
+      "antwort": "Drei. Free ist dauerhaft kostenlos und laesst Life Automation laufen: Post, Termine, Bewerbungen, Wohnungen, ein Auftrag gleichzeitig. Creative Mind fuer 14,99 Euro im Monat oeffnet die Produktionsstrassen Wissen und Bau - Recherche, Kurse, Videos, Musik - fuenf Auftraege gleichzeitig, eigene Quellen, Agenten-Ausbildung und Herunterladen. Full Madness fuer 29,99 Euro im Monat oeffnet alles: unbegrenzt viele Auftraege, eigene Agenten im Organigramm, Trading, die Webseiten-Strasse und die Schnittstelle fuer eigene Werkzeuge.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "stufen",
+        "plaene",
+        "tarife",
+        "abo",
+        "pakete",
+        "free",
+        "creative mind",
+        "full madness",
+        "unterschied",
+        "vergleich",
+        "welche version"
+      ],
+      "beispiele": [
+        "Welche Stufen gibt es?",
+        "Was ist der Unterschied zwischen den Plaenen?",
+        "Welches Abo brauche ich?",
+        "Was bekomme ich fuer 15 Euro?"
+      ]
+    },
+    {
+      "id": "jahrespreis",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Was kostet das Jahresabo?",
+      "antwort": "Creative Mind 149,90 Euro im Jahr, Full Madness 299,90 Euro im Jahr. Das sind zwei Monate geschenkt gegenueber der monatlichen Zahlung.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "jahr",
+        "jaehrlich",
+        "jahresabo",
+        "jahrespreis",
+        "zwei monate geschenkt",
+        "rabatt",
+        "guenstiger",
+        "sparen"
+      ],
+      "beispiele": [
+        "Was kostet das im Jahr?",
+        "Lohnt sich jaehrlich zahlen?",
+        "Gibt es einen Rabatt?"
+      ]
+    },
+    {
+      "id": "zahlwege",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Wie kann ich bezahlen?",
+      "antwort": "PayPal, Bankeinzug per SEPA, Google Pay, Apple Pay oder Karte. Die Zahlung wickelt ein Bezahlanbieter ab - Kartennummer und IBAN sieht RepoCity nie.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "bezahlen",
+        "zahlung",
+        "zahlweg",
+        "paypal",
+        "sepa",
+        "lastschrift",
+        "karte",
+        "kreditkarte",
+        "google pay",
+        "apple pay",
+        "rechnung",
+        "ueberweisung"
+      ],
+      "beispiele": [
+        "Wie kann ich bezahlen?",
+        "Nehmt ihr PayPal?",
+        "Geht auch Lastschrift?",
+        "Kann ich mit Karte zahlen?"
+      ]
+    },
+    {
+      "id": "kuendigen",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Wie kuendige ich?",
+      "antwort": "Jederzeit kuendbar und jederzeit wechselbar - es gibt keinen Vertrag ueber Monate.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "kuendigen",
+        "kuendigung",
+        "beenden",
+        "abbestellen",
+        "aufhoeren",
+        "laufzeit",
+        "vertrag",
+        "mindestlaufzeit",
+        "wechseln"
+      ],
+      "beispiele": [
+        "Wie kuendige ich?",
+        "Gibt es eine Mindestlaufzeit?",
+        "Kann ich jederzeit aufhoeren?",
+        "Wie komme ich aus dem Abo raus?"
+      ]
+    },
+    {
+      "id": "stufe-wechseln",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Kann ich die Stufe wechseln?",
+      "antwort": "Ja, jederzeit - hoch wie runter.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "wechseln",
+        "upgrade",
+        "downgrade",
+        "hochstufen",
+        "herunterstufen",
+        "aendern",
+        "umsteigen"
+      ],
+      "beispiele": [
+        "Kann ich die Stufe wechseln?",
+        "Wie steige ich auf Full Madness um?",
+        "Kann ich wieder zurueck auf Free?"
+      ]
+    },
+    {
+      "id": "umsatzsteuer",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Sind die Preise mit oder ohne Steuer?",
+      "antwort": "Alle Preise in Euro, inklusive Umsatzsteuer.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "steuer",
+        "umsatzsteuer",
+        "mehrwertsteuer",
+        "mwst",
+        "netto",
+        "brutto",
+        "inklusive"
+      ],
+      "beispiele": [
+        "Sind das Netto- oder Bruttopreise?",
+        "Kommt noch Mehrwertsteuer dazu?"
+      ]
+    },
+    {
+      "id": "kartendaten",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Wo liegen meine Kartendaten?",
+      "antwort": "Beim Bezahlanbieter, nicht bei RepoCity. Kartennummer und Bankverbindung bekommt RepoCity nie zu sehen.",
+      "ziel": "/datenschutz/",
+      "marke": "",
+      "app": "datenschutz",
+      "stichworte": [
+        "kartendaten",
+        "kartennummer",
+        "iban",
+        "bankverbindung",
+        "sicher",
+        "zahlungsdaten",
+        "wo liegen",
+        "stripe"
+      ],
+      "beispiele": [
+        "Wo liegen meine Kartendaten?",
+        "Ist das Bezahlen sicher?",
+        "Speichert ihr meine IBAN?"
+      ]
+    },
+    {
+      "id": "was-ist-gesperrt",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Warum ist ein Bereich fuer mich gesperrt?",
+      "antwort": "Jeder Bereich braucht eine Stufe. Reicht deine nicht, kommt statt der Seite ein Hinweis, welche Stufe ihn aufmacht. Die Sperre gilt auch, wenn du die Adresse direkt eintippst - sie steckt nicht nur in der Anzeige.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "gesperrt",
+        "sperre",
+        "kein zugriff",
+        "nicht freigeschaltet",
+        "verboten",
+        "warum sehe ich das nicht",
+        "freischalten"
+      ],
+      "beispiele": [
+        "Warum ist das gesperrt?",
+        "Wie schalte ich das frei?",
+        "Ich komme in diesen Bereich nicht rein"
+      ]
+    },
+    {
+      "id": "was-kostet-nutzung",
+      "gruppe": "Kosten",
+      "frage": "Kostet die Nutzung ausser dem Abo noch etwas?",
+      "antwort": "Was du ausgibst, entscheidest du. RepoCity setzt keine Grenze. Willst du eine, setzt du sie auf der Kostenseite - fuer jede Strasse und jede Kette einzeln.",
+      "ziel": "/app/kosten/",
+      "marke": "",
+      "app": "kosten",
+      "stichworte": [
+        "laufende kosten",
+        "verbrauch",
+        "zusatzkosten",
+        "extra kosten",
+        "was kostet nutzung",
+        "rechnung",
+        "guthaben"
+      ],
+      "beispiele": [
+        "Kostet die Nutzung extra?",
+        "Zahle ich pro Video?",
+        "Was kommt noch zum Abo dazu?"
+      ]
+    },
+    {
+      "id": "kostenbremse",
+      "gruppe": "Kosten",
+      "frage": "Wie arbeitet die Kostenbremse?",
+      "antwort": "Bei 80 Prozent deiner Marke bekommst du eine Meldung. Es laeuft weiter, nichts wird angehalten. An der Marke faengt die naechste Produktion nicht an und sagt warum; was schon laeuft, wird fertig - ein halbes Video ist niemandem gedient. Du entscheidest: Marke hochsetzen oder loesen, dann laeuft es sofort weiter. Es gibt keine Freigabe, auf die du warten musst.",
+      "ziel": "/app/kosten/",
+      "marke": "",
+      "app": "kosten",
+      "stichworte": [
+        "kostenbremse",
+        "bremse",
+        "marke",
+        "grenze",
+        "limit",
+        "deckel",
+        "obergrenze",
+        "80 prozent",
+        "warnung",
+        "budget"
+      ],
+      "beispiele": [
+        "Wie arbeitet die Kostenbremse?",
+        "Was passiert, wenn ich mein Limit erreiche?",
+        "Kann ich ein Budget setzen?",
+        "Wird etwas abgebrochen?"
+      ]
+    },
+    {
+      "id": "marke-setzen",
+      "gruppe": "Kosten",
+      "frage": "Wie setze ich eine Kostenmarke?",
+      "antwort": "Auf der Kostenseite, fuer jede Strasse und jede Kette einzeln. Du kannst sie jederzeit hochsetzen oder loesen.",
+      "ziel": "/app/kosten/",
+      "marke": "",
+      "app": "kosten",
+      "stichworte": [
+        "marke setzen",
+        "limit setzen",
+        "grenze setzen",
+        "budget setzen",
+        "eigene marke",
+        "obergrenze setzen"
+      ],
+      "beispiele": [
+        "Wie setze ich eine Grenze?",
+        "Wo stelle ich mein Budget ein?",
+        "Kann ich pro Strasse ein Limit setzen?"
+      ]
+    },
+    {
+      "id": "woher-preise",
+      "gruppe": "Kosten",
+      "frage": "Woher kommen die Preise?",
+      "antwort": "Sie sind gemessen, nicht geschaetzt - aus echten Laeufen. Was eine Kette kostet und wie lange sie dauert, steht Schritt fuer Schritt in der Funktionsdokumentation.",
+      "ziel": "/funktionsweise/",
+      "marke": "was-eine-funktion-kosten-darf",
+      "app": "funktionsweise",
+      "stichworte": [
+        "woher preise",
+        "wie berechnet",
+        "gemessen",
+        "geschaetzt",
+        "kalkulation",
+        "wie kommt der preis"
+      ],
+      "beispiele": [
+        "Woher kommen die Preise?",
+        "Sind die Kosten geschaetzt?",
+        "Wie rechnet ihr das aus?"
+      ]
+    },
+    {
+      "id": "was-kostet-was",
+      "gruppe": "Kosten",
+      "frage": "Was kostet eine einzelne Produktion?",
+      "antwort": "Je Strasse verschieden. In der Funktionsdokumentation steht bei jeder Strasse, was sie kosten darf und woraus sich das rechnet. Kurze Clips laufen auf dem eigenen Rechner und kosten nichts; hochwertige Videos kosten je Clip.",
+      "ziel": "/funktionsweise/",
+      "marke": "was-eine-funktion-kosten-darf",
+      "app": "funktionsweise",
+      "stichworte": [
+        "was kostet ein video",
+        "preis je produktion",
+        "kosten je auftrag",
+        "je clip",
+        "einzelpreis",
+        "was kostet musik"
+      ],
+      "beispiele": [
+        "Was kostet ein Video?",
+        "Was kostet ein Musikstueck?",
+        "Wie teuer ist eine Praesentation?"
+      ]
+    },
+    {
+      "id": "kostenlose-strassen",
+      "gruppe": "Kosten",
+      "frage": "Was laeuft ohne zusaetzliche Kosten?",
+      "antwort": "Kurze Clips laufen mit vorhandenem Material auf dem eigenen Rechner und kosten nichts.",
+      "ziel": "/funktionsweise/",
+      "marke": "kurze-clips",
+      "app": "funktionsweise",
+      "stichworte": [
+        "kostenlos",
+        "gratis",
+        "ohne kosten",
+        "was ist umsonst",
+        "eigener rechner",
+        "lokal"
+      ],
+      "beispiele": [
+        "Was kostet nichts?",
+        "Welche Strassen sind gratis?",
+        "Laeuft etwas auf meinem eigenen Rechner?"
+      ]
+    },
+    {
+      "id": "auftrag-anstossen",
+      "gruppe": "Auftraege",
+      "frage": "Wie stosse ich einen Auftrag an?",
+      "antwort": "In der Kreativwerkstatt. Was daraus wird, siehst du dort und auf dem Dashboard.",
+      "ziel": "/app/kreativwerkstatt/",
+      "marke": "",
+      "app": "kreativwerkstatt",
+      "stichworte": [
+        "auftrag",
+        "anstossen",
+        "starten",
+        "beauftragen",
+        "auftrag geben",
+        "produzieren",
+        "erstellen lassen",
+        "kreativwerkstatt",
+        "werkstatt"
+      ],
+      "beispiele": [
+        "Wie gebe ich einen Auftrag?",
+        "Wo starte ich eine Produktion?",
+        "Wie lasse ich ein Video machen?"
+      ]
+    },
+    {
+      "id": "wie-viele-auftraege",
+      "gruppe": "Auftraege",
+      "frage": "Wie viele Auftraege kann ich gleichzeitig laufen lassen?",
+      "antwort": "Free einen, Creative Mind fuenf, Full Madness unbegrenzt viele nebeneinander.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "gleichzeitig",
+        "parallel",
+        "wie viele",
+        "anzahl auftraege",
+        "nebeneinander",
+        "warteschlange"
+      ],
+      "beispiele": [
+        "Wie viele Auftraege gleichzeitig?",
+        "Kann ich mehrere Sachen parallel laufen lassen?"
+      ]
+    },
+    {
+      "id": "auftrag-verfolgen",
+      "gruppe": "Auftraege",
+      "frage": "Wo sehe ich, wie weit mein Auftrag ist?",
+      "antwort": "Auf dem Dashboard - dort stehen Zahlen und Verlauf. Den Stand des einzelnen Auftrags zeigt die Kreativwerkstatt.",
+      "ziel": "/app/dashboard/",
+      "marke": "",
+      "app": "dashboard",
+      "stichworte": [
+        "fortschritt",
+        "wie weit",
+        "status",
+        "laeuft noch",
+        "verfolgen",
+        "wo ist mein",
+        "wann fertig"
+      ],
+      "beispiele": [
+        "Wie weit ist mein Auftrag?",
+        "Wo sehe ich den Fortschritt?",
+        "Laeuft das noch?"
+      ]
+    },
+    {
+      "id": "freigabe",
+      "gruppe": "Auftraege",
+      "frage": "Was ist die Freigabe?",
+      "antwort": "Bevor ein fertiges Stueck das Haus verlaesst, wird es vorgelegt. Erst danach geht es hinaus. Woran man sieht, dass es das darf, steht in der Funktionsdokumentation unter Freigabe und Warenausgang.",
+      "ziel": "/funktionsweise/",
+      "marke": "freigabe-und-warenausgang",
+      "app": "funktionsweise",
+      "stichworte": [
+        "freigabe",
+        "warenausgang",
+        "abnahme",
+        "veroeffentlichen",
+        "bevor es raus geht",
+        "genehmigen",
+        "bestaetigen"
+      ],
+      "beispiele": [
+        "Was ist die Freigabe?",
+        "Geht etwas ohne mein Zutun raus?",
+        "Muss ich jedes Ergebnis bestaetigen?"
+      ]
+    },
+    {
+      "id": "ergebnisse-herunterladen",
+      "gruppe": "Auftraege",
+      "frage": "Kann ich Ergebnisse herunterladen?",
+      "antwort": "Ab Creative Mind ja - MP4, PDF, HTML und WAV.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "herunterladen",
+        "download",
+        "exportieren",
+        "speichern",
+        "mp4",
+        "pdf",
+        "wav",
+        "dateien",
+        "format"
+      ],
+      "beispiele": [
+        "Kann ich das herunterladen?",
+        "In welchem Format bekomme ich das?",
+        "Wie exportiere ich mein Video?"
+      ]
+    },
+    {
+      "id": "qualitaetsmanager",
+      "gruppe": "Auftraege",
+      "frage": "Wer prueft die Ergebnisse?",
+      "antwort": "Der Qualitaetsmanager nimmt sie ab, bevor du sie siehst.",
+      "ziel": "/app/organigramm/",
+      "marke": "",
+      "app": "organigramm",
+      "stichworte": [
+        "qualitaet",
+        "geprueft",
+        "abnahme",
+        "kontrolle",
+        "qualitaetsmanager",
+        "wer prueft"
+      ],
+      "beispiele": [
+        "Wer prueft die Ergebnisse?",
+        "Wird das kontrolliert?",
+        "Was passiert, wenn etwas schlecht wird?"
+      ]
+    },
+    {
+      "id": "meldungen",
+      "gruppe": "Auftraege",
+      "frage": "Wie bekomme ich Meldungen?",
+      "antwort": "Eine Meldung geht vom Rechner zum Handy und eine Entscheidung zurueck, ohne dass jemand eine Verbindung von aussen oeffnen muss. Welche Meldungen durchkommen, stellst du in den Einstellungen je Teil ein.",
+      "ziel": "/funktionsweise/",
+      "marke": "der-meldeweg",
+      "app": "einstellungen",
+      "stichworte": [
+        "meldung",
+        "meldungen",
+        "benachrichtigung",
+        "push",
+        "mitteilung",
+        "handy",
+        "abschalten",
+        "stumm",
+        "nachricht"
+      ],
+      "beispiele": [
+        "Wie bekomme ich Meldungen?",
+        "Kann ich Benachrichtigungen abschalten?",
+        "Warum bekomme ich keine Meldung?"
+      ]
+    },
+    {
+      "id": "organigramm",
+      "gruppe": "Auftraege",
+      "frage": "Wer arbeitet in RepoCity?",
+      "antwort": "Das Organigramm zeigt, wer hier arbeitet und wem er berichtet.",
+      "ziel": "/app/organigramm/",
+      "marke": "",
+      "app": "organigramm",
+      "stichworte": [
+        "organigramm",
+        "agenten",
+        "wer arbeitet",
+        "belegschaft",
+        "wer macht was",
+        "aufbau",
+        "hierarchie",
+        "team"
+      ],
+      "beispiele": [
+        "Wer arbeitet hier?",
+        "Welche Agenten gibt es?",
+        "Zeig mir das Organigramm",
+        "Wer berichtet wem?"
+      ]
+    },
+    {
+      "id": "eigene-agenten",
+      "gruppe": "Auftraege",
+      "frage": "Kann ich eigene Agenten anlegen?",
+      "antwort": "Ab Full Madness ja - anlegen und ins Organigramm haengen.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "eigene agenten",
+        "agent anlegen",
+        "selbst bauen",
+        "eigener agent",
+        "erweitern",
+        "hinzufuegen"
+      ],
+      "beispiele": [
+        "Kann ich eigene Agenten bauen?",
+        "Wie fuege ich einen Agenten hinzu?"
+      ]
+    },
+    {
+      "id": "schnittstelle",
+      "gruppe": "Auftraege",
+      "frage": "Gibt es eine Schnittstelle fuer eigene Werkzeuge?",
+      "antwort": "Ab Full Madness ja.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "schnittstelle",
+        "api",
+        "eigene werkzeuge",
+        "anbinden",
+        "integration",
+        "programmieren"
+      ],
+      "beispiele": [
+        "Gibt es eine API?",
+        "Kann ich eigene Werkzeuge anbinden?"
+      ]
+    },
+    {
+      "id": "strasse-clips",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Strasse Kurze Clips?",
+      "antwort": "Kurze Clips aus vorhandenem Material mit Sprecher und Untertiteln. Sie laeuft auf dem eigenen Rechner und kostet nichts.",
+      "ziel": "/funktionsweise/",
+      "marke": "kurze-clips",
+      "app": "funktionsweise",
+      "stichworte": [
+        "clip",
+        "clips",
+        "kurzes video",
+        "kurzvideo",
+        "reel",
+        "short",
+        "untertitel",
+        "sprecher",
+        "stockmaterial"
+      ],
+      "beispiele": [
+        "Was macht die Clip-Strasse?",
+        "Koennt ihr kurze Videos machen?",
+        "Wie entstehen die Reels?",
+        "Macht ihr Untertitel?"
+      ]
+    },
+    {
+      "id": "strasse-video",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Strasse Hochwertige Videos?",
+      "antwort": "Video mit eigener Bildsprache: erzeugte Bilder, Bewegung, Ton. Kostet je Clip.",
+      "ziel": "/funktionsweise/",
+      "marke": "hochwertige-videos",
+      "app": "funktionsweise",
+      "stichworte": [
+        "video",
+        "videos",
+        "film",
+        "hochwertig",
+        "erzeugte bilder",
+        "bildsprache",
+        "animation",
+        "bewegung"
+      ],
+      "beispiele": [
+        "Koennt ihr Videos machen?",
+        "Was ist ein hochwertiges Video?",
+        "Wie entstehen die Filme?",
+        "Macht ihr KI-Videos?"
+      ]
+    },
+    {
+      "id": "strasse-musik",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Musik-Strasse?",
+      "antwort": "Ein Musikstueck nach Stimmung, Laenge und Zweck; erzeugt, gemastert, abgelegt.",
+      "ziel": "/funktionsweise/",
+      "marke": "musik",
+      "app": "funktionsweise",
+      "stichworte": [
+        "musik",
+        "song",
+        "lied",
+        "stueck",
+        "audio",
+        "ton",
+        "gemastert",
+        "melodie",
+        "soundtrack"
+      ],
+      "beispiele": [
+        "Koennt ihr Musik machen?",
+        "Wie entsteht ein Musikstueck?",
+        "Kann ich einen Song bestellen?"
+      ]
+    },
+    {
+      "id": "strasse-lernprogramm",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Lernprogramm-Strasse?",
+      "antwort": "Ein interaktives Lernprogramm zu einem Thema: erklaeren, ausprobieren lassen, abfragen.",
+      "ziel": "/funktionsweise/",
+      "marke": "lernprogramm",
+      "app": "funktionsweise",
+      "stichworte": [
+        "lernprogramm",
+        "kurs",
+        "kurse",
+        "lernen",
+        "unterricht",
+        "schulung",
+        "tutorial",
+        "interaktiv",
+        "abfragen"
+      ],
+      "beispiele": [
+        "Koennt ihr Kurse bauen?",
+        "Was ist ein Lernprogramm?",
+        "Kann RepoCity mir etwas beibringen?"
+      ]
+    },
+    {
+      "id": "strasse-praesentation",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Praesentations-Strasse?",
+      "antwort": "Aus deiner Idee werden Kernaussagen, je Aussage eine Mechanik, daraus eine Praesentation - als anfassbare Seite, als Bild oder als Film.",
+      "ziel": "/funktionsweise/",
+      "marke": "praesentation",
+      "app": "funktionsweise",
+      "stichworte": [
+        "praesentation",
+        "folien",
+        "vortrag",
+        "slides",
+        "pitch",
+        "deck",
+        "praesentieren"
+      ],
+      "beispiele": [
+        "Koennt ihr Praesentationen machen?",
+        "Wie entstehen die Folien?",
+        "Kann ich einen Pitch bauen lassen?"
+      ]
+    },
+    {
+      "id": "strasse-software",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Strasse App oder Software?",
+      "antwort": "Der Architekt macht aus dem Auftrag einen Bauplan, der Implementierer baut ihn - neben dem laufenden Universe, uebernommen erst nach Freigabe.",
+      "ziel": "/funktionsweise/",
+      "marke": "app-oder-software",
+      "app": "funktionsweise",
+      "stichworte": [
+        "software",
+        "app bauen",
+        "programm",
+        "entwickeln",
+        "architekt",
+        "implementierer",
+        "programmieren lassen",
+        "anwendung"
+      ],
+      "beispiele": [
+        "Koennt ihr Software bauen?",
+        "Kann RepoCity eine App entwickeln?",
+        "Wer schreibt den Code?"
+      ]
+    },
+    {
+      "id": "strasse-social",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Social-Media-Strasse?",
+      "antwort": "Beitraege je Kanal, mit Bild und Text, eingeplant statt sofort veroeffentlicht.",
+      "ziel": "/funktionsweise/",
+      "marke": "social-media",
+      "app": "funktionsweise",
+      "stichworte": [
+        "social media",
+        "social",
+        "beitrag",
+        "post",
+        "instagram",
+        "kanal",
+        "veroeffentlichen",
+        "einplanen",
+        "posten"
+      ],
+      "beispiele": [
+        "Macht ihr Social Media?",
+        "Wird automatisch gepostet?",
+        "Kann ich Beitraege planen lassen?"
+      ]
+    },
+    {
+      "id": "strasse-marketing",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Marketing-Strasse?",
+      "antwort": "Botschaft, Zielgruppe, Kanaele und Takt - als Plan, den die anderen Strassen ausfuehren.",
+      "ziel": "/funktionsweise/",
+      "marke": "marketing",
+      "app": "funktionsweise",
+      "stichworte": [
+        "marketing",
+        "kampagne",
+        "zielgruppe",
+        "botschaft",
+        "werbung",
+        "strategie",
+        "plan"
+      ],
+      "beispiele": [
+        "Was macht Marketing hier?",
+        "Baut ihr Kampagnen?",
+        "Wie findet ihr die Zielgruppe?"
+      ]
+    },
+    {
+      "id": "strasse-recherche",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Recherche-Strasse?",
+      "antwort": "Fachseiten und Portale abgehen, Funde belegen, Widersprueche benennen.",
+      "ziel": "/funktionsweise/",
+      "marke": "recherche",
+      "app": "funktionsweise",
+      "stichworte": [
+        "recherche",
+        "researcher",
+        "suchen",
+        "quellen",
+        "belegen",
+        "nachforschen",
+        "deep research",
+        "widersprueche"
+      ],
+      "beispiele": [
+        "Koennt ihr recherchieren?",
+        "Wie tief geht die Recherche?",
+        "Werden Quellen belegt?"
+      ]
+    },
+    {
+      "id": "strasse-webseite",
+      "gruppe": "Produktion",
+      "frage": "Was macht die Webseiten-Strasse?",
+      "antwort": "Seiten bauen, aendern und abgehen - der Betreuer prueft, was steht, und aendert nichts ungefragt. Ab Full Madness.",
+      "ziel": "/funktionsweise/",
+      "marke": "webseite",
+      "app": "funktionsweise",
+      "stichworte": [
+        "webseite",
+        "website",
+        "homepage",
+        "seite bauen",
+        "internetseite",
+        "betreuer"
+      ],
+      "beispiele": [
+        "Koennt ihr eine Webseite bauen?",
+        "Wird meine Seite gepflegt?",
+        "Aendert ihr etwas ohne zu fragen?"
+      ]
+    },
+    {
+      "id": "strasse-stoff",
+      "gruppe": "Produktion",
+      "frage": "Woher bekommt eine Strasse ihr Material?",
+      "antwort": "Aus der Stoffbeschaffung: der Kurator versorgt die Strassen. Was passiert, wenn zu wenig da ist, steht in der Funktionsdokumentation.",
+      "ziel": "/funktionsweise/",
+      "marke": "stoffbeschaffung",
+      "app": "funktionsweise",
+      "stichworte": [
+        "material",
+        "stoff",
+        "woher",
+        "kurator",
+        "quelle",
+        "input",
+        "rohmaterial",
+        "zu wenig"
+      ],
+      "beispiele": [
+        "Woher kommt das Material?",
+        "Was passiert bei zu wenig Stoff?",
+        "Wer versorgt die Strassen?"
+      ]
+    },
+    {
+      "id": "rueckweg-lernen",
+      "gruppe": "Produktion",
+      "frage": "Wie lernen die Agenten dazu?",
+      "antwort": "Ueber den Rueckweg: aus Erfahrungen werden ab drei gleichen Urteilen Lehrsaetze vorgeschlagen.",
+      "ziel": "/funktionsweise/",
+      "marke": "der-rueckweg-wie-die-agenten-lernen",
+      "app": "funktionsweise",
+      "stichworte": [
+        "lernen",
+        "verbessern",
+        "erfahrung",
+        "lehrsatz",
+        "rueckweg",
+        "ausbildung",
+        "besser werden",
+        "selbstverbesserung"
+      ],
+      "beispiele": [
+        "Lernen die Agenten dazu?",
+        "Wie verbessert sich das System?",
+        "Was ist der Rueckweg?"
+      ]
+    },
+    {
+      "id": "life-was",
+      "gruppe": "Life Automation",
+      "frage": "Was ist Life Automation?",
+      "antwort": "Post, Termine, Bewerbungen und Wohnungen - der Teil, der dir Alltaegliches abnimmt. In jeder Stufe enthalten, auch in Free.",
+      "ziel": "/app/life/",
+      "marke": "",
+      "app": "life",
+      "stichworte": [
+        "life automation",
+        "alltag",
+        "automatisierung",
+        "post termine",
+        "was ist life"
+      ],
+      "beispiele": [
+        "Was ist Life Automation?",
+        "Was macht der Alltagsteil?",
+        "Ist Life Automation im Free-Plan?"
+      ]
+    },
+    {
+      "id": "post",
+      "gruppe": "Life Automation",
+      "frage": "Was macht RepoCity mit meiner Post?",
+      "antwort": "Posteingang lesen, sortieren, Antworten vorlegen.",
+      "ziel": "/app/life/",
+      "marke": "",
+      "app": "life",
+      "stichworte": [
+        "post",
+        "email",
+        "e-mail",
+        "mail",
+        "posteingang",
+        "antworten",
+        "sortieren",
+        "postfach"
+      ],
+      "beispiele": [
+        "Was macht ihr mit meinen Mails?",
+        "Werden Mails automatisch beantwortet?",
+        "Liest RepoCity meine Post?"
+      ]
+    },
+    {
+      "id": "post-abschicken",
+      "gruppe": "Life Automation",
+      "frage": "Verschickt RepoCity Mails von selbst?",
+      "antwort": "Nur wenn du es einschaltest, und je Bereich einzeln - Post, Bewerbung, Wohnung, Termine. Wer es einschaltet, setzt eine Obergrenze am Tag; ohne Zahl bleibt es beim Vorlegen.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "abschicken",
+        "selbst versenden",
+        "automatisch senden",
+        "ohne mich",
+        "obergrenze",
+        "vorlegen",
+        "freigabe mail"
+      ],
+      "beispiele": [
+        "Verschickt ihr Mails ohne mich?",
+        "Kann ich das automatische Senden einschalten?",
+        "Wie viele Mails am Tag?"
+      ]
+    },
+    {
+      "id": "postfach-verbinden",
+      "gruppe": "Life Automation",
+      "frage": "Wie verbinde ich mein Postfach?",
+      "antwort": "In den Einstellungen. Bei vielen Anbietern brauchst du dort ein eigenes Passwort fuer Programme; die App sagt dir, welches und wo du es holst.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "postfach verbinden",
+        "mail einrichten",
+        "imap",
+        "anbieter",
+        "gmx",
+        "gmail",
+        "web.de",
+        "t-online",
+        "app passwort",
+        "eigenes passwort"
+      ],
+      "beispiele": [
+        "Wie verbinde ich mein Postfach?",
+        "Welches Passwort braucht das Postfach?",
+        "Warum wird meine Anmeldung abgelehnt?"
+      ]
+    },
+    {
+      "id": "bewerbung",
+      "gruppe": "Life Automation",
+      "frage": "Was macht die Bewerbungs-Strasse?",
+      "antwort": "Passende Stellen finden, Anschreiben und Lebenslauf darauf zuschneiden, Versand vorlegen.",
+      "ziel": "/funktionsweise/",
+      "marke": "bewerbung",
+      "app": "funktionsweise",
+      "stichworte": [
+        "bewerbung",
+        "bewerben",
+        "stelle",
+        "job",
+        "anschreiben",
+        "lebenslauf",
+        "stellenanzeige",
+        "arbeitsstelle"
+      ],
+      "beispiele": [
+        "Bewerbt ihr euch fuer mich?",
+        "Wie funktioniert die Bewerbung?",
+        "Schreibt RepoCity Anschreiben?"
+      ]
+    },
+    {
+      "id": "wohnungsalarm",
+      "gruppe": "Life Automation",
+      "frage": "Was ist der Wohnungsalarm?",
+      "antwort": "Kommt eine Wohnungsmeldung vom Portal, antwortet RepoCity darauf, ohne dass ein Mensch klicken muss - schnell genug, um unter den ersten Anfragen zu sein.",
+      "ziel": "/funktionsweise/",
+      "marke": "wohnungsalarm",
+      "app": "funktionsweise",
+      "stichworte": [
+        "wohnung",
+        "wohnungssuche",
+        "wohnungsalarm",
+        "immobilien",
+        "mietwohnung",
+        "portal",
+        "inserat",
+        "besichtigung",
+        "immoscout",
+        "wohnung suchen",
+        "wohnung finden",
+        "suche wohnung",
+        "wohnung gesucht",
+        "wg",
+        "miete"
+      ],
+      "beispiele": [
+        "Was ist der Wohnungsalarm?",
+        "Sucht RepoCity Wohnungen?",
+        "Wie schnell wird geantwortet?",
+        "Welche Portale werden abgesucht?"
+      ]
+    },
+    {
+      "id": "termine",
+      "gruppe": "Life Automation",
+      "frage": "Was macht RepoCity mit meinen Terminen?",
+      "antwort": "Termine fuehren, erinnern, Konflikte melden.",
+      "ziel": "/app/life/",
+      "marke": "",
+      "app": "life",
+      "stichworte": [
+        "termine",
+        "kalender",
+        "erinnerung",
+        "konflikt",
+        "verabredung",
+        "planung"
+      ],
+      "beispiele": [
+        "Fuehrt ihr meinen Kalender?",
+        "Werde ich an Termine erinnert?",
+        "Was passiert bei Terminkonflikten?"
+      ]
+    },
+    {
+      "id": "wissensdatenbank",
+      "gruppe": "Wissen",
+      "frage": "Was ist die Wissensdatenbank?",
+      "antwort": "Der Ort, an dem alles Gesammelte liegt und aus dem die Agenten arbeiten. Ein eigenes Feld dafuer gibt es seit dem 10.09. nicht mehr - zu sehen war dort nichts. Was neu hereinkommt, meldet aufs Dashboard.",
+      "ziel": "/app/dashboard/",
+      "marke": "",
+      "app": "dashboard",
+      "stichworte": [
+        "wissensdatenbank",
+        "2nd brain",
+        "second brain",
+        "wissen",
+        "datenbank",
+        "gespeichertes wissen",
+        "archiv"
+      ],
+      "beispiele": [
+        "Was ist die Wissensdatenbank?",
+        "Was ist das 2nd Brain?",
+        "Wo liegt das gesammelte Wissen?"
+      ]
+    },
+    {
+      "id": "eigene-quellen",
+      "gruppe": "Wissen",
+      "frage": "Kann ich eigene Quellen einspeisen?",
+      "antwort": "Ab Creative Mind ja - eigene Quellen ins 2nd Brain, und die Agenten-Ausbildung lernt an deinem Material.",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "eigene quellen",
+        "einspeisen",
+        "hochladen",
+        "eigenes material",
+        "hinzufuegen",
+        "dokumente",
+        "einpflegen"
+      ],
+      "beispiele": [
+        "Kann ich eigene Dokumente einspeisen?",
+        "Lernt das System an meinem Material?",
+        "Wie fuege ich Quellen hinzu?"
+      ]
+    },
+    {
+      "id": "github-scout",
+      "gruppe": "Wissen",
+      "frage": "Was macht der GitHub Scout?",
+      "antwort": "Woechentlich Repositories suchen und Funde einzeln vorlegen.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "github scout",
+        "scout",
+        "repositories",
+        "repos",
+        "woechentlich",
+        "funde"
+      ],
+      "beispiele": [
+        "Was macht der GitHub Scout?",
+        "Wie oft sucht der Scout?"
+      ]
+    },
+    {
+      "id": "kurator",
+      "gruppe": "Wissen",
+      "frage": "Was macht der Kurator?",
+      "antwort": "Funde einpflegen, Atome bilden, Agenten versorgen.",
+      "ziel": "/app/organigramm/",
+      "marke": "",
+      "app": "organigramm",
+      "stichworte": [
+        "kurator",
+        "einpflegen",
+        "atome",
+        "aufbereiten",
+        "versorgen"
+      ],
+      "beispiele": [
+        "Was macht der Kurator?",
+        "Wer bereitet das Wissen auf?"
+      ]
+    },
+    {
+      "id": "ausbildung",
+      "gruppe": "Wissen",
+      "frage": "Was ist die Agenten-Ausbildung?",
+      "antwort": "Erfahrungen lesen und ab drei gleichen Urteilen einen Lehrsatz vorschlagen. Den Lernfortschritt siehst du auf dem Dashboard.",
+      "ziel": "/app/dashboard/",
+      "marke": "",
+      "app": "dashboard",
+      "stichworte": [
+        "ausbildung",
+        "agenten ausbildung",
+        "lehrsatz",
+        "lernfortschritt",
+        "trainieren",
+        "erfahrungen"
+      ],
+      "beispiele": [
+        "Was ist die Agenten-Ausbildung?",
+        "Wie lernen die Agenten?",
+        "Was ist ein Lehrsatz?"
+      ]
+    },
+    {
+      "id": "trading-was",
+      "gruppe": "Trading",
+      "frage": "Was macht der Trading-Bereich?",
+      "antwort": "Der Handelsbeobachter rechnet die SK-Regeln und meldet Signale. Er handelt nicht. Ab Full Madness.",
+      "ziel": "/app/trading/",
+      "marke": "",
+      "app": "trading",
+      "stichworte": [
+        "trading",
+        "handel",
+        "boerse",
+        "signale",
+        "sk system",
+        "positionen",
+        "krypto",
+        "handeln"
+      ],
+      "beispiele": [
+        "Was macht Trading hier?",
+        "Handelt RepoCity fuer mich?",
+        "Was ist das SK-System?"
+      ]
+    },
+    {
+      "id": "trading-boersen",
+      "gruppe": "Trading",
+      "frage": "Welche Boersen werden unterstuetzt?",
+      "antwort": "OKX mit direkter Order - Haupt-Order, Stop-Loss und Take-Profit gehen als ein Paket hinaus. Und Pionex als Signal an deinen eigenen Bot; dort liegt kein Schluessel im Haus, die App ruft nur die Adresse deines Signal-Bots.",
+      "ziel": "/app/trading/",
+      "marke": "",
+      "app": "trading",
+      "stichworte": [
+        "boersen",
+        "okx",
+        "pionex",
+        "exchange",
+        "bot",
+        "order",
+        "stop loss",
+        "take profit"
+      ],
+      "beispiele": [
+        "Welche Boersen gehen?",
+        "Was ist der Unterschied zwischen OKX und Pionex?",
+        "Braucht ihr meine Boersen-Schluessel?"
+      ]
+    },
+    {
+      "id": "trading-schluessel",
+      "gruppe": "Trading",
+      "frage": "Wo liegen meine Handelsschluessel?",
+      "antwort": "Verschluesselt auf dem Handy, und sie verlassen es nicht. Auf der Webseite werden sie bewusst nicht abgefragt.",
+      "ziel": "/app/trading/",
+      "marke": "",
+      "app": "trading",
+      "stichworte": [
+        "handelsschluessel",
+        "api schluessel",
+        "boersenschluessel",
+        "wo liegen schluessel",
+        "sicherheit trading",
+        "verschluesselt"
+      ],
+      "beispiele": [
+        "Wo liegen meine Handelsschluessel?",
+        "Sind meine Boersendaten sicher?",
+        "Speichert ihr meine API-Keys?"
+      ]
+    },
+    {
+      "id": "trading-abschalten",
+      "gruppe": "Trading",
+      "frage": "Wie schalte ich eine Boerse ab?",
+      "antwort": "In den Einstellungen unter Boersen. Wer dort ausgeschaltet ist, wird weder beobachtet noch gehandelt - auf der Webseite und in der App gleichermassen.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "boerse abschalten",
+        "trading aus",
+        "handel stoppen",
+        "ausschalten",
+        "anhalten"
+      ],
+      "beispiele": [
+        "Wie schalte ich das Trading ab?",
+        "Kann ich eine Boerse deaktivieren?"
+      ]
+    },
+    {
+      "id": "design-waehlen",
+      "gruppe": "Einstellungen",
+      "frage": "Kann ich das Aussehen aendern?",
+      "antwort": "Ja, in den Einstellungen unter Design. Elf Ausfuehrungen stehen zur Wahl; die Wahl gilt fuer jede Seite der Oberflaeche.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "design",
+        "aussehen",
+        "farbe",
+        "farben",
+        "thema",
+        "kit",
+        "hell",
+        "dunkel",
+        "stil",
+        "oberflaeche aendern",
+        "umstellen",
+        "farben umstellen",
+        "farbe aendern",
+        "optik",
+        "erscheinungsbild",
+        "layout"
+      ],
+      "beispiele": [
+        "Kann ich das Aussehen aendern?",
+        "Gibt es einen hellen Modus?",
+        "Wo stelle ich das Design um?"
+      ]
+    },
+    {
+      "id": "trockenbetrieb",
+      "gruppe": "Einstellungen",
+      "frage": "Was ist der Trockenbetrieb?",
+      "antwort": "Ein Schalter in den Einstellungen: nichts verlaesst das Haus. Alles laeuft, aber nichts wird verschickt oder veroeffentlicht.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "trocken",
+        "trockenbetrieb",
+        "testbetrieb",
+        "echtbetrieb",
+        "probe",
+        "nichts raus",
+        "sicherheitsschalter"
+      ],
+      "beispiele": [
+        "Was ist Trockenbetrieb?",
+        "Kann ich testen, ohne dass etwas rausgeht?",
+        "Wie schalte ich den Echtbetrieb ein?"
+      ]
+    },
+    {
+      "id": "teile-abschalten",
+      "gruppe": "Einstellungen",
+      "frage": "Kann ich einzelne Teile abschalten?",
+      "antwort": "Ja - links Betrieb, rechts Meldungen, je Teil einzeln. Wer ausgeschaltet ist, nimmt seine untergeordneten Teile mit.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "abschalten",
+        "ausschalten",
+        "deaktivieren",
+        "einzeln",
+        "modul",
+        "teil",
+        "stummschalten",
+        "pausieren"
+      ],
+      "beispiele": [
+        "Kann ich einzelne Agenten abschalten?",
+        "Wie schalte ich Meldungen ab?",
+        "Was passiert, wenn ich Produktion ausschalte?"
+      ]
+    },
+    {
+      "id": "startbildschirm",
+      "gruppe": "Einstellungen",
+      "frage": "Kann ich den Anflug beim Start abschalten?",
+      "antwort": "Ja, in den Einstellungen unter Betrieb: 'Startbildschirm zeigen'.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "startbildschirm",
+        "anflug",
+        "intro",
+        "animation",
+        "beim oeffnen",
+        "ueberspringen"
+      ],
+      "beispiele": [
+        "Kann ich die Startanimation abschalten?",
+        "Was ist der Anflug?"
+      ]
+    },
+    {
+      "id": "spracheingabe",
+      "gruppe": "Einstellungen",
+      "frage": "Kann ich Auftraege sprechen statt tippen?",
+      "antwort": "Ja - in der Kreativwerkstatt auf das Mikrofon tippen und sprechen.",
+      "ziel": "/app/kreativwerkstatt/",
+      "marke": "",
+      "app": "kreativwerkstatt",
+      "stichworte": [
+        "sprechen",
+        "mikrofon",
+        "spracheingabe",
+        "diktieren",
+        "stimme",
+        "sprachbefehl"
+      ],
+      "beispiele": [
+        "Kann ich sprechen statt tippen?",
+        "Gibt es Spracheingabe?",
+        "Wo ist das Mikrofon?"
+      ]
+    },
+    {
+      "id": "wer-ist-mia",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Wer oder was ist Mia?",
+      "antwort": "Das Fragefenster von RepoCity - die einzige Stelle, an der du direkt mit RepoCity sprichst. Mia ist eine Maschine, stellt sich als solche vor und gibt sich nie als Mensch aus. Alles, was sie ausgibt, ist als maschinell erzeugt gekennzeichnet.",
+      "ziel": "/datenschutz/",
+      "marke": "ki",
+      "app": "datenschutz",
+      "stichworte": [
+        "mia",
+        "chatbot",
+        "fragefenster",
+        "ki",
+        "bot",
+        "assistentin",
+        "wer ist mia",
+        "mit wem rede ich"
+      ],
+      "beispiele": [
+        "Wer ist Mia?",
+        "Rede ich mit einem Menschen?",
+        "Ist das eine KI?",
+        "Was ist das Fragefenster?"
+      ]
+    },
+    {
+      "id": "mia-worueber",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Worueber spricht Mia?",
+      "antwort": "Wie RepoCity funktioniert - Aufbau, Zweck, Ziele, aber nicht, wie es gebaut ist. Die Bedienung von Webseite und App. Die vier Bereiche unten auf der Seite, und dort nur, was oeffentlich steht. Und deine eigenen Daten, wenn du angemeldet bist: Verlauf, Erzeugnisse, Abo-Plan und deine Kosten. Was dort nicht steht, wird nicht beantwortet.",
+      "ziel": "/datenschutz/",
+      "marke": "ki",
+      "app": "datenschutz",
+      "stichworte": [
+        "worueber spricht mia",
+        "was darf mia",
+        "themen",
+        "was kann sie beantworten",
+        "grenzen"
+      ],
+      "beispiele": [
+        "Worueber kann Mia sprechen?",
+        "Was darf Mia mir sagen?",
+        "Warum antwortet Mia nicht?"
+      ]
+    },
+    {
+      "id": "mia-verbote",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Worueber spricht Mia nie?",
+      "antwort": "Zugangsdaten - die bekommt sie technisch nicht einmal zu sehen. Daten anderer Menschen, auch nicht zusammengefasst. Politik. Finanzberatung. Und Rat zu Recht, Steuern oder Gesundheit.",
+      "ziel": "/datenschutz/",
+      "marke": "ki",
+      "app": "datenschutz",
+      "stichworte": [
+        "verbote",
+        "spricht nicht",
+        "tabu",
+        "darf nicht",
+        "politik",
+        "finanzberatung",
+        "rechtsberatung",
+        "gesundheit",
+        "abgelehnt"
+      ],
+      "beispiele": [
+        "Worueber redet Mia nicht?",
+        "Warum lehnt Mia meine Frage ab?",
+        "Gibt Mia Anlagetipps?"
+      ]
+    },
+    {
+      "id": "mia-daten",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Was wird von meinen Fragen gespeichert?",
+      "antwort": "Zeitpunkt, deine Kennung oder ein Gastkennzeichen, Stufe, Laenge der Anfrage, entstandene Kosten und - falls abgelehnt - der Grund. Der Wortlaut deiner Frage nur voruebergehend, hoechstens 30 Tage.",
+      "ziel": "/datenschutz/",
+      "marke": "was",
+      "app": "datenschutz",
+      "stichworte": [
+        "was wird gespeichert",
+        "frage gespeichert",
+        "wortlaut",
+        "30 tage",
+        "protokoll",
+        "verlauf fragen"
+      ],
+      "beispiele": [
+        "Speichert ihr meine Fragen?",
+        "Wie lange bleibt das gespeichert?",
+        "Kann jemand meine Fragen lesen?"
+      ]
+    },
+    {
+      "id": "training",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Werden meine Daten zum Trainieren benutzt?",
+      "antwort": "Nein. Die Gespraeche werden nicht zum Trainieren eines Sprachmodells verwendet.",
+      "ziel": "/datenschutz/",
+      "marke": "dritte",
+      "app": "datenschutz",
+      "stichworte": [
+        "training",
+        "trainieren",
+        "modell",
+        "verwendet",
+        "weitergabe",
+        "lernt daran",
+        "meine daten"
+      ],
+      "beispiele": [
+        "Trainiert ihr an meinen Daten?",
+        "Was passiert mit meinen Eingaben?"
+      ]
+    },
+    {
+      "id": "wer-sieht-daten",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Wer bekommt meine Daten zu sehen?",
+      "antwort": "Drei Dienstleister, jeder fuer genau eine Sache: einer liefert die Seite aus und verwahrt Konto- und Zaehldaten, einer beantwortet die Fragen im Fragefenster, einer wickelt die Bezahlung ab. Sie arbeiten weisungsgebunden und duerfen die Daten nicht fuer eigene Zwecke nutzen. Eine Weitergabe an sonstige Dritte findet nicht statt.",
+      "ziel": "/datenschutz/",
+      "marke": "dritte",
+      "app": "datenschutz",
+      "stichworte": [
+        "wer sieht",
+        "dienstleister",
+        "dritte",
+        "weitergabe",
+        "verkauft",
+        "werbung",
+        "auftragsverarbeitung"
+      ],
+      "beispiele": [
+        "Wer bekommt meine Daten?",
+        "Werden meine Daten verkauft?",
+        "Geht das an Werbenetzwerke?"
+      ]
+    },
+    {
+      "id": "meine-rechte",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Welche Rechte habe ich an meinen Daten?",
+      "antwort": "Auskunft, Berichtigung, Loeschung, Einschraenkung, Herausgabe in einem ueblichen Format und Widerspruch. Eine E-Mail an info@speedofthespirit.dev genuegt, die Antwort kommt innerhalb eines Monats, und es kostet nichts.",
+      "ziel": "/datenschutz/",
+      "marke": "rechte",
+      "app": "datenschutz",
+      "stichworte": [
+        "rechte",
+        "auskunft",
+        "loeschung",
+        "berichtigung",
+        "dsgvo",
+        "widerspruch",
+        "datenherausgabe",
+        "beschwerde"
+      ],
+      "beispiele": [
+        "Welche Rechte habe ich?",
+        "Wie bekomme ich Auskunft ueber meine Daten?",
+        "Wie widerspreche ich?"
+      ]
+    },
+    {
+      "id": "ki-verordnung",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Haelt sich RepoCity an die KI-Verordnung?",
+      "antwort": "Ja. Mia stellt sich beim ersten Wort als Maschine vor, und alles, was sie ausgibt, ist als maschinell erzeugt gekennzeichnet - sichtbar fuer dich und maschinenlesbar im Datensatz. Grundlage ist Artikel 50 der EU-KI-Verordnung, in Kraft seit dem 2. August 2026.",
+      "ziel": "/datenschutz/",
+      "marke": "ki",
+      "app": "datenschutz",
+      "stichworte": [
+        "ki verordnung",
+        "ai act",
+        "eu",
+        "gesetz",
+        "artikel 50",
+        "transparenz",
+        "kennzeichnung",
+        "rechtslage"
+      ],
+      "beispiele": [
+        "Haltet ihr euch an den AI Act?",
+        "Was sagt die KI-Verordnung dazu?",
+        "Ist das rechtlich abgesichert?"
+      ]
+    },
+    {
+      "id": "app-bekommen",
+      "gruppe": "App und Stoerungen",
+      "frage": "Wo bekomme ich die App?",
+      "antwort": "Die App ist im Aufbau. Beta-Tester bekommen sie mit dem Einladungscode; wer einen moechte, schreibt an info@speedofthespirit.dev",
+      "ziel": "/zugang/",
+      "marke": "",
+      "app": "zugang",
+      "stichworte": [
+        "app",
+        "android",
+        "herunterladen",
+        "installieren",
+        "play store",
+        "apk",
+        "handy app",
+        "wo bekomme ich",
+        "iphone",
+        "ios",
+        "apple",
+        "ipad",
+        "tablet",
+        "smartphone",
+        "app store"
+      ],
+      "beispiele": [
+        "Wo bekomme ich die App?",
+        "Gibt es die App im Play Store?",
+        "Wie installiere ich RepoCity?"
+      ]
+    },
+    {
+      "id": "app-und-webseite",
+      "gruppe": "App und Stoerungen",
+      "frage": "Was ist der Unterschied zwischen App und Webseite?",
+      "antwort": "Beide zeigen dasselbe und bleiben gleichauf - was auf der einen dazukommt, kommt auch auf die andere. Zwei Unterschiede bleiben: angemeldet wird in der App, und die Handelsschluessel liegen ausschliesslich auf dem Handy.",
+      "ziel": "/app/",
+      "marke": "",
+      "app": "dashboard",
+      "stichworte": [
+        "unterschied app webseite",
+        "app oder browser",
+        "gleich",
+        "was kann die app",
+        "nur in der app"
+      ],
+      "beispiele": [
+        "Was kann die App, was die Webseite nicht kann?",
+        "Brauche ich die App?",
+        "Ist beides gleich?"
+      ]
+    },
+    {
+      "id": "nichts-passiert",
+      "gruppe": "App und Stoerungen",
+      "frage": "Ich habe einen Auftrag gegeben, aber nichts passiert.",
+      "antwort": "Drei haeufige Gruende: der Teil ist in den Einstellungen ausgeschaltet, der Trockenbetrieb ist an - dann laeuft alles, aber nichts verlaesst das Haus -, oder deine Kostenmarke ist erreicht; dann faengt nichts Neues an und es steht dabei, warum.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "nichts passiert",
+        "laeuft nicht",
+        "keine reaktion",
+        "haengt",
+        "tut nichts",
+        "auftrag steht",
+        "kein ergebnis"
+      ],
+      "beispiele": [
+        "Nichts passiert, was ist los?",
+        "Mein Auftrag laeuft nicht",
+        "Warum tut sich nichts?"
+      ]
+    },
+    {
+      "id": "keine-meldung",
+      "gruppe": "App und Stoerungen",
+      "frage": "Ich bekomme keine Meldungen.",
+      "antwort": "In den Einstellungen steht je Teil rechts ein Schalter fuer Meldungen. Ist ein uebergeordneter Teil aus, nimmt er seine untergeordneten mit.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "keine meldung",
+        "keine benachrichtigung",
+        "nichts kommt an",
+        "stumm",
+        "meldungen fehlen"
+      ],
+      "beispiele": [
+        "Warum bekomme ich keine Meldungen?",
+        "Die Benachrichtigungen kommen nicht an"
+      ]
+    },
+    {
+      "id": "postfach-abgelehnt",
+      "gruppe": "App und Stoerungen",
+      "frage": "Mein Postfach lehnt die Anmeldung ab.",
+      "antwort": "Die meisten Anbieter verlangen fuer Programme ein eigenes Passwort statt deines normalen. Die App sagt dir bei deinem Anbieter, welches das ist und wo du es holst.",
+      "ziel": "/app/einstellungen/",
+      "marke": "",
+      "app": "einstellungen",
+      "stichworte": [
+        "postfach abgelehnt",
+        "anmeldung abgelehnt",
+        "passwort falsch",
+        "imap fehler",
+        "mail geht nicht",
+        "eigenes passwort"
+      ],
+      "beispiele": [
+        "Mein Postfach wird abgelehnt",
+        "Warum funktioniert meine Mail-Anmeldung nicht?",
+        "Welches Passwort braucht das Postfach?"
+      ]
+    },
+    {
+      "id": "fehler-melden",
+      "gruppe": "App und Stoerungen",
+      "frage": "Wie melde ich einen Fehler?",
+      "antwort": "Per E-Mail an info@speedofthespirit.dev - moeglichst mit dem, was du getan hast, und was stattdessen passiert ist.",
+      "ziel": "/support/",
+      "marke": "",
+      "app": "support",
+      "stichworte": [
+        "fehler melden",
+        "bug",
+        "problem melden",
+        "beschwerde",
+        "melden",
+        "funktioniert nicht",
+        "rueckmeldung"
+      ],
+      "beispiele": [
+        "Wie melde ich einen Fehler?",
+        "Wo kann ich einen Bug melden?",
+        "Etwas ist kaputt, wem sage ich das?"
+      ]
+    },
+    {
+      "id": "andere-formate",
+      "gruppe": "Produktion",
+      "frage": "Macht RepoCity auch Podcasts, Hoerbuecher oder Fotos?",
+      "antwort": "Die Strassen, die es gibt, sind: kurze Clips, hochwertige Videos, Musik, Lernprogramme, Praesentationen, Apps und Software, Social-Media-Beitraege, Marketing, Recherche, Bewerbungen, Wohnungssuche, Webseiten und Trading. Was hier nicht steht, gibt es nicht - noch nicht.",
+      "ziel": "/funktionsweise/",
+      "marke": "",
+      "app": "funktionsweise",
+      "stichworte": [
+        "podcast",
+        "podcasts",
+        "hoerbuch",
+        "hoerbuecher",
+        "foto",
+        "fotos",
+        "bilder",
+        "was koennt ihr",
+        "was gibt es",
+        "auch",
+        "andere formate",
+        "welche strassen",
+        "koennt ihr auch",
+        "gibt es auch"
+      ],
+      "beispiele": [
+        "Macht ihr auch Podcasts?",
+        "Koennt ihr Hoerbuecher machen?",
+        "Was koennt ihr sonst noch?",
+        "Gibt es auch Fotos?",
+        "Welche Produktionsstrassen gibt es?"
+      ]
+    },
+    {
+      "id": "haftung",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Wer haftet, wenn etwas schiefgeht?",
+      "antwort": "Verantwortlich ist Daniel Huette, Muenster; die vollstaendige Anschrift steht im Impressum. Zu Haftungsfragen kann Mia nichts sagen - Rechtsauskunft gehoert zu dem, worueber sie nie spricht. Schreib an info@speedofthespirit.dev",
+      "ziel": "/impressum/",
+      "marke": "",
+      "app": "impressum",
+      "stichworte": [
+        "haftung",
+        "haftet",
+        "verantwortlich",
+        "schaden",
+        "schiefgeht",
+        "schief geht",
+        "wer haftet",
+        "gewaehrleistung",
+        "garantie",
+        "rechtlich",
+        "impressum"
+      ],
+      "beispiele": [
+        "Wer haftet, wenn etwas schiefgeht?",
+        "Wer ist verantwortlich?",
+        "Gibt es eine Garantie?",
+        "Was ist, wenn ein Schaden entsteht?"
+      ]
+    },
+    {
+      "id": "erstattung",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Bekomme ich mein Geld zurueck?",
+      "antwort": "Das Abo ist jederzeit kuendbar und jederzeit wechselbar - es gibt keinen Vertrag ueber Monate. Fuer alles Weitere zu einer Erstattung: info@speedofthespirit.dev",
+      "ziel": "/app/abo/",
+      "marke": "",
+      "app": "abo",
+      "stichworte": [
+        "erstattung",
+        "geld zurueck",
+        "rueckerstattung",
+        "zurueckzahlen",
+        "storno",
+        "widerruf",
+        "rueckgabe",
+        "geld"
+      ],
+      "beispiele": [
+        "Bekomme ich mein Geld zurueck?",
+        "Kann ich widerrufen?",
+        "Gibt es eine Erstattung?",
+        "Ich will mein Geld zurueck"
+      ]
+    },
+    {
+      "id": "dauer",
+      "gruppe": "Auftraege",
+      "frage": "Wie lange dauert eine Produktion?",
+      "antwort": "Je Strasse verschieden. In der Funktionsdokumentation steht bei jeder der Ablauf mit Uhr - Schritt fuer Schritt, mit Zeiten, die gemessen oder gerechnet sind.",
+      "ziel": "/funktionsweise/",
+      "marke": "wie-eine-zeit-hier-zustande-kommt",
+      "app": "funktionsweise",
+      "stichworte": [
+        "dauer",
+        "dauert",
+        "wie lange",
+        "zeit",
+        "wartezeit",
+        "schnell",
+        "geschwindigkeit",
+        "wie lange dauert",
+        "fertig"
+      ],
+      "beispiele": [
+        "Wie lange dauert das?",
+        "Wie schnell ist ein Video fertig?",
+        "Muss ich lange warten?",
+        "Wie lange braucht eine Produktion?"
+      ]
+    },
+    {
+      "id": "daten-nach-kuendigung",
+      "gruppe": "Abo und Bezahlen",
+      "frage": "Was passiert mit meinen Sachen, wenn ich kuendige?",
+      "antwort": "Deine Erzeugnisse und der Verlauf bleiben, solange das Konto besteht - und werden auf Wunsch frueher geloescht. Nur Rechnungsunterlagen muessen zehn Jahre bleiben, weil das Steuerrecht es verlangt.",
+      "ziel": "/datenschutz/",
+      "marke": "was",
+      "app": "datenschutz",
+      "stichworte": [
+        "nach kuendigung",
+        "daten weg",
+        "erzeugnisse weg",
+        "verloren",
+        "bleibt",
+        "was passiert mit",
+        "aufbewahrung",
+        "geloescht"
+      ],
+      "beispiele": [
+        "Sind meine Sachen weg, wenn ich kuendige?",
+        "Was passiert mit meinen Ergebnissen nach der Kuendigung?",
+        "Wie lange bleiben meine Daten?"
+      ]
+    },
+    {
+      "id": "wie-viele-agenten",
+      "gruppe": "Auftraege",
+      "frage": "Wie viele Agenten gibt es?",
+      "antwort": "Das Organigramm zeigt sie alle, mit Aufgabe und Berichtsweg.",
+      "ziel": "/app/organigramm/",
+      "marke": "",
+      "app": "organigramm",
+      "stichworte": [
+        "wie viele agenten",
+        "anzahl agenten",
+        "wieviele",
+        "belegschaft gross",
+        "mitarbeiter",
+        "wie gross"
+      ],
+      "beispiele": [
+        "Wie viele Agenten gibt es?",
+        "Wie gross ist die Belegschaft?"
+      ]
+    },
+    {
+      "id": "gesetzestext",
+      "gruppe": "Datenschutz und Mia",
+      "frage": "Wo finde ich den Gesetzestext der KI-Verordnung?",
+      "antwort": "Im Wortlaut auf der Seite - 113 Artikel und 13 Anhaenge, die amtliche deutsche Fassung. Artikel 50 ist der, auf dem Mias Offenlegung beruht.",
+      "ziel": "/ki-verordnung/",
+      "marke": "",
+      "app": "ki-verordnung",
+      "stichworte": [
+        "gesetzestext",
+        "ki verordnung",
+        "ai act",
+        "verordnung",
+        "gesetz",
+        "artikel 50",
+        "eu recht",
+        "wortlaut",
+        "nachlesen",
+        "2024/1689"
+      ],
+      "beispiele": [
+        "Wo finde ich den Gesetzestext?",
+        "Kann ich die KI-Verordnung nachlesen?",
+        "Was steht in Artikel 50?",
+        "Gibt es den AI Act im Wortlaut?"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+---
+import App from "../../layouts/App.astro";
+import { findeBereich } from "../../daten/bereiche";
+
+/* Das Dashboard - Zahlen und Verlauf. Seit dem 10.09.2026
+   ohne Auftragsmaske: die liegt in der Kreativwerkstatt. Was hier steht,
+   holt dashboard.js aus dem Hub, mit dem Ausweis des Angemeldeten. */
+const b = findeBereich("dashboard");
+---
+
+<App titel={b.voll} aktiv="dashboard" beschreibung={b.zeile}>
+  <section class="seite-kopf">
+    <h1>{b.voll}</h1>
+    <p>{b.zeile}</p>
+  </section>
+
+  <div id="dashboard">
+    <p id="db-hinweis" class="hinweis" hidden></p>
+
+    <section class="kasten" aria-labelledby="db-blick">
+      <h2 id="db-blick" class="kasten-titel">Auf einen Blick</h2>
+      <div class="zahlen">
+        <div class="zahl"><b id="db-laufen">–</b><span>laufen</span></div>
+        <div class="zahl"><b id="db-wartet">–</b><span>warten auf dich</span></div>
+        <div class="zahl"><b id="db-fertig">–</b><span>fertig</span></div>
+        <div class="zahl"><b id="db-fehler">–</b><span>Fehler</span></div>
+        <div class="zahl"><b id="db-kosten">–</b><span>gekostet</span></div>
+      </div>
+    </section>
+
+    <section class="kasten" aria-labelledby="db-zuletzt-titel">
+      <h2 id="db-zuletzt-titel" class="kasten-titel">Zuletzt</h2>
+      <p class="zuletzt"><b id="db-zuletzt-art">–</b> <span id="db-zuletzt-zustand"></span></p>
+      <p class="hinweis" id="db-zuletzt-text"></p>
+    </section>
+
+    <section class="kasten" aria-labelledby="db-verlauf-titel">
+      <h2 id="db-verlauf-titel" class="kasten-titel">Aufträge, letzte sieben Tage</h2>
+      <svg id="db-verlauf" class="verlauf" viewBox="0 0 300 96" preserveAspectRatio="none" role="img" aria-label="Aufträge je Tag"></svg>
+      <div class="achse"><span>vor 6 Tagen</span><span>heute</span></div>
+    </section>
+
+    <section class="kasten" aria-labelledby="db-trading-titel">
+      <h2 id="db-trading-titel" class="kasten-titel">Trading</h2>
+      <div class="zahlen">
+        <div class="zahl"><b id="db-pnl-offen">–</b><span>PnL offene Positionen</span></div>
+        <div class="zahl"><b id="db-pnl-fuenf">–</b><span>PnL letzte 5 Trades</span></div>
+        <div class="zahl"><b id="db-trades">–</b><span>Trades gesamt</span></div>
+      </div>
+      <ul class="wartend" id="db-trade-liste"><li class="leer">Noch kein Trade – die Trading-Straße meldet hierher, sobald sie läuft.</li></ul>
+    </section>
+
+    <section class="kasten" aria-labelledby="db-lauf-titel">
+      <h2 id="db-lauf-titel" class="kasten-titel">Laufzeiten</h2>
+      <div class="zahlen">
+        <div class="zahl"><b id="db-rechner">–</b><span id="db-rechner-zeile">Rechner (die Leitung)</span></div>
+        <div class="zahl"><b id="db-webseite">–</b><span>Webseite, diese Fassung</span></div>
+        <div class="zahl"><b id="db-sitzung">–</b><span>du, angemeldet</span></div>
+      </div>
+    </section>
+
+    <section class="kasten" id="db-wartend-kasten" hidden aria-labelledby="db-wartend-titel">
+      <h2 id="db-wartend-titel" class="kasten-titel">Wartet auf dich</h2>
+      <ul id="db-wartend" class="wartend"></ul>
+    </section>
+  </div>
+
+  <script>
+    import "../../skripte/dashboard.js";
+  </script>
+</App>
+
+<style>
+  .hinweis { font-size: 13px; color: var(--schrift-fein); margin: 0 0 12px; }
+  .kasten {
+    margin-top: 20px; padding: 20px 22px;
+    border-radius: 14px; border: 1px solid var(--linie);
+    background: linear-gradient(180deg, var(--flaeche-oben) 0%, var(--flaeche-unten) 100%);
+  }
+  .kasten-titel {
+    margin: 0 0 14px; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--akzent); font-weight: 500;
+  }
+  .zahlen { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; }
+  .zahl b { display: block; font-size: 26px; font-weight: 600; color: var(--schrift); line-height: 1.1; }
+  .zahl span { display: block; margin-top: 4px; font-size: 12px; color: var(--schrift-leise); }
+  .verlauf { display: block; width: 100%; height: 96px; }
+  .verlauf rect.voll { fill: var(--akzent); }
+  .verlauf rect.leer { fill: var(--linie); }
+  .achse { display: flex; justify-content: space-between; margin-top: 6px;
+           font-size: 11px; color: var(--schrift-fein); }
+  .lernbalken { height: 6px; margin-top: 14px; border-radius: 3px; background: var(--linie); overflow: hidden; }
+  .lernbalken div { height: 100%; width: 0; background: var(--akzent); transition: width 300ms ease; }
+  .wartend { margin: 0; padding-left: 18px; font-size: 13px; color: var(--schrift-leise); }
+  .wartend li { margin-bottom: 6px; }
+  .wartend li.leer { list-style: none; margin-left: -18px; color: var(--schrift-fein); }
+  .zuletzt { margin: 0 0 6px; font-size: 15px; color: var(--schrift); }
+  .zuletzt span { font-size: 12px; color: var(--akzent); margin-left: 8px; }
+</style>

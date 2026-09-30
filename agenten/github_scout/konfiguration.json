@@ -1,0 +1,28 @@
+{
+ "suche": {
+  "themen": [
+   "claude code agents skills",
+   "multi-agent system framework python",
+   "model context protocol mcp server",
+   "RAG knowledge base agents",
+   "obsidian second brain automation",
+   "self-improving agent evaluation harness",
+   "agent orchestration langgraph",
+   "prompt engineering context engineering",
+   "n8n workflow automation ai",
+   "agent memory long term"
+  ],
+  "seit_tagen": 30,
+  "mindeststerne": 40,
+  "je_thema": 12,
+  "hoechstens_ernten": 20,
+  "_ausschluss": "steht in ausschluss.txt, je Zeile ein Repositorium"
+ },
+ "bewertung": {
+  "mindestpunkte": 10
+ },
+ "ablage": {
+  "eingang": "C:\\AI_Projekte\\Neustart\\mein_ki_gehirn\\eingang\\github_scout"
+ },
+ "melden": true
+}

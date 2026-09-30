@@ -1,0 +1,303 @@
+---
+/* Die Landung — der Teil der Startseite, der nach dem Anflug kommt.
+ *
+ * Aufteilung nach der Vorlage, die Daniel am 14.09.2026 geschickt hat:
+ * Kopfleiste oben, Überschrift links, das Bild rechts, darunter das
+ * laufende Band der benutzten Dienste.
+ *
+ * Eine Abweichung ist Absicht und von ihm so gewünscht: das Bild bleibt
+ * nicht in der rechten Hälfte stehen, sondern läuft nach links aus, damit
+ * die Fläche nicht halb leer wirkt. Dafür liegt es als eigene Schicht
+ * hinter dem Text und verliert nach links seine Deckkraft — der Text
+ * bleibt lesbar, das Bild füllt trotzdem.
+ */
+import { dienste } from "../daten/dienste";
+---
+
+<section class="landung">
+  <div class="prozessor" aria-hidden="true"></div>
+
+  <p class="baustelle">
+    <span class="baustelle-punkt" aria-hidden="true"></span>
+    &#8230;in Bearbeitung, aktuell Trockenmodus aktiv
+  </p>
+
+  <div class="landung-innen">
+    <div class="wort">
+      <h1>Deine KI&#8209;Steuerungs&#8209;App</h1>
+      <p class="unterzeile">
+        Automatisiere deine Verwaltung, lebe dich kreativ aus und lasse eine
+        profitable Handelsstrategie automatisiert dein Geld vermehren.
+      </p>
+
+      <form class="einstieg" action="/zugang/" method="get">
+        <input type="email" name="email" placeholder="Deine E-Mail-Adresse"
+               aria-label="Deine E-Mail-Adresse" />
+        <button type="submit">Kostenlos anfangen</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="band">
+    <p class="band-zeile">
+      Vereinfache dein Leben und verwirkliche dich selbst mit RepoCity
+    </p>
+    <p class="band-titel">RepoCity l&auml;uft mit</p>
+
+    <!-- Zwei gleiche Reihen hintereinander: die zweite schiebt sich nach,
+         während die erste hinausläuft. Ohne sie entstünde am Ende eine
+         Lücke, und das Band ruckelte einmal je Durchlauf. -->
+    <div class="laufband">
+      <div class="laufreihe">
+        {[0, 1].map(() => (
+          dienste.map((d) => (
+            <span class="dienst" title={d.wofuer}>
+              {d.d ? (
+                <svg viewBox={d.viewBox} width="22" height="22" aria-hidden="true">
+                  <path d={d.d} fill="currentColor" />
+                </svg>
+              ) : null}
+              <span>{d.name}</span>
+            </span>
+          ))
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .landung {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 68px;
+  }
+
+  /* Hier stand bis zum 15.09.2026 das Designbild ein ZWEITES Mal.
+
+     Gemessen auf der laufenden Seite: die feste Hintergrundebene
+     (`body::before` in kits.css) malt dasselbe Bild bereits, am Fenster
+     befestigt. Dieser Block malte es noch einmal, an der Seite befestigt -
+     beim Scrollen schob die eine Kopie sich ueber die andere. Das war die
+     Dopplung, die auf der Landing uebrig blieb, nachdem die Flaechen
+     dichter geworden waren: nicht zu wenig Deckkraft, sondern zweimal
+     dieselbe Datei fuer zwei Zwecke.
+
+     Der Block braucht das Bild nicht. Was er wirklich beitraegt, steht in
+     `.prozessor::after`: das Abdunkeln nach links, damit die Ueberschrift
+     ihren Kontrast behaelt. Das bleibt, die zweite Kopie faellt weg.
+
+     Die Maske faellt mit. Sie liess die eigene Kopie nach links auslaufen;
+     ohne Bild wuerde sie nur noch das Abdunkeln wegmaskieren - ausgerechnet
+     links, wo es gebraucht wird. */
+  .prozessor {
+    position: absolute;
+    inset: 0 0 0 0;
+    pointer-events: none;
+  }
+  /* Darüber ein Hauch Grund, damit die Schrift auch über hellen Stellen
+     des Bildes ihren Kontrast behält. */
+  /* Links muss die Schrift stehen, nicht das Bild. Gemessen am hellsten Punkt
+     des Chips: ohne diese Schicht faellt der Kontrast der Ueberschrift unter
+     4,5 - mit ihr bleibt er ueber 7. Nach rechts laeuft sie aus, damit der
+     Prozessor dort ungetruebt steht. */
+  .prozessor::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+      var(--grund) 0%, rgba(0,0,0,.94) 26%, rgba(0,0,0,.72) 44%,
+      rgba(0,0,0,.3) 62%, transparent 78%);
+  }
+
+  /* Der Hinweis oben rechts im Anflugbild: die Seite ist noch in Arbeit,
+     und die App laeuft im Trockenmodus. Er steht in derselben Kleinschrift
+     mit Sperrung wie `.band-titel` - dem Merkmal der Oberflaeche - und
+     traegt die Akzentfarbe des Kits, damit er als Zustand gelesen wird und
+     nicht als Werbung. Auf schmalen Schirmen faellt er aus der absoluten
+     Lage heraus und stellt sich ueber die Ueberschrift; rechts oben waere
+     dort kein Platz, ohne den Prozessor zu verdecken. */
+  .baustelle {
+    position: absolute;
+    z-index: 3;
+    top: clamp(96px, 22vh, 260px);
+    right: clamp(16px, 3vw, 40px);
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .55rem 1.1rem;
+    border: 1px solid var(--akzent, var(--gold));
+    border-radius: 999px;
+    background: rgba(3, 3, 4, .72);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    font-size: .74rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--akzent, var(--gold));
+    white-space: nowrap;
+  }
+  .baustelle-punkt {
+    flex: 0 0 auto;
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    background: currentColor;
+    animation: baustelle-blinken 2.4s ease-in-out infinite;
+  }
+  @keyframes baustelle-blinken {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .25; }
+  }
+
+  .landung-innen {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1680px;
+    margin: 0 auto;
+    padding: 4rem clamp(16px, 3vw, 40px) 2rem;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .wort { max-width: 46rem; }
+
+  h1 {
+    margin: 0 0 1.1rem;
+    font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--schrift);
+  }
+
+  .unterzeile {
+    margin: 0 0 2.2rem;
+    max-width: 34rem;
+    font-size: clamp(1rem, 1.5vw, 1.22rem);
+    line-height: 1.55;
+    color: var(--schrift-leise);
+  }
+
+  .einstieg {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .4rem .4rem .4rem 1.2rem;
+    background: var(--schrift);
+    border-radius: 999px;
+    max-width: 30rem;
+  }
+  .einstieg input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0; background: transparent;
+    font: inherit; font-size: 1rem;
+    color: #101614;
+  }
+  .einstieg input::placeholder { color: #5C6A65; }
+  .einstieg input:focus { outline: none; }
+  .einstieg button {
+    flex: 0 0 auto;
+    border: 0; border-radius: 999px;
+    padding: .85rem 1.6rem;
+    background: var(--akzent);
+    color: var(--auf-akzent);
+    font: inherit; font-weight: 700; font-size: 1rem;
+    cursor: pointer;
+  }
+  .einstieg button:hover { background: var(--akzent-hell); }
+
+  .band {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    padding: 0 0 2.2rem;
+    text-align: center;
+  }
+  .band-zeile {
+    margin: 0 0 1.6rem;
+    font-size: clamp(.95rem, 1.3vw, 1.05rem);
+    color: var(--schrift);
+  }
+  .band-titel {
+    margin: 0 0 1rem;
+    font-size: .74rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--schrift-fein);
+  }
+
+  .laufband {
+    overflow: hidden;
+    /* Weiche Ränder: die Namen tauchen auf und verschwinden, statt an einer
+       Kante abgeschnitten zu werden. */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .laufreihe {
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+    width: max-content;
+    /* 18 Dienste, zweimal - eine Runde ist die halbe Breite. 60 s ergeben
+       rund 1,7 s je Eintrag: langsam genug zum Lesen, ohne zu stehen. */
+    animation: laufen 60s linear infinite;
+  }
+  .laufband:hover .laufreihe { animation-play-state: paused; }
+  @keyframes laufen {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .dienst {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--schrift-leise);
+    font-size: .95rem;
+    white-space: nowrap;
+    transition: color 200ms ease;
+  }
+  .dienst:hover { color: var(--akzent-hell); }
+  .dienst svg { flex: 0 0 auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .laufreihe { animation: none; }
+    .laufband { overflow-x: auto; }
+  }
+
+  /* Auf dem Handy steht das Bild hinter allem statt daneben - eine
+     Textspalte neben einem Bild wäre dort für beides zu schmal. */
+  @media (max-width: 860px) {
+    .baustelle {
+      position: static;
+      align-self: center;
+      margin: 0 0 1.2rem;
+      white-space: normal;
+      text-align: center;
+      font-size: .66rem;
+    }
+    .prozessor {
+      opacity: .32;
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
+      mask-image: linear-gradient(180deg, transparent, #000 60%);
+    }
+    .prozessor::after {
+      background: linear-gradient(180deg, var(--grund) 0%, rgba(0,0,0,.6) 60%, transparent);
+    }
+    .einstieg {
+      flex-direction: column;
+      align-items: stretch;
+      border-radius: 18px;
+      padding: .9rem;
+      gap: .7rem;
+    }
+    .einstieg input { padding: .5rem .4rem; }
+  }
+</style>

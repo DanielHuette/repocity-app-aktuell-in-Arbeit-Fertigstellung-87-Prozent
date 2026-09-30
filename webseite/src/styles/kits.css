@@ -1,0 +1,705 @@
+/* Die drei Kits der App, Zahl für Zahl aus design/Kit.kt übernommen.
+   Gleiches Raster, gleiche Struktur, andere Werte — kein zweites Design.
+   Farbregel in allen dreien: Bernstein = aktiv, gefüllt = du bist dran, Rot = kaputt. */
+
+/* Die Vorgabe ist Rechenwerk - von Daniel am 14.09.2026 festgelegt. Sie
+   steht NICHT hier als zweite Farbliste und auch nicht als `:root` beim Kit
+   selbst, sondern im HTML-Kopf beider Seitengerueste: `<html data-kit=
+   "rechenwerk">`. Grund, gemessen am 14.09.2026 abends: `:root` und
+   `[data-kit="..."]` wiegen gleich schwer, und bei Gleichstand gewinnt, was
+   weiter unten steht. Ein `:root` mitten in der Datei ueberschreibt darum
+   jedes Kit darueber - acht von elf waren nicht mehr waehlbar, nur
+   Gipfelsturm und Morgentau standen tiefer und gingen noch. */
+[data-kit="blende"] {
+  --grund: #030304;
+  --grund-tief: #000000;
+  --flaeche-oben: rgba(255, 255, 255, 0.621);
+  --flaeche-unten: rgba(255, 255, 255, 0.489);
+  --kante: rgba(255, 255, 255, 0.651);
+  --kante-unten: rgba(0, 0, 0, 0.6);
+  --linie: rgba(255, 255, 255, 0.102);
+  --schatten: rgba(0, 0, 0, 0.949);
+  --schrift: #EDF2F8;
+  --schrift-leise: #9AA6B4;
+  --schrift-fein: #5E6875;
+  --akzent: #F0B463;
+  --akzent-hell: #FFD79B;
+  --akzent-matt: #8C6533;
+  --auf-akzent: #16100A;
+  --alarm: #FF6A5E;
+  --marker: rgba(240, 180, 99, 0.20);
+  --anzeige-versalien: uppercase;
+  --anzeige-sperrung: 0.06em;
+  --leuchten: 1;
+  --glanz: 0.20;
+  --glanz-farbe: #FFFFFF;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 3.05 -> 4.51 (45.4 % zu --schrift)
+     fein  1.33 -> 4.52 (70.0 % zu --schrift) */
+  --diagramm-leise: #C0C9D3;
+  --diagramm-fein: #C2C9D1;
+  --lichttempo: 0.7;
+  --bild: url("/kits/blende.jpg");
+  --schleier: linear-gradient(180deg, rgba(3,3,4,.56) 0%, rgba(3,3,4,.42) 34%, rgba(0,0,0,.80) 100%);
+}
+
+[data-kit="rossi"] {
+  --grund: #060910;
+  --grund-tief: #03050A;
+  --flaeche-oben: rgba(122, 158, 196, 0.621);
+  --flaeche-unten: rgba(120, 150, 190, 0.489);
+  --kante: rgba(255, 255, 255, 0.702);
+  --kante-unten: rgba(0, 0, 0, 0.8);
+  --linie: rgba(150, 178, 210, 0.149);
+  --schatten: rgba(0, 3, 6, 0.949);
+  --schrift: #DDE5F0;
+  --schrift-leise: #8A98A8;
+  --schrift-fein: #5A6673;
+  --akzent: #E0A458;
+  --akzent-hell: #F3C185;
+  --akzent-matt: #7E5C2F;
+  --auf-akzent: #120C06;
+  --alarm: #E5484D;
+  --marker: rgba(224, 164, 88, 0.20);
+  --anzeige-versalien: none;
+  --anzeige-sperrung: 0.01em;
+  --leuchten: 0.75;
+  --glanz: 0.19;
+  --glanz-farbe: #DCEBFF;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 3.99 -> 4.51 (12.4 % zu --schrift)
+     fein  2.00 -> 4.53 (46.9 % zu --schrift) */
+  --diagramm-leise: #94A2B1;
+  --diagramm-fein: #97A2AE;
+  --lichttempo: 1;
+}
+
+[data-kit="glashaus"] {
+  --grund: #DBD8D0;
+  --grund-tief: #C4C1B8;
+  --flaeche-oben: rgba(255, 255, 255, 0.699);
+  --flaeche-unten: rgba(255, 253, 246, 0.551);
+  --kante: #FFFFFF;
+  --kante-unten: rgba(0, 0, 0, 0.349);
+  --linie: rgba(26, 24, 21, 0.122);
+  --schatten: rgba(0, 0, 0, 0.451);
+  --schrift: #1A1815;
+  --schrift-leise: #4E4A43;
+  --schrift-fein: #6B6659;
+  --akzent: #8A5527;
+  --akzent-hell: #B8793E;
+  --akzent-matt: #C9B393;
+  --auf-akzent: #FDF8F1;
+  --alarm: #9B2C2C;
+  --marker: rgba(138, 85, 39, 0.20);
+  --anzeige-versalien: none;
+  --anzeige-sperrung: 0em;
+  --leuchten: 0;
+  --glanz: 0.55;
+  --glanz-farbe: #FFFFFF;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 6.64 -> 6.64 (0.0 % zu --schrift)
+     fein  4.31 -> 4.51 (3.3 % zu --schrift) */
+  --diagramm-leise: #4E4A43;
+  --diagramm-fein: #686357;
+  --lichttempo: 1;
+}
+
+[data-kit="karawane"] {
+  --grund: #F2DFBC;
+  --grund-tief: #DCC098;
+  --flaeche-oben: rgba(255, 248, 232, 0.699);
+  --flaeche-unten: rgba(252, 240, 216, 0.551);
+  --kante: #FDF9F1;
+  --kante-unten: rgba(53, 24, 16, 0.349);
+  --linie: rgba(76, 50, 49, 0.141);
+  --schatten: rgba(53, 24, 16, 0.4);
+  --schrift: #4C3231;
+  --schrift-leise: #5E4A40;
+  --schrift-fein: #7A6558;
+  --akzent: #A8482A;
+  --akzent-hell: #C78668;
+  --akzent-matt: #CC8D6B;
+  --auf-akzent: #FDF3E2;
+  --alarm: #8E2B22;
+  --marker: #FBC2C1;
+  --anzeige-versalien: none;
+  --anzeige-sperrung: 0em;
+  --leuchten: 0;
+  --glanz: 0.28;
+  --glanz-farbe: #FFF3DC;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 6.54 -> 6.54 (0.0 % zu --schrift)
+     fein  4.32 -> 4.51 (5.5 % zu --schrift) */
+  --diagramm-leise: #5E4A40;
+  --diagramm-fein: #776256;
+  --lichttempo: 0.9;
+}
+/* Karawane ist Papier, keine beige Flaeche: Streiflicht von oben links,
+   dunkler Rand unten rechts, feines Korn darueber. Alles im Hintergrund
+   des Grundes - so kommt nichts vor den Inhalt. */
+[data-kit="karawane"] body {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23k)' opacity='0.16'/%3E%3C/svg%3E"),
+    radial-gradient(120% 85% at 6% -4%, rgba(255, 252, 240, 0.75) 0%, rgba(255, 252, 240, 0) 58%),
+    radial-gradient(130% 110% at 104% 104%, rgba(120, 82, 45, 0.20) 0%, rgba(120, 82, 45, 0) 62%);
+  background-attachment: fixed;
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+
+/* ── Silberblatt ─────────────────────────────────────────────────────────
+   Elbisch: Blaugruen-Schwarz, Silber statt Gold, kaltes Licht, viel Luft.
+   Kein gemessenes Vorbild - entworfen. Geprueft ist der Kontrast:
+   Schrift auf Flaeche 12,8; Silber auf Grund 11,5; gedaempfte Schrift 6,4. */
+[data-kit="silberblatt"] {
+  --grund: #070C0E;
+  --grund-tief: #04080A;
+  --flaeche-oben: rgba(150, 200, 214, 0.621);
+  --flaeche-unten: rgba(140, 185, 200, 0.489);
+  --kante: rgba(198, 226, 232, 0.451);
+  --kante-unten: rgba(0, 0, 0, 0.8);
+  --linie: rgba(150, 200, 205, 0.200);
+  --schatten: rgba(2, 5, 6, 0.949);
+  --schrift: #DDE9EA;
+  --schrift-leise: #93A8AC;
+  --schrift-fein: #6B7F84;
+  --akzent: #9CCFD6;
+  --akzent-hell: #D6F0F3;
+  --akzent-matt: #4E7A80;
+  --auf-akzent: #06171A;
+  --alarm: #D9636B;
+  --marker: rgba(156, 207, 214, 0.20);
+  --anzeige-versalien: uppercase;
+  --anzeige-sperrung: 0.10em;
+  --leuchten: 0.85;
+  --glanz: 0.18;
+  --glanz-farbe: #E8FBFF;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 3.83 -> 4.51 (20.8 % zu --schrift)
+     fein  2.27 -> 4.50 (51.4 % zu --schrift) */
+  --diagramm-leise: #A2B6B9;
+  --diagramm-fein: #A6B5B8;
+  --lichttempo: 0.6;
+}
+
+/* ── Schmiede ────────────────────────────────────────────────────────────
+   Orkisch: Russ und Rost, Glut aus der Esse, grobes Korn, gedrungen.
+   Geprueft: Schrift auf Flaeche 10,6; Glut auf Grund 5,4; Schrift darauf 5,5. */
+[data-kit="schmiede"] {
+  --grund: #14100D;
+  --grund-tief: #0B0806;
+  --flaeche-oben: rgba(214, 178, 132, 0.621);
+  --flaeche-unten: rgba(200, 165, 120, 0.489);
+  --kante: rgba(255, 210, 150, 0.400);
+  --kante-unten: rgba(0, 0, 0, 0.851);
+  --linie: rgba(180, 110, 50, 0.240);
+  --schatten: rgba(10, 6, 4, 0.949);
+  --schrift: #EBDCC6;
+  --schrift-leise: #A99479;
+  --schrift-fein: #7A6B59;
+  --akzent: #E2622A;
+  --akzent-hell: #FF9550;
+  --akzent-matt: #8A3A18;
+  --auf-akzent: #170C06;
+  --alarm: #EF5350;
+  --marker: rgba(226, 98, 42, 0.22);
+  --anzeige-versalien: uppercase;
+  --anzeige-sperrung: 0.04em;
+  --leuchten: 1;
+  --glanz: 0.10;
+  --glanz-farbe: #FFD9A8;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 3.21 -> 4.54 (41.0 % zu --schrift)
+     fein  1.82 -> 4.51 (62.4 % zu --schrift) */
+  --diagramm-leise: #C4B299;
+  --diagramm-fein: #C1B29D;
+  --lichttempo: 1.15;
+}
+
+/* ── Der Grund der beiden ───────────────────────────────────────────────── */
+
+/* Silberblatt: Mondlicht von oben, kalter Dunst am Boden, feines Korn. */
+[data-kit="silberblatt"] body {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23s)' opacity='0.13'/%3E%3C/svg%3E"),
+    radial-gradient(80% 55% at 50% -12%, rgba(156, 207, 214, 0.20) 0%, rgba(156, 207, 214, 0) 64%),
+    radial-gradient(140% 90% at 50% 112%, rgba(20, 46, 52, 0.85) 0%, rgba(20, 46, 52, 0) 62%);
+  background-attachment: fixed;
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+
+/* Schmiede: die Esse gluht von unten, oben zieht der Rauch ab. */
+[data-kit="schmiede"] body {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='e'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='170' height='170' filter='url(%23e)' opacity='0.26'/%3E%3C/svg%3E"),
+    radial-gradient(110% 60% at 50% 108%, rgba(226, 98, 42, 0.26) 0%, rgba(226, 98, 42, 0) 60%),
+    radial-gradient(120% 80% at 50% -14%, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 55%);
+  background-attachment: fixed;
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+
+/* ── Ornament ────────────────────────────────────────────────────────────
+   Beide Kits bekommen Beschlag an den Ecken der Felder und eine verzierte
+   Trennlinie. Gezeichnet mit Rahmenstuecken, nicht mit Bildern - das bleibt
+   scharf auf jedem Schirm und kostet nichts. */
+
+[data-kit="silberblatt"] .feld,
+[data-kit="schmiede"] .feld,
+[data-kit="silberblatt"] .karte,
+[data-kit="schmiede"] .karte {
+  position: relative;
+}
+
+[data-kit="silberblatt"] .feld::before,
+[data-kit="silberblatt"] .feld::after,
+[data-kit="schmiede"] .feld::before,
+[data-kit="schmiede"] .feld::after,
+[data-kit="silberblatt"] .karte::before,
+[data-kit="silberblatt"] .karte::after,
+[data-kit="schmiede"] .karte::before,
+[data-kit="schmiede"] .karte::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--akzent);
+  opacity: 0.55;
+  pointer-events: none;
+}
+/* oben links */
+[data-kit="silberblatt"] .feld::before,
+[data-kit="schmiede"] .feld::before,
+[data-kit="silberblatt"] .karte::before,
+[data-kit="schmiede"] .karte::before {
+  top: 7px; left: 7px;
+  border-right: 0; border-bottom: 0;
+}
+/* unten rechts */
+[data-kit="silberblatt"] .feld::after,
+[data-kit="schmiede"] .feld::after,
+[data-kit="silberblatt"] .karte::after,
+[data-kit="schmiede"] .karte::after {
+  bottom: 7px; right: 7px;
+  border-left: 0; border-top: 0;
+}
+
+/* Trennlinie mit Raute in der Mitte, statt eines nackten Strichs. */
+[data-kit="silberblatt"] hr,
+[data-kit="schmiede"] hr,
+[data-kit="silberblatt"] .strasse,
+[data-kit="schmiede"] .strasse {
+  position: relative;
+  border: 0;
+  border-top: 1px solid var(--linie);
+}
+[data-kit="silberblatt"] hr::after,
+[data-kit="schmiede"] hr::after {
+  content: "";
+  position: absolute;
+  top: -4px; left: 50%;
+  width: 7px; height: 7px;
+  margin-left: -4px;
+  transform: rotate(45deg);
+  background: var(--grund);
+  border: 1px solid var(--akzent);
+  opacity: 0.7;
+}
+
+/* Ueberschriften tragen Cinzel, gesperrt und mit einem tiefen Lichtrand -
+   das ist der Unterschied zwischen "dunkles Design" und "Sage". */
+[data-kit="silberblatt"] h1, [data-kit="silberblatt"] h2,
+[data-kit="silberblatt"] .ueberschrift, [data-kit="silberblatt"] .karte-name,
+[data-kit="schmiede"] h1, [data-kit="schmiede"] h2,
+[data-kit="schmiede"] .ueberschrift, [data-kit="schmiede"] .karte-name {
+  font-family: "Cinzel", Georgia, "Times New Roman", serif;
+  font-weight: 600;
+}
+[data-kit="silberblatt"] h1, [data-kit="silberblatt"] .ueberschrift {
+  letter-spacing: 0.12em;
+  color: var(--akzent-hell);
+  text-shadow: 0 0 22px rgba(156, 207, 214, 0.35);
+}
+[data-kit="schmiede"] h1, [data-kit="schmiede"] .ueberschrift {
+  letter-spacing: 0.05em;
+  color: var(--akzent-hell);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8), 0 0 26px rgba(226, 98, 42, 0.40);
+}
+
+/* Der Kopf bekommt eine Zierleiste: oben ein feiner Strich in der Akzentfarbe,
+   der zu den Raendern hin ausblendet. */
+[data-kit="silberblatt"] .kopf,
+[data-kit="schmiede"] .kopf {
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg,
+    transparent 0%, var(--akzent) 22%, var(--akzent) 78%, transparent 100%) 1;
+}
+
+
+/* ----------------------------------------------------------------
+   Der Hintergrund: Bild unten, Schleier darueber, beide fest stehend.
+
+   Das Bild liegt auf einer eigenen Ebene, damit es eine Blende bekommen
+   kann. --bild-blende nimmt den Spitzen die Haerte, ohne die Mitte
+   abzusaufen; ein Schleier allein kann das nicht.
+   ---------------------------------------------------------------- */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Der Inhalt steht ueber den beiden Hintergrundebenen. Auf -1 lagen sie
+   hinter dem Grund der Seite und waren gar nicht zu sehen. */
+.gerippe,
+.buehne,
+.bahn {
+  position: relative;
+  z-index: 1;
+}
+body::before {
+  background-image: var(--bild);
+  background-size: cover;
+  background-position: center;
+  filter: var(--bild-blende, none);
+}
+body::after {
+  background-image: var(--schleier);
+}
+
+/* Rossi: Schleier seit dem 10.09. duenner (.30 / .22 / .64 statt
+   .54 / .40 / .80) - das Schiff soll zu sehen sein. */
+[data-kit="rossi"] {
+  --bild: url("/kits/rossi.jpg");
+  --schleier: linear-gradient(180deg, rgba(6,9,16,.30) 0%, rgba(6,9,16,.22) 34%, rgba(3,5,10,.64) 100%);
+}
+/* Helle Kits: seit dem 10.09. ohne Kontrast-Absenkung. Daniel: die Bilder
+   wirkten "blass - zu viel helligkeit vermutlich"; nach dem ersten Schritt
+   (.22/.13/.30) immer noch. Darum bei Glashaus, Stadtkrone, Morgentau und
+   Wunderwald jetzt Farbe angehoben (saturate 1.25, contrast 1.08) und der
+   Schleier auf .10/.05/.20. Karawane, Gipfelsturm behalten .22/.13/.30.
+   Die Schrift steht in Feldern und Karten auf ihrer eigenen Flaeche, der
+   Schleier traegt sie nicht allein. */
+[data-kit="glashaus"] {
+  --bild: url("/kits/glashaus.jpg");
+  --bild-blende: saturate(1.25) contrast(1.08);
+  --schleier: linear-gradient(180deg, rgba(219,216,208,.10) 0%, rgba(219,216,208,.05) 36%, rgba(196,193,184,.20) 100%);
+}
+[data-kit="karawane"] {
+  --bild: url("/kits/karawane.jpg");
+  --schleier: linear-gradient(180deg, rgba(242,223,188,.22) 0%, rgba(242,223,188,.13) 36%, rgba(220,192,152,.30) 100%);
+}
+[data-kit="silberblatt"] {
+  --bild: url("/kits/silberblatt.jpg");
+  --schleier: linear-gradient(180deg, rgba(7,12,14,.54) 0%, rgba(7,12,14,.38) 34%, rgba(4,8,10,.80) 100%);
+}
+[data-kit="schmiede"] {
+  --bild: url("/kits/schmiede.jpg");
+  --schleier: linear-gradient(180deg, rgba(20,16,13,.56) 0%, rgba(20,16,13,.42) 34%, rgba(11,8,6,.80) 100%);
+}
+
+
+/* ── Die fuenf neuen Kits ─────────────────────────────────────────────
+   Quelle ist universe/marke/kits.json - dort stehen die aus den Bildern
+   gemessenen Farben, die Kontrastzahlen und der Beleg, woher jeder Wert
+   kommt. Hier von Hand zu drehen bringt die Webseite von der App weg:
+   wer etwas aendern will, aendert es in der Quelle und traegt es
+   hierher.
+
+   Umrechnung 0xAARRGGBB nach CSS: bei AA = FF steht #RRGGBB, sonst
+   rgba(R, G, B, AA/255 auf drei Stellen gerundet) - dasselbe Verfahren
+   wie bei den sechs bestehenden Kits.
+   ────────────────────────────────────────────────────────────────── */
+/* ── Stadtkrone ────────────────────────────────────────────────────────
+   Rolle: Weitblick. Licht wie Glashaus - heller Grund, also Glanz statt
+   Gluehen; bloom eine Spur hoeher fuer die aufgehende Sonne.
+   Grund: #EEE5D2 - haeufigster Bildton, 18 % der Flaeche.
+   Schrift: #171B23 - dunkelste Zone des Bildes.
+   Signal: #C29A77 - Bildton, 11 % der Flaeche - als Signal untauglich:
+   nur Kontrast 2.0 gegen den Grund, mindestens 4,5 noetig. Der Ton
+   bleibt Textmarker; das Signal ist derselbe Ton, 8 Schritte
+   abgedunkelt auf #765E49.
+   Kontrast (WCAG, halbdurchsichtige Flaechen vorher ueber dem Grund
+   komponiert): Schrift auf Flaeche 14,34; Signal auf Grund 4,84;
+   gedaempfte Schrift 5,04; Schrift auf dem Signal 5,87. Verlangt sind
+   7,0 / 4,5 / 4,5 / 4,5. */
+[data-kit="stadtkrone"] {
+  --grund: #EEE5D2;
+  --grund-tief: #D1CAB9;
+  --flaeche-oben: rgba(254, 254, 252, 0.697);
+  --flaeche-unten: rgba(253, 251, 246, 0.551);
+  --kante: #FFFEFD;
+  --kante-unten: rgba(60, 57, 52, 0.349);
+  --linie: rgba(23, 27, 35, 0.141);
+  --schatten: rgba(48, 46, 42, 0.451);
+  --schrift: #171B23;
+  --schrift-leise: #60605F;
+  --schrift-fein: #9C9890;
+  --akzent: #765E49;
+  --akzent-hell: #A69688;
+  --akzent-matt: #493A2D;
+  --auf-akzent: #FCFBF6;
+  --alarm: #9B2C2C;
+  --marker: #C29A77;
+  --anzeige-versalien: none;
+  --anzeige-sperrung: 0em;
+  --leuchten: 0;
+  --glanz: 0.55;
+  --glanz-farbe: #FFFFFF;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 5.23 -> 5.23 (0.0 % zu --schrift)
+     fein  2.39 -> 4.56 (37.3 % zu --schrift) */
+  --diagramm-leise: #60605F;
+  --diagramm-fein: #6A6967;
+  --lichttempo: 1;
+}
+
+/* ── Wunderwald ────────────────────────────────────────────────────────
+   Rolle: Fabel. Licht wie Karawane - Papierkorn statt Glanz, weil das
+   Bild gezeichnet ist und nicht spiegelt.
+   Grund: #F9F9DD - haeufigster Bildton, 17 % der Flaeche.
+   Schrift: #473527 - dunkelste Zone des Bildes.
+   Signal: #879957 - Bildton, 12 % der Flaeche - als Signal untauglich:
+   nur Kontrast 2.9 gegen den Grund, mindestens 4,5 noetig. Der Ton
+   bleibt Textmarker; das Signal ist derselbe Ton, 4 Schritte
+   abgedunkelt auf #697744.
+   Kontrast (WCAG, halbdurchsichtige Flaechen vorher ueber dem Grund
+   komponiert): Schrift auf Flaeche 10,65; Signal auf Grund 4,51;
+   gedaempfte Schrift 4,85; Schrift auf dem Signal 4,71. Verlangt sind
+   7,0 / 4,5 / 4,5 / 4,5. */
+[data-kit="wunderwald"] {
+  --grund: #F9F9DD;
+  --grund-tief: #DBDBC2;
+  --flaeche-oben: rgba(248, 249, 241, 0.697);
+  --flaeche-unten: rgba(236, 238, 215, 0.551);
+  --kante: #FCFCF8;
+  --kante-unten: rgba(62, 62, 55, 0.349);
+  --linie: rgba(71, 53, 39, 0.141);
+  --schatten: rgba(50, 50, 44, 0.451);
+  --schrift: #473527;
+  --schrift-leise: #786B59;
+  --schrift-fein: #B5AF98;
+  --akzent: #697744;
+  --akzent-hell: #9EA785;
+  --akzent-matt: #414A2A;
+  --auf-akzent: #FDFDF3;
+  --alarm: #9B2C2C;
+  --marker: #879957;
+  --anzeige-versalien: none;
+  --anzeige-sperrung: 0em;
+  --leuchten: 0;
+  --glanz: 0.20;
+  --glanz-farbe: #FFF8E0;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 4.76 -> 4.76 (0.0 % zu --schrift)
+     fein  2.02 -> 4.50 (52.3 % zu --schrift) */
+  --diagramm-leise: #786B59;
+  --diagramm-fein: #7B6F5D;
+  --lichttempo: 0.85;
+}
+
+/* ── Rechenwerk ────────────────────────────────────────────────────────
+   Rolle: Rechnen. Licht wie Rossi - dunkler Grund, Raster,
+   arbeitendes Licht.
+   Grund: #070707 - haeufigster Bildton, 18 % der Flaeche.
+   Schrift: #D7EFE4 - hellste Zone #B7E2CD, um 45 % zu Weiss gezogen.
+   Signal: #95CCC1 - Bildton, 12 % der Flaeche - taugt unveraendert als
+   Signal, Kontrast 11.2 gegen den Grund.
+   Kontrast (WCAG, halbdurchsichtige Flaechen vorher ueber dem Grund
+   komponiert): Schrift auf Flaeche 9,90; Signal auf Grund 11,21;
+   gedaempfte Schrift 6,59; Schrift auf dem Signal 9,59. Verlangt sind
+   7,0 / 4,5 / 4,5 / 4,5. */
+[data-kit="rechenwerk"] {
+  --grund: #070707;
+  --grund-tief: #040404;
+  --flaeche-oben: rgba(137, 160, 156, 0.621);
+  --flaeche-unten: rgba(109, 138, 133, 0.489);
+  --kante: rgba(246, 248, 247, 0.600);
+  --kante-unten: rgba(2, 2, 2, 0.800);
+  --linie: rgba(215, 239, 228, 0.180);
+  --schatten: rgba(1, 1, 1, 0.949);
+  --schrift: #D7EFE4;
+  --schrift-leise: #889790;
+  --schrift-fein: #5F6864;
+  --akzent: #95CCC1;
+  --akzent-hell: #BADED7;
+  --akzent-matt: #52706A;
+  --auf-akzent: #151D1B;
+  --alarm: #E5484D;
+  --marker: rgba(149, 204, 193, 0.200);
+  --anzeige-versalien: none;
+  --anzeige-sperrung: 0.01em;
+  --leuchten: 0.75;
+  --glanz: 0.19;
+  --glanz-farbe: #DCF2EC;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 3.92 -> 4.52 (13.1 % zu --schrift)
+     fein  2.08 -> 4.53 (43.4 % zu --schrift) */
+  --diagramm-leise: #92A39B;
+  --diagramm-fein: #93A39C;
+  --lichttempo: 1.1;
+}
+
+/* ── Gipfelsturm ───────────────────────────────────────────────────────
+   Rolle: Aufstieg. Seit dem 10.09. ein helles Kit: Sonne ueber den Wolken,
+   dunkle Schrift auf hellem Grund - Licht wie Glashaus und Stadtkrone.
+   Grund: #E5E1C6 - haeufigster heller Bildton (Wolken).
+   Schrift: #0E0E13 - dunkelste Zone des Bildes.
+   Signal: #3A5F74 - das Blau des Himmels, gegen den Grund auf 4,5 gebracht.
+   Kontrast (WCAG, halbdurchsichtige Flaechen vorher ueber dem Grund
+   komponiert): Schrift auf Flaeche 15.03; Signal auf Grund 5.19;
+   gedaempfte Schrift 4.95; Schrift auf dem Signal 6.33. Verlangt sind
+   7,0 / 4,5 / 4,5 / 4,5. Gerechnet von universe/marke/baue_kits.py. */
+[data-kit="gipfelsturm"] {
+  --grund: #E5E1C6;
+  --grund-tief: #CAC6AE;
+  --flaeche-oben: rgba(250, 250, 248, 0.697);
+  --flaeche-unten: rgba(240, 240, 236, 0.551);
+  --kante: rgba(252, 252, 252, 1.000);
+  --kante-unten: rgba(57, 56, 50, 0.349);
+  --linie: rgba(14, 14, 19, 0.141);
+  --schatten: rgba(46, 45, 40, 0.451);
+  --schrift: #0E0E13;
+  --schrift-leise: #5F5E57;
+  --schrift-fein: #939182;
+  --akzent: #3A5F74;
+  --akzent-hell: #7F97A5;
+  --akzent-matt: #243B48;
+  --auf-akzent: #FBF6E7;
+  --alarm: #9B2C2C;
+  --marker: rgba(58, 95, 116, 0.200);
+  --anzeige-versalien: uppercase;
+  --anzeige-sperrung: 0.06em;
+  --leuchten: 0.00;
+  --glanz: 0.50;
+  --glanz-farbe: #FFFFFF;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift verschoben, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 5.08 -> 5.08 (0.0 % zu --schrift)
+     fein  2.48 -> 4.50 (32.8 % zu --schrift) */
+  --diagramm-leise: #5F5E57;
+  --diagramm-fein: #67665E;
+  --lichttempo: 0.8;
+}
+
+/* ── Morgentau ─────────────────────────────────────────────────────────
+   Rolle: Anfang. Licht wie Karawane - warmer heller Grund, ruhiges
+   Tempo.
+   Grund: #E8DABC - haeufigster Bildton, 13 % der Flaeche.
+   Schrift: #10110A - dunkelste Zone des Bildes.
+   Signal: #947F61 - Bildton, 13 % der Flaeche - als Signal untauglich:
+   nur Kontrast 2.8 gegen den Grund, mindestens 4,5 noetig. Der Ton
+   bleibt Textmarker; das Signal ist derselbe Ton, 5 Schritte
+   abgedunkelt auf #6D5D47.
+   Kontrast (WCAG, halbdurchsichtige Flaechen vorher ueber dem Grund
+   komponiert): Schrift auf Flaeche 14,02; Signal auf Grund 4,59;
+   gedaempfte Schrift 4,76; Schrift auf dem Signal 5,93. Verlangt sind
+   7,0 / 4,5 / 4,5 / 4,5. */
+[data-kit="morgentau"] {
+  --grund: #E8DABC;
+  --grund-tief: #CCC0A5;
+  --flaeche-oben: rgba(248, 246, 243, 0.697);
+  --flaeche-unten: rgba(236, 230, 221, 0.551);
+  --kante: #FCFAF9;
+  --kante-unten: rgba(58, 54, 47, 0.349);
+  --linie: rgba(16, 17, 10, 0.141);
+  --schatten: rgba(46, 44, 38, 0.451);
+  --schrift: #10110A;
+  --schrift-leise: #625D4D;
+  --schrift-fein: #968E78;
+  --akzent: #6D5D47;
+  --akzent-hell: #A09688;
+  --akzent-matt: #433A2C;
+  --auf-akzent: #FAF7EB;
+  --alarm: #9B2C2C;
+  --marker: #947F61;
+  --anzeige-versalien: none;
+  --anzeige-sperrung: 0em;
+  --leuchten: 0;
+  --glanz: 0.30;
+  --glanz-farbe: #FFF6E4;
+  /* Diagrammschrift: die gedaempften Toene des Kits stehen im Organigramm
+     auf der halbdurchsichtigen Flaeche statt auf dem vollen Grund und fallen
+     dort unter WCAG 4,5. Beide sind Richtung --schrift aufgehellt, genau so
+     weit, bis 4,5 erreicht ist. Gerechnet von bau_diagramm.py --werte.
+     leise 4.86 -> 4.86 (0.0 % zu --schrift)
+     fein  2.41 -> 4.50 (34.8 % zu --schrift) */
+  --diagramm-leise: #625D4D;
+  --diagramm-fein: #676252;
+  --lichttempo: 0.75;
+}
+
+/* ── Der Grund der fuenf ───────────────────────────────────────────────
+   Bild und Schleier. Die Blende (Kontrast-Absenkung) ist seit dem 10.09.
+   abgeschafft - sie liess die Bilder blass wirken (Daniel).
+
+   Die Deckkraefte des Schleiers: hell wie Glashaus und Karawane
+   (.22 / .13 / .30 bei 0 / 36 / 100 Prozent), dunkel wie Rechenwerk
+   (.54 / .40 / .80 bei 0 / 34 / 100 Prozent). */
+/* Stadtkrone - hell, ohne Blende */
+/* Stadtkrone: das Bild selbst ist hell (Mittel 166 von 255) - Daniel fand es
+   auch nach dem zweiten Schritt "noch etwas zu belichtet". Darum hier
+   zusaetzlich brightness(.92), mehr Kontrast, kaum Schleier. */
+[data-kit="stadtkrone"] {
+  --bild: url("/kits/stadtkrone.jpg");
+  --bild-blende: saturate(1.3) contrast(1.15) brightness(.92);
+  --schleier: linear-gradient(180deg, rgba(238,229,210,.05) 0%, rgba(238,229,210,.03) 36%, rgba(209,202,185,.15) 100%);
+}
+
+/* Wunderwald - hell, ohne Blende */
+[data-kit="wunderwald"] {
+  --bild: url("/kits/wunderwald.jpg");
+  --bild-blende: saturate(1.25) contrast(1.08);
+  --schleier: linear-gradient(180deg, rgba(249,249,221,.10) 0%, rgba(249,249,221,.05) 36%, rgba(219,219,194,.20) 100%);
+}
+
+/* Rechenwerk - Blende: keine: 0.41 % ueber 232 und Helligkeit 62.4
+   liegen unter beiden Schwellen (4,0 % / 125) - wie bei Blende,
+   Rossi, Silberblatt und Schmiede */
+[data-kit="rechenwerk"] {
+  --bild: url("/kits/rechenwerk.jpg");
+  --schleier: linear-gradient(180deg, rgba(7,7,7,.54) 0%, rgba(7,7,7,.40) 34%, rgba(4,4,4,.80) 100%);
+}
+
+/* Gipfelsturm - seit dem 10.09. hell: die Sonne soll strahlen */
+[data-kit="gipfelsturm"] {
+  --bild: url("/kits/gipfelsturm.jpg");
+  --schleier: linear-gradient(180deg, rgba(229,225,198,.22) 0%, rgba(229,225,198,.13) 36%, rgba(202,198,174,.30) 100%);
+}
+
+/* Morgentau - hell, ohne Blende */
+[data-kit="morgentau"] {
+  --bild: url("/kits/morgentau.jpg");
+  --bild-blende: saturate(1.25) contrast(1.08);
+  --schleier: linear-gradient(180deg, rgba(232,218,188,.10) 0%, rgba(232,218,188,.05) 36%, rgba(204,192,165,.20) 100%);
+}

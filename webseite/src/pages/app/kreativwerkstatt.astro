@@ -1,0 +1,24 @@
+---
+import App from "../../layouts/App.astro";
+import Auftragsmaske from "../../komponenten/Auftragsmaske.astro";
+import { findeBereich } from "../../daten/bereiche";
+
+/* Die Kreativwerkstatt - bis zum 10.09.2026 hiess diese Seite Dashboard.
+   Hier wird bestellt. Daniel: "die Auftragseingabe unter Dashboard zu
+   fuehren ist einfach Unsinn" - das Dashboard zeigt seither Zahlen.
+
+   Die Auftragsmaske ist ein Baustein (komponenten/Auftragsmaske.astro) und
+   zeigt hier nur die Arten der Kreativwerkstatt - Bewerbung, Wohnungssuche
+   und Trading werden unter Life Automation und Trading bestellt (Daniel,
+   11.09.2026). */
+const b = findeBereich("kreativwerkstatt");
+---
+
+<App titel={b.voll} aktiv="kreativwerkstatt" beschreibung={b.zeile}>
+  <section class="seite-kopf">
+    <h1>{b.voll}</h1>
+    <p>{b.zeile}</p>
+  </section>
+
+  <Auftragsmaske feld="kreativwerkstatt" />
+</App>

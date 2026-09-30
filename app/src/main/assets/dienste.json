@@ -1,0 +1,704 @@
+{
+  "_hinweis": "Alle fremden Dienste, die das RepoCity Universe anspricht - die eine Quelle fuer die Ersteinrichtung in der App, fuer die Zugangsseite der Webseite und fuer den Sicherheitsbeauftragten. Wer hier etwas aendert, aendert es einmal. Die App bekommt diese Datei als Beilage ins Paket (app/src/main/assets/dienste.json, byteweise dieselbe).",
+  "_gebunden_an": "universe/ZUGAENGE.md nennt dieselben Dienste in Prosa; webseite/src/daten/quellen.ts die fuenf Wohnungsquellen. Die Pruefungen in universe/hub/pruefungen.py halten die drei zusammen: jede Wohnungsquelle muss hier stehen, jede Stufe muss es in webseite/src/daten/abo.ts geben, und die Beilage der App muss byteweise diese Datei sein.",
+  "fassung": 1,
+  "stand": "2026-09-09",
+  "_felder": {
+    "art": "anmeldung = Benutzername und Passwort | schluessel = ein Schluessel aus dem Konto des Dienstes | ohne_zugang = die Seite wird gelesen, ohne sich anzumelden",
+    "bringt_mit": "nutzer = ohne seine Angaben steht die Funktion still | betreiber = RepoCity stellt den Zugang, der Nutzer kann einen eigenen hinterlegen und rechnet dann selbst ab",
+    "pflicht": "true = ohne diesen Zugang arbeitet die genannte Funktion nicht",
+    "eigenes_abo": "Ein bezahltes Abo BEIM DIENST, nicht bei RepoCity. moeglich = es bringt etwas, noetig = ohne geht es nicht.",
+    "zusatzfelder_wenn_unbekannt": "Wird nur gefragt, wenn die Adresse zu keinem bekannten Anbieter gehoert. Die Ports und die Verschluesselung setzt RepoCity dann auf die uebliche Kombination und meldet, wenn sie nicht traegt.",
+    "strassen": "Welche Zugaenge eine Strasse braucht, damit ein Auftrag ueberhaupt durchlaufen kann. 'braucht' heisst: ohne das laeuft er nicht. 'kann_nutzen' heisst: er laeuft auch ohne, nur schlechter. Der Zugangswaechter (universe/kern/zugangswaechter.py) prueft das, bevor ein Auftrag losgeht - und nicht mittendrin, wenn schon Geld geflossen ist."
+  },
+  "gruppen": [
+    {
+      "kennung": "postfach",
+      "titel": "Post und Termine",
+      "zeile": "Damit der E-Mail-Manager lesen und antworten kann."
+    },
+    {
+      "kennung": "bewerbung",
+      "titel": "Stellensuche",
+      "zeile": "Wo der Bewerbungsagent nach Stellen sieht."
+    },
+    {
+      "kennung": "wohnung",
+      "titel": "Wohnungssuche",
+      "zeile": "Die fuenf Quellen des Wohnungsalarms."
+    },
+    {
+      "kennung": "kreativ",
+      "titel": "Denken und Bilder",
+      "zeile": "Was Geld kostet, sobald etwas gebaut wird."
+    },
+    {
+      "kennung": "bau",
+      "titel": "Werkstatt",
+      "zeile": "Nur noetig, wenn du selbst bauen und veroeffentlichen laesst."
+    },
+    {
+      "kennung": "handel",
+      "titel": "Handelsplaetze",
+      "zeile": "Bleiben auf deinem Geraet. Der Hub sieht sie nie."
+    }
+  ],
+  "dienste": [
+    {
+      "kennung": "postfach",
+      "name": "Dein E-Mail-Postfach",
+      "gruppe": "postfach",
+      "stufe": "free",
+      "art": "anmeldung",
+      "bringt_mit": "nutzer",
+      "pflicht": true,
+      "wofuer": "Der E-Mail-Manager liest deine Post, sortiert sie und legt Antworten vor. Auch die Wohnungsangebote kommen hier an.",
+      "ohne_das": "Post, Termine und vier von fuenf Wohnungsquellen bleiben still.",
+      "adresse": "",
+      "felder": [
+        {
+          "kennung": "benutzer",
+          "beschriftung": "E-Mail-Adresse",
+          "beispiel": "name@gmx.net",
+          "geheim": false
+        },
+        {
+          "kennung": "passwort",
+          "beschriftung": "Passwort",
+          "geheim": true
+        }
+      ],
+      "hilfe": "Die Serverangaben kennt RepoCity fuer die gaengigen Anbieter selbst (universe/postfachanbieter.json) - bei einer unbekannten Adresse fragt es zusaetzlich nach den beiden Servern. Bei GMX, WEB.DE und einigen anderen muss IMAP im Postfach erst freigeschaltet werden; wer die Anmeldung in zwei Schritten benutzt, braucht hier ein App-Passwort statt des normalen.",
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      },
+      "zusatzfelder_wenn_unbekannt": [
+        {
+          "kennung": "imap_server",
+          "beschriftung": "Posteingangs-Server (IMAP)",
+          "beispiel": "imap.meinanbieter.de",
+          "geheim": false
+        },
+        {
+          "kennung": "smtp_server",
+          "beschriftung": "Postausgangs-Server (SMTP)",
+          "beispiel": "smtp.meinanbieter.de",
+          "geheim": false
+        }
+      ]
+    },
+    {
+      "kennung": "linkedin",
+      "name": "LinkedIn",
+      "gruppe": "bewerbung",
+      "stufe": "free",
+      "art": "anmeldung",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Der Bewerbungsagent sieht dort nach Stellen.",
+      "ohne_das": "LinkedIn wird uebersprungen, die uebrigen Quellen laufen weiter.",
+      "adresse": "https://www.linkedin.com",
+      "felder": [
+        {
+          "kennung": "benutzer",
+          "beschriftung": "E-Mail-Adresse",
+          "geheim": false
+        },
+        {
+          "kennung": "passwort",
+          "beschriftung": "Passwort",
+          "geheim": true
+        }
+      ],
+      "hilfe": "LinkedIn hat fuer Privatpersonen keine Schnittstelle - deshalb Anmeldung statt Schluessel.",
+      "eigenes_abo": {
+        "moeglich": true,
+        "noetig": false,
+        "preis": "LinkedIn Premium, ab 39,99 EUR im Monat",
+        "nutzen": "Zeigt, wer sich das Profil angesehen hat, und laesst dich Personalern direkt schreiben. Fuer die Stellensuche selbst nicht noetig."
+      }
+    },
+    {
+      "kennung": "stepstone",
+      "name": "StepStone",
+      "gruppe": "bewerbung",
+      "stufe": "free",
+      "art": "anmeldung",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Zweite Quelle des Bewerbungsagenten.",
+      "ohne_das": "StepStone wird uebersprungen.",
+      "adresse": "https://www.stepstone.de",
+      "felder": [
+        {
+          "kennung": "benutzer",
+          "beschriftung": "E-Mail-Adresse",
+          "geheim": false
+        },
+        {
+          "kennung": "passwort",
+          "beschriftung": "Passwort",
+          "geheim": true
+        }
+      ],
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "arbeitsagentur",
+      "name": "Arbeitsagentur",
+      "gruppe": "bewerbung",
+      "stufe": "free",
+      "art": "ohne_zugang",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Stellenboerse der Bundesagentur. Wird gelesen, ohne sich anzumelden.",
+      "ohne_das": "-",
+      "adresse": "https://www.arbeitsagentur.de",
+      "felder": [],
+      "hilfe": "Du musst hier nichts eintragen. Steht hier, damit du weisst, wo ueberall gesucht wird.",
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "immoscout24",
+      "name": "ImmobilienScout24",
+      "gruppe": "wohnung",
+      "stufe": "free",
+      "art": "anmeldung",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Neue Angebote kommen als Meldung auf dein Handy; RepoCity liest sie mit.",
+      "ohne_das": "ImmoScout meldet nichts.",
+      "adresse": "https://www.immobilienscout24.de",
+      "felder": [
+        {
+          "kennung": "benutzer",
+          "beschriftung": "E-Mail-Adresse",
+          "geheim": false
+        },
+        {
+          "kennung": "passwort",
+          "beschriftung": "Passwort",
+          "geheim": true
+        }
+      ],
+      "hilfe": "Der Zugang allein reicht nicht: in der ImmoScout-App muessen die Meldungen fuer deinen Suchauftrag eingeschaltet sein, und RepoCity braucht die Erlaubnis, Meldungen mitzulesen.",
+      "eigenes_abo": {
+        "moeglich": true,
+        "noetig": false,
+        "preis": "ImmoScout24 Plus, 29,90 EUR im Monat",
+        "nutzen": "Zeigt neue Angebote frueher und stellt dich in der Liste des Vermieters nach vorn. Tempo entscheidet auf diesem Markt - ob es dir das wert ist, entscheidest du."
+      }
+    },
+    {
+      "kennung": "immowelt",
+      "name": "Immowelt",
+      "gruppe": "wohnung",
+      "stufe": "free",
+      "art": "anmeldung",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Suchauftrag schickt neue Angebote per Mail; der E-Mail-Manager faengt sie auf.",
+      "ohne_das": "Immowelt meldet nichts.",
+      "adresse": "https://www.immowelt.de",
+      "felder": [
+        {
+          "kennung": "benutzer",
+          "beschriftung": "E-Mail-Adresse",
+          "geheim": false
+        },
+        {
+          "kennung": "passwort",
+          "beschriftung": "Passwort",
+          "geheim": true
+        }
+      ],
+      "hilfe": "Stell den Suchassistenten auf sofort - das geht nur auf der Seite selbst.",
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "kleinanzeigen",
+      "name": "Kleinanzeigen",
+      "gruppe": "wohnung",
+      "stufe": "free",
+      "art": "anmeldung",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Suchauftrag per Mail.",
+      "ohne_das": "Kleinanzeigen meldet nichts.",
+      "adresse": "https://www.kleinanzeigen.de",
+      "felder": [
+        {
+          "kennung": "benutzer",
+          "beschriftung": "E-Mail-Adresse",
+          "geheim": false
+        },
+        {
+          "kennung": "passwort",
+          "beschriftung": "Passwort",
+          "geheim": true
+        }
+      ],
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "wg-gesucht",
+      "name": "WG-Gesucht",
+      "gruppe": "wohnung",
+      "stufe": "free",
+      "art": "anmeldung",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Suchauftrag per Mail.",
+      "ohne_das": "WG-Gesucht meldet nichts.",
+      "adresse": "https://www.wg-gesucht.de",
+      "felder": [
+        {
+          "kennung": "benutzer",
+          "beschriftung": "E-Mail-Adresse",
+          "geheim": false
+        },
+        {
+          "kennung": "passwort",
+          "beschriftung": "Passwort",
+          "geheim": true
+        }
+      ],
+      "eigenes_abo": {
+        "moeglich": true,
+        "noetig": false,
+        "preis": "WG-Gesucht+, 13,90 bis 20,90 EUR im Monat",
+        "nutzen": "Zeigt zahlenden Nutzern manche Anzeigen frueher."
+      }
+    },
+    {
+      "kennung": "vonovia",
+      "name": "Vonovia",
+      "gruppe": "wohnung",
+      "stufe": "free",
+      "art": "ohne_zugang",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Grosser Vermieter mit eigenem Bestand.",
+      "ohne_das": "-",
+      "adresse": "https://www.vonovia.de/zuhause-finden",
+      "felder": [],
+      "hilfe": "Der Mailservice laeuft ueber den Kundenservice - auf der Webseite gibt es keinen Anmeldeknopf. Du musst dort einmal anfragen.",
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "nadann",
+      "name": "nadann",
+      "gruppe": "wohnung",
+      "stufe": "free",
+      "art": "ohne_zugang",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Kleinanzeigenblatt fuer Muenster. Wird gelesen, ohne sich anzumelden.",
+      "ohne_das": "-",
+      "adresse": "https://www.nadann.de",
+      "felder": [],
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "anthropic",
+      "name": "Anthropic",
+      "gruppe": "kreativ",
+      "stufe": "free",
+      "art": "schluessel",
+      "bringt_mit": "betreiber",
+      "pflicht": false,
+      "wofuer": "Das Modell, das denkt: Drehbuecher, Bewerbungstexte, Urteile des Qualitaetsmanagers, Mias Antworten.",
+      "ohne_das": "Nichts - RepoCity bringt den Zugang mit. Traegst du einen eigenen Schluessel ein, laeuft alles ueber dein Konto und wird dir dort berechnet.",
+      "adresse": "https://console.anthropic.com/settings/keys",
+      "felder": [
+        {
+          "kennung": "schluessel",
+          "beschriftung": "API-Schluessel",
+          "beispiel": "sk-ant-...",
+          "geheim": true
+        }
+      ],
+      "hilfe": "Nur eintragen, wenn du selbst abrechnen willst. Der Schluessel steht in deinem Anthropic-Konto unter Settings, API keys.",
+      "eigenes_abo": {
+        "moeglich": true,
+        "noetig": false,
+        "preis": "nach Verbrauch",
+        "nutzen": "Eigenes Konto, eigene Rechnung, eigene Grenzen."
+      }
+    },
+    {
+      "kennung": "openai",
+      "name": "OpenAI",
+      "gruppe": "kreativ",
+      "stufe": "creative",
+      "art": "schluessel",
+      "bringt_mit": "betreiber",
+      "pflicht": false,
+      "wofuer": "Rechnet Texte in Zahlen um, damit das 2nd Brain sie wiederfindet.",
+      "ohne_das": "Nichts - RepoCity bringt den Zugang mit.",
+      "adresse": "https://platform.openai.com/api-keys",
+      "felder": [
+        {
+          "kennung": "schluessel",
+          "beschriftung": "API-Schluessel",
+          "geheim": true
+        }
+      ],
+      "eigenes_abo": {
+        "moeglich": true,
+        "noetig": false,
+        "preis": "nach Verbrauch",
+        "nutzen": "Eigene Rechnung."
+      }
+    },
+    {
+      "kennung": "fal",
+      "name": "fal.ai",
+      "gruppe": "kreativ",
+      "stufe": "creative",
+      "art": "schluessel",
+      "bringt_mit": "betreiber",
+      "pflicht": false,
+      "wofuer": "Erzeugt die Bilder - fuer Clips, Videos und Entwuerfe.",
+      "ohne_das": "Nichts - RepoCity bringt den Zugang mit.",
+      "adresse": "https://fal.ai/dashboard/keys",
+      "felder": [
+        {
+          "kennung": "schluessel",
+          "beschriftung": "API-Schluessel",
+          "geheim": true
+        }
+      ],
+      "eigenes_abo": {
+        "moeglich": true,
+        "noetig": false,
+        "preis": "nach Verbrauch",
+        "nutzen": "Eigene Rechnung."
+      }
+    },
+    {
+      "kennung": "higgsfield",
+      "name": "Higgsfield",
+      "gruppe": "kreativ",
+      "stufe": "creative",
+      "art": "sitzung",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Bewegte Bilder fuer hochwertige Videos.",
+      "ohne_das": "Die Video-Strasse baut ohne diesen Zugang nur aus Standmaterial.",
+      "adresse": "https://higgsfield.ai",
+      "felder": [],
+      "hilfe": "Hier gibt es keinen dauerhaften Schluessel, sondern nur eine Anmeldung, die nach einer Weile ablaeuft (erhoben am 05.09., steht in ZUGAENGE.md). Darum wird vor jedem Auftrag nachgesehen, ob sie noch traegt - und wenn nicht, wirst du zur Anmeldung geschickt, bevor der Auftrag Geld kostet.",
+      "laeuft_ab": true,
+      "eigenes_abo": {
+        "moeglich": true,
+        "noetig": true,
+        "preis": "nach Tarif des Anbieters",
+        "nutzen": "Ohne eigenen Zugang gibt es dort keine Videos."
+      }
+    },
+    {
+      "kennung": "pexels",
+      "name": "Pexels",
+      "gruppe": "kreativ",
+      "stufe": "creative",
+      "art": "schluessel",
+      "bringt_mit": "betreiber",
+      "pflicht": false,
+      "wofuer": "Stockmaterial fuer die Clip-Strasse.",
+      "ohne_das": "Nichts - RepoCity bringt den Zugang mit.",
+      "adresse": "https://www.pexels.com/api/",
+      "felder": [
+        {
+          "kennung": "schluessel",
+          "beschriftung": "API-Schluessel",
+          "geheim": true
+        }
+      ],
+      "hilfe": "Kostenlos, 200 Abrufe in der Stunde.",
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "github",
+      "name": "GitHub",
+      "gruppe": "bau",
+      "stufe": "madness",
+      "art": "schluessel",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Der Scout durchsucht oeffentliche Projekte und holt sie ins 2nd Brain. Ohne Schluessel geht es auch, nur langsamer.",
+      "ohne_das": "Der Scout darf nur 60 Abrufe in der Stunde statt 5000.",
+      "adresse": "https://github.com/settings/tokens",
+      "felder": [
+        {
+          "kennung": "schluessel",
+          "beschriftung": "Zugriffs-Token",
+          "beispiel": "ghp_...",
+          "geheim": true
+        }
+      ],
+      "hilfe": "Ein Token ohne jedes Recht genuegt - gelesen wird nur, was oeffentlich ist.",
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "cloudflare",
+      "name": "Cloudflare",
+      "gruppe": "bau",
+      "stufe": "madness",
+      "art": "schluessel",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "wofuer": "Nur fuer die Webseiten-Strasse: dort werden deine eigenen Seiten veroeffentlicht.",
+      "ohne_das": "Seiten werden gebaut, aber nicht veroeffentlicht.",
+      "adresse": "https://dash.cloudflare.com/profile/api-tokens",
+      "felder": [
+        {
+          "kennung": "schluessel",
+          "beschriftung": "API-Token",
+          "geheim": true
+        },
+        {
+          "kennung": "konto",
+          "beschriftung": "Konto-Kennung",
+          "geheim": false
+        }
+      ],
+      "eigenes_abo": {
+        "moeglich": true,
+        "noetig": false,
+        "preis": "Workers Paid, 5 USD im Monat",
+        "nutzen": "Mehr Rechenzeit fuer deine Seiten. Fuer den Anfang reicht das kostenlose Kontingent."
+      }
+    },
+    {
+      "kennung": "okx",
+      "name": "OKX",
+      "gruppe": "handel",
+      "stufe": "madness",
+      "art": "schluessel",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "nur_geraet": true,
+      "wofuer": "Kurse und Positionen deines Handelskontos.",
+      "ohne_das": "Der Handelsplatz bleibt leer.",
+      "adresse": "https://www.okx.com/account/my-api",
+      "felder": [
+        {
+          "kennung": "schluessel",
+          "beschriftung": "API-Schluessel",
+          "geheim": true
+        },
+        {
+          "kennung": "geheimnis",
+          "beschriftung": "Secret",
+          "geheim": true
+        },
+        {
+          "kennung": "passphrase",
+          "beschriftung": "Passphrase",
+          "geheim": true
+        }
+      ],
+      "hilfe": "Lege den Schluessel NUR mit Leserecht an. RepoCity handelt nicht fuer dich - ein Schluessel, der handeln darf, ist ein Risiko ohne Gegenwert. Diese drei Angaben bleiben auf deinem Geraet und gehen nie an den Hub.",
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    },
+    {
+      "kennung": "pionex",
+      "name": "Pionex",
+      "gruppe": "handel",
+      "stufe": "madness",
+      "art": "schluessel",
+      "bringt_mit": "nutzer",
+      "pflicht": false,
+      "nur_geraet": true,
+      "wofuer": "Ruft deinen eigenen Handels-Bot bei Pionex.",
+      "ohne_das": "Pionex bleibt still.",
+      "adresse": "https://www.pionex.com",
+      "felder": [
+        {
+          "kennung": "ruf",
+          "beschriftung": "Ruf-Adresse des Bots",
+          "geheim": true
+        }
+      ],
+      "hilfe": "Bleibt auf deinem Geraet und geht nie an den Hub.",
+      "eigenes_abo": {
+        "moeglich": false,
+        "noetig": false
+      }
+    }
+  ],
+  "_gemessen": "Die Zuordnung Strasse -> Zugang wurde am 09.09.2026 aus dem Code erhoben: jede Datei unter universe/ (ohne Betatests) wurde nach den Namen der Zugaenge durchsucht und dem Agenten zugeordnet, zu dem sie gehoert. Nichts davon ist geschaetzt. Wer eine Strasse umbaut, misst neu nach.",
+  "strassen": {
+    "video": {
+      "braucht": [
+        "anthropic",
+        "pexels"
+      ],
+      "kann_nutzen": [
+        "fal",
+        "higgsfield"
+      ],
+      "belegt": "video_agent/drehbuch.py (Anthropic), video_agent/bildquelle.py (Pexels)"
+    },
+    "clip": {
+      "braucht": [
+        "anthropic",
+        "pexels"
+      ],
+      "kann_nutzen": [
+        "fal"
+      ],
+      "belegt": "video_agent/einstellungen.py, bildquelle.py"
+    },
+    "musik": {
+      "braucht": [
+        "anthropic"
+      ],
+      "kann_nutzen": [],
+      "belegt": "musik_agent/stil.py (Anthropic); musik_agent/erzeugung.py nennt RunPod, der Zugang fehlt - die Strasse laeuft nur trocken"
+    },
+    "lernprogramm": {
+      "braucht": [
+        "anthropic"
+      ],
+      "kann_nutzen": [],
+      "belegt": "lern_agent/curriculum.py"
+    },
+    "praesentation": {
+      "braucht": [
+        "anthropic"
+      ],
+      "kann_nutzen": [
+        "fal"
+      ],
+      "belegt": "gestalter/folien.py (Anthropic), marke/kit_bilder.py (fal)"
+    },
+    "social": {
+      "braucht": [
+        "anthropic",
+        "pexels"
+      ],
+      "kann_nutzen": [],
+      "belegt": "social_media_manager/beitrag.py"
+    },
+    "marketing": {
+      "braucht": [
+        "anthropic"
+      ],
+      "kann_nutzen": [],
+      "belegt": "marketing/kampagne.py"
+    },
+    "recherche": {
+      "braucht": [
+        "anthropic"
+      ],
+      "kann_nutzen": [],
+      "belegt": "deep_researcher/einstellungen.py; suche.py nennt Tavily, der Zugang fehlt - dann wird ohne gesucht"
+    },
+    "bewerbung": {
+      "braucht": [
+        "anthropic",
+        "postfach"
+      ],
+      "kann_nutzen": [
+        "linkedin",
+        "stepstone",
+        "arbeitsagentur"
+      ],
+      "belegt": "bewerbungs_agent/modell.py (Anthropic), portale/linkedin.py, portale/stepstone.py; abgeschickt wird ueber das Postfach"
+    },
+    "wohnungsalarm": {
+      "braucht": [
+        "postfach"
+      ],
+      "kann_nutzen": [
+        "kleinanzeigen",
+        "wg-gesucht",
+        "immowelt",
+        "immoscout24",
+        "vonovia",
+        "nadann"
+      ],
+      "belegt": "wohnungs_agent/quellen/*.py; die Antwort geht ueber den Postausgang des E-Mail-Managers"
+    },
+    "software": {
+      "braucht": [
+        "anthropic"
+      ],
+      "kann_nutzen": [
+        "github"
+      ],
+      "belegt": "architekt/entwurf.py, implementierer/werkbank.py, github_scout/github.py"
+    },
+    "webseite": {
+      "braucht": [
+        "anthropic"
+      ],
+      "kann_nutzen": [
+        "cloudflare"
+      ],
+      "belegt": "webseitenbetreuer; veroeffentlicht wird ueber Cloudflare"
+    },
+    "trading": {
+      "braucht": [],
+      "kann_nutzen": [
+        "okx",
+        "pionex"
+      ],
+      "belegt": "handelsbeobachter; die Zugaenge bleiben auf dem Geraet"
+    },
+    "stoffbeschaffung": {
+      "braucht": [
+        "openai"
+      ],
+      "kann_nutzen": [],
+      "belegt": "kurator/vektor.py, kern/vektor.py - ohne Einbettungen findet das 2nd Brain nichts"
+    },
+    "meldeweg": {
+      "braucht": [],
+      "kann_nutzen": [],
+      "belegt": "kein fremder Dienst"
+    },
+    "rueckweg": {
+      "braucht": [
+        "openai"
+      ],
+      "kann_nutzen": [],
+      "belegt": "kern/rueckweg.py legt Erfahrungen ins Regal, das eingebettet wird"
+    },
+    "freigabe": {
+      "braucht": [],
+      "kann_nutzen": [],
+      "belegt": "kein fremder Dienst"
+    }
+  }
+}

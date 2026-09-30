@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Boersen und Signal-Bot brauchen den Weg nach draussen. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Nur fuer das eine Feld "Was soll gebaut werden?". Das Mikrofon laeuft
+         ausschliesslich, solange jemand das Symbol angetippt hat. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Der Wohnungsalarm meldet dem Nutzer, was rausging. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Ab Android 11 sieht eine App fremde Dienste nur, wenn sie sie nennt.
+         Ohne diesen Block meldet Android "keine Spracherkennung vorhanden",
+         auch wenn eine da ist — und das Symbol verschwaende ohne Grund. -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".RepoCityApplication"
+        android:allowBackup="true"
+        android:label="RepoCity"
+        android:icon="@mipmap/ic_launcher"
+        android:supportsRtl="false"
+        android:theme="@style/Theme.RepoCity">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+            android:theme="@style/Theme.RepoCity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Zubringer C: die Meldung der Portal-App auf demselben Geraet
+             mitlesen. ImmobilienScout24 meldet neue Angebote nur in seiner
+             eigenen App, nicht per E-Mail.
+
+             Diese Berechtigung erteilt der Nutzer SELBST in den
+             Systemeinstellungen - sie laesst sich nicht beim Installieren
+             mitnehmen und nicht erschleichen. Ohne sie liefert Android
+             nichts, und der Dienst laeuft leer.
+
+             Gelesen werden nur Meldungen der Apps, die der Nutzer als Quelle
+             eingeschaltet hat. Alles andere wird verworfen, ohne gespeichert
+             zu werden. -->
+        <service
+            android:name=".wohnung.Meldungsleser"
+            android:exported="false"
+            android:label="Wohnungsmeldungen mitlesen"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- Der Weckruf des Hubs kommt hier an. Damit bewegt sich die Hand,
+             ohne dass jemand das Handy anfasst.
+
+             Ohne Zugang (google-services.json bzw. die vier Angaben in den
+             Einstellungen) laeuft der Dienst nie an - die App baut trotzdem
+             und zeigt an, was fehlt. Siehe ABNAHME.md. -->
+        <service
+            android:name=".wohnung.Weckdienst"
+            android:exported="false"
+            android:label="Weckruf vom Hub">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

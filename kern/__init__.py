@@ -1,0 +1,1 @@
+"""Gemeinsame Bausteine aller Agenten im Universe."""

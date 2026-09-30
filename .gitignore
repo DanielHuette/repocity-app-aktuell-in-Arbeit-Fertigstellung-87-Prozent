@@ -1,0 +1,38 @@
+# Schlüssel und Zugangsdaten — gehören nie ins Repository
+.env
+.env.*
+*.key
+*.pem
+secrets/
+local.properties
+APP-SCHLUESSEL.txt
+
+# Bauwerk — entsteht beim Bauen neu
+__pycache__/
+*.pyc
+node_modules/
+dist/
+build/
+.astro/
+.wrangler/
+.gradle/
+.kotlin/
+*.apk
+*.aab
+
+# Daten, Modelle, Medien — zu groß und jederzeit neu erzeugbar
+zustand/
+daten/
+ausgang/
+*.mp4
+*.webm
+*.m4a
+chroma/
+
+# Werkzeuge und System
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+*.log

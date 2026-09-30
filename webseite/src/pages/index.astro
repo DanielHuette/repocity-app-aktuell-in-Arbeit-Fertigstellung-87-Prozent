@@ -1,0 +1,160 @@
+---
+import Grund from "../layouts/Grund.astro";
+import Kopfleiste from "../komponenten/Kopfleiste.astro";
+import Landung from "../komponenten/Landung.astro";
+---
+
+<Grund titel="RepoCity" nurBuehne={true}>
+  <script is:inline>
+    /* Von Landing aus kommt die Landing ohne den Anflug - der Logo-Auftritt
+       kommt nur beim Start der Webseite (Daniel, 10.09.). Der Wunsch steht
+       im Sitzungsspeicher (gesetzt von oberflaeche.js beim Klick) und wird
+       hier sofort verbraucht: der naechste direkte Aufruf spielt wieder.
+       Vor dem ersten Bild gesetzt, damit die Buehne nicht aufblitzt. */
+    try {
+      if (sessionStorage.getItem("rc_ohne_anflug") === "ja") {
+        sessionStorage.removeItem("rc_ohne_anflug");
+        document.documentElement.setAttribute("data-ohne-anflug", "ja");
+      }
+    } catch (e) {}
+  </script>
+  <section class="buehne">
+    <canvas id="anflug" aria-label="Anflug auf RepoCity"></canvas>
+    <canvas id="erde" aria-hidden="true"></canvas>
+
+    <!-- Der Weg fuehrt jetzt auf die Landung, nicht mehr an ihr vorbei in die
+         Oberflaeche: Anflug, dann die Seite, dann erst die Oberflaeche. Von
+         dort geht es mit dem Knopf weiter (Daniel, 14.09.2026). -->
+    <a href="#weiter" id="tor" class="tor" aria-label="Weiter zur Startseite"></a>
+
+    <p class="marke-zeile untertitel">Agentenschwarm &middot; Sekret&auml;r &middot; Produktion</p>
+    <a href="#weiter" class="hinab marke-zeile" aria-label="Weiter">&darr;</a>
+  </section>
+
+  <div id="weiter"></div>
+  <Kopfleiste />
+  <Landung />
+</Grund>
+
+<script>
+  import "../skripte/anflug.js";
+</script>
+
+<script is:inline>
+  /* Die Leiste erscheint, sobald die Buehne verlassen wird - unabhaengig
+     davon, ob der Anflug seine Ankunft meldet. Ohne das haengt sie an einer
+     Bedingung, die auf manchen Geraeten nie eintritt. */
+  (function () {
+    function sehen() {
+      var b = document.querySelector(".buehne");
+      var hoch = b ? b.offsetHeight : window.innerHeight;
+      if (window.scrollY > hoch * 0.35) document.body.classList.add("gescrollt");
+      else document.body.classList.remove("gescrollt");
+    }
+    window.addEventListener("scroll", sehen, { passive: true });
+    window.addEventListener("resize", sehen);
+    sehen();
+  })();
+</script>
+
+<style is:global>
+  html[data-ohne-anflug="ja"] .buehne { display: none; }
+  .buehne {
+    position: relative;
+    height: 100svh;
+    width: 100%;
+    overflow: hidden;
+    background: #020204;
+  }
+  #anflug, #erde {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: manipulation;
+  }
+  #anflug { z-index: 2; }
+  #erde {
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 220ms linear;
+  }
+  .tor, .untertitel, .hinab { z-index: 4; }
+
+  /* Solange der Anflug laeuft, ist die Leiste weg. Sie blendet auf, wenn die
+     Fahrt angekommen ist - und steht sofort, wenn der Anflug uebersprungen
+     wurde. */
+  .kopfleiste {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 700ms ease 300ms;
+  }
+  body.angekommen .kopfleiste,
+  body.gescrollt .kopfleiste,
+  html[data-ohne-anflug="ja"] .kopfleiste {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* Der Weg in die Stadt oeffnet sich erst, wenn die Fahrt angekommen ist. */
+  /* Position und Groesse setzt anflug.js - das Tor liegt genau auf dem Logo. */
+  .tor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+  }
+  body.angekommen .tor { pointer-events: auto; }
+
+  .untertitel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 15%;
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 900ms ease 200ms;
+    pointer-events: none;
+  }
+  body.angekommen .untertitel { opacity: 1; }
+
+  .hinab {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: var(--schrift-leise);
+    opacity: 0;
+    transition: opacity 900ms ease 600ms;
+  }
+  body.angekommen .hinab { opacity: 1; }
+
+  .abschnitt { padding-top: 120px; }
+  .ueberschrift {
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 0 0 18px;
+  }
+  .text {
+    max-width: 62ch;
+    line-height: 1.75;
+    color: var(--schrift-leise);
+    margin: 0 0 32px;
+  }
+  .knopf {
+    display: inline-block;
+    padding: 14px 26px;
+    border: 1px solid var(--linie);
+    border-radius: 10px;
+    transition: border-color 240ms ease, color 240ms ease;
+  }
+  .knopf:hover { border-color: var(--gold); color: var(--gold); }
+</style>

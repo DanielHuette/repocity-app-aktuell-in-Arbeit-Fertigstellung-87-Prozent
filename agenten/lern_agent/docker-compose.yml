@@ -1,0 +1,10 @@
+services:
+  lern:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./_daten:/daten
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

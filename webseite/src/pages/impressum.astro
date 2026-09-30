@@ -1,0 +1,33 @@
+---
+import App from "../layouts/App.astro";
+---
+
+<App titel="Impressum" beschreibung="Angaben gemäß § 5 DDG.">
+  <section class="seite-kopf">
+    <h1>Impressum</h1>
+    <p>Angaben gemäß § 5 DDG.</p>
+  </section>
+  <div class="text-block">
+    <p><b>Verantwortlich für den Inhalt</b><br />Daniel Huette<br />Münster, Deutschland</p>
+    <p><b>Kontakt</b><br /><a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a></p>
+    <p class="hinweis">Anschrift und Umsatzsteuer-Angaben werden ergänzt, bevor die Seite öffentlich geht.</p>
+  </div>
+</App>
+
+<style>
+  .text-block { margin-top: 26px; max-width: 68ch; line-height: 1.75; color: var(--schrift-leise); }
+  .text-block p { margin: 0 0 16px; }
+  .text-block b { color: var(--schrift); }
+  .text-block a { color: var(--akzent); }
+  .hinweis { font-size: 13px; color: var(--schrift-fein); }
+  .liste, .verlauf { margin: 0 0 16px; padding-left: 20px; }
+  .liste li, .verlauf li { margin-bottom: 8px; }
+  .knopf {
+    display: inline-block; padding: 12px 20px; border-radius: 10px;
+    border: 1px solid var(--akzent-matt); color: var(--akzent);
+  }
+  .ebenen { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 22px; }
+  .ebene { padding: 18px; border: 1px solid var(--linie); border-radius: 12px; }
+  .ebene b { display: block; margin-bottom: 8px; color: var(--akzent); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; }
+  .ebene p { margin: 0; font-size: 13px; }
+</style>

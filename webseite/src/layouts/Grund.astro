@@ -1,0 +1,140 @@
+---
+import "../styles/marke.css";
+/* Seit dem 14.09.2026 gilt auch hier ein Kit - Vorgabe Rechenwerk. Vorher
+   hatten die oeffentlichen Seiten eine eigene Farbwelt; damit gab es zwei
+   Wahrheiten fuer dieselbe Marke. */
+import "../styles/kits.css";
+/* Mia braucht ihr Aussehen - es steht in oberflaeche.css, zusammen mit dem
+   Fragefenster. Seit dem 14.09.2026 ist sie auch auf der Startseite. */
+import "../styles/oberflaeche.css";
+import Fuehrungsdaten from "../komponenten/Fuehrungsdaten.astro";
+import Kopfleiste from "../komponenten/Kopfleiste.astro";
+import Mia from "../komponenten/Mia.astro";
+
+interface Props {
+  titel: string;
+  beschreibung?: string;
+  nurBuehne?: boolean;
+}
+
+const {
+  titel,
+  beschreibung = "RepoCity - ein Agentenschwarm, der Wissen sammelt, anwendet und produziert.",
+  nurBuehne = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de" data-kit="rechenwerk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titel}</title>
+    <meta name="description" content={beschreibung} />
+    <meta property="og:title" content={titel} />
+    <meta property="og:description" content={beschreibung} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/repocity_logo_1920.png" />
+    <meta name="theme-color" content="#030304" />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=DM+Mono:wght@400;500&family=Cinzel:wght@400;600;700&display=swap" />
+    <script is:inline>
+      /* Das Kit vor dem ersten Bild setzen, damit nichts umspringt. Wer in
+         der Oberflaeche eines gewaehlt hat, sieht es auch hier - sonst gilt
+         die Vorgabe, die schon im HTML-Kopf steht.
+
+         Das Stand-Datum ist dasselbe wie in App.astro und hat denselben
+         Grund: eine alte Wahl im Browser darf eine neue Vorgabe nicht
+         ueberleben. Beide Gerueste raeumen sie einmal weg - welches der
+         Besucher zuerst oeffnet, ist dabei gleich. */
+      var VORGABE_STAND = "2026-09-14";
+      try {
+        if (localStorage.getItem("rc_kit_stand") !== VORGABE_STAND) {
+          localStorage.removeItem("rc_kit");
+          localStorage.setItem("rc_kit_stand", VORGABE_STAND);
+        }
+        var k = localStorage.getItem("rc_kit");
+        if (k === "rocinante") { k = "rossi"; localStorage.setItem("rc_kit", k); }
+        if (k) document.documentElement.setAttribute("data-kit", k);
+      } catch (e) {}
+    </script>
+    <style is:global>
+      /* Die Goldtoene der alten Marke gibt es in den Kits nicht. Damit die
+         18 Stellen, die sie benutzen, weiterleben, zeigen sie jetzt auf den
+         Akzent des Kits - eine Farbe, nicht zwei. */
+      :root {
+        --gold: var(--akzent);
+        --gold-hell: var(--akzent-hell);
+        --gold-tief: var(--akzent-matt);
+        --grund-erhoben: var(--flaeche-unten);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Ueber dem Anflug steht nichts. Er ist der Auftritt; eine Leiste
+         darueber nimmt ihm die Wirkung. Die Seiten, die ihn nicht haben,
+         bekommen sie sofort - die Landung holt sie sich selbst, sobald der
+         Anflug vorbei ist. -->
+    {!nurBuehne && <Kopfleiste />}
+
+    <main>
+      <slot />
+    </main>
+
+    <style>
+      .kopf {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        backdrop-filter: blur(10px);
+        background: linear-gradient(180deg, rgba(3, 3, 4, 0.85), rgba(3, 3, 4, 0));
+      }
+      .kopf-innen {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+      .kopf-punkte { display: flex; gap: 28px; }
+      .kopf-punkte a { transition: color 240ms ease; }
+      .kopf-punkte a:hover { color: var(--gold); }
+      .fuss {
+        border-top: 1px solid var(--linie);
+        padding: 28px 0;
+        margin-top: 96px;
+      }
+      .fuss-innen { display: flex; justify-content: space-between; }
+
+      /* Solange der Anflug läuft, ist Mia nicht da. */
+      [data-erst-nach-anflug] { display: none; }
+      body.angekommen [data-erst-nach-anflug],
+      body.gescrollt [data-erst-nach-anflug],
+      html[data-ohne-anflug] [data-erst-nach-anflug] { display: block; }
+    </style>
+
+    <!-- Mias Führung läuft auch hier weiter: der Abo-Plan und die
+         rechtlichen Seiten liegen auf diesem Grundriss, und ein Halt auf
+         einer Seite ohne diese Kästen bliebe stumm. Von selbst geht sie
+         nur unter /app/ auf - siehe skripte/fuehrung.js.
+
+         Im Anflug ist sie nicht da (Daniel, 15.09.2026). Der Halter wird
+         erst sichtbar, wenn der Anflug durch ist - `anflug.js` setzt dafür
+         `body.angekommen`, `body.gescrollt` kommt schon bei der ersten
+         Bewegung, und wer den Anflug überspringt, trägt
+         `html[data-ohne-anflug]`. Drei Wege auf dieselbe Seite: sobald die
+         Landing steht, steht Mia. -->
+    <div class="mia-halter" data-erst-nach-anflug={nurBuehne ? "ja" : undefined}>
+      <Mia />
+    </div>
+
+    <Fuehrungsdaten />
+    <script>
+      import "../skripte/oberflaeche.js";
+      import "../skripte/fuehrung.js";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+---
+import App from "../../layouts/App.astro";
+import { bereiche, zielVon } from "../../daten/bereiche";
+---
+
+<App titel="RepoCity" beschreibung="Die Oberfläche von RepoCity — dieselben Bereiche wie in der App.">
+  <section class="seite-kopf">
+    <h1>RepoCity</h1>
+  </section>
+
+  <div class="felder">
+    {bereiche.map((b) => (
+      <a href={zielVon(b)} class="feld" data-stufe={b.stufe}>
+        <span class="nr">{String(b.nr).padStart(2, "0")}</span>
+        <h3>{b.titel}</h3>
+        <p>{b.zeile}</p>
+      </a>
+    ))}
+  </div>
+</App>

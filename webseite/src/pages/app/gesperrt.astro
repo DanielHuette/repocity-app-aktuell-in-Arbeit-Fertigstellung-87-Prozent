@@ -1,0 +1,143 @@
+---
+import App from "../../layouts/App.astro";
+import { bereiche } from "../../daten/bereiche";
+import { STUFEN, findeStufe, STUFE_UNTEN } from "../../daten/abo";
+
+/* Die Seite, die statt eines gesperrten Bereichs kommt. Der Worker holt sie
+   und gibt sie unter der Adresse des gesperrten Bereichs heraus — die Seite
+   des Bereichs selbst verlaesst den Server nicht.
+ *
+ * Darum steht hier fuer JEDEN Bereich ein Block. Welcher gezeigt wird,
+ * entscheidet der Weg in der Adresszeile: bei /app/trading/ der von Trading.
+ *
+ * Gezeigt wird: was der Bereich kann, zu welcher Stufe er gehoert, was diese
+ * Stufe sonst noch mitbringt, und der Weg zum Abo-Plan. Niemand soll vor
+ * einer leeren Seite stehen. */
+
+const gesperrbar = bereiche.filter((b) => b.stufe !== STUFE_UNTEN);
+---
+
+<App titel="Noch nicht freigeschaltet" beschreibung="Dieser Bereich gehört zu einer höheren Stufe.">
+  <section class="seite-kopf">
+    <h1>Noch nicht freigeschaltet</h1>
+    <p id="sperr-zeile">
+      Dieser Bereich gehört zu einer höheren Stufe. Was er kann und was
+      dazugehört, steht hier — freischalten kannst du ihn im Abo-Plan.
+    </p>
+  </section>
+
+  {gesperrbar.map((b) => {
+    const s = findeStufe(b.stufe);
+    return (
+      <section class="sperr-block" data-fuer={b.route} hidden>
+        <div class="sperr-kopf">
+          <span class="sperr-nr">{String(b.nr).padStart(2, "0")}</span>
+          <h2>{b.titel}</h2>
+          <span class="sperr-marke">{s.name}</span>
+        </div>
+
+        <p class="sperr-was">{b.zeile}</p>
+
+        <p class="sperr-satz">
+          Dieser Bereich gehört zur Stufe <b>{s.name}</b> — {s.zeile}.
+          Mit dieser Stufe bekommst du:
+        </p>
+
+        <ul class="sperr-liste">
+          {s.kann.map((z) => <li>{z}</li>)}
+        </ul>
+
+        <div class="sperr-wege">
+          <a class="sperr-knopf" href="/app/abo/">Im Abo-Plan freischalten</a>
+          <a class="sperr-zurueck" href="/app/">Zurück zur Oberfläche</a>
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="sperr-block" data-fuer="" id="sperr-uebersicht">
+    <p class="sperr-satz">Diese Bereiche brauchen eine höhere Stufe:</p>
+    <ul class="sperr-liste">
+      {gesperrbar.map((b) => (
+        <li>{b.titel} — {findeStufe(b.stufe).name}</li>
+      ))}
+    </ul>
+    <div class="sperr-wege">
+      <a class="sperr-knopf" href="/app/abo/">Zum Abo-Plan</a>
+      <a class="sperr-zurueck" href="/app/">Zurück zur Oberfläche</a>
+    </div>
+  </section>
+
+  <p class="sperr-fuss">
+    Alle Stufen im Vergleich: <a href="/app/abo/">Abo-Plan</a>.
+    Jederzeit kündbar, jederzeit wechselbar.
+  </p>
+
+  <script is:inline>
+    /* Welcher Block gezeigt wird, sagt der Weg in der Adresszeile. Der Worker
+       gibt diese Seite unter der Adresse des gesperrten Bereichs heraus, dort
+       steht also /app/trading/ und nicht /app/gesperrt/. Wer die Sperrseite
+       direkt aufruft, kann den Bereich als ?bereich= mitgeben. */
+    (function () {
+      var teile = location.pathname.split("/").filter(Boolean);
+      var weg = teile.length === 2 && teile[0] === "app" ? teile[1] : "";
+      if (!weg || weg === "gesperrt") {
+        weg = new URLSearchParams(location.search).get("bereich") || "";
+      }
+      var block = weg
+        ? document.querySelector('.sperr-block[data-fuer="' + weg.replace(/[^a-z]/g, "") + '"]')
+        : null;
+      if (block) {
+        block.hidden = false;
+        var uebersicht = document.getElementById("sperr-uebersicht");
+        if (uebersicht) uebersicht.hidden = true;
+      }
+    })();
+  </script>
+</App>
+
+<style>
+  .sperr-block {
+    margin-top: 28px;
+    padding: 24px 22px;
+    border-radius: 14px;
+    border: 1px solid var(--linie);
+    background: linear-gradient(180deg, var(--flaeche-oben) 0%, var(--flaeche-unten) 100%);
+  }
+  .sperr-block[hidden] { display: none; }
+
+  .sperr-kopf { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .sperr-nr { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--akzent); }
+  .sperr-kopf h2 { margin: 0; font-size: 22px; font-weight: 600; }
+  .sperr-marke {
+    margin-left: auto;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--akzent); border: 1px solid var(--akzent-matt);
+    border-radius: 999px; padding: 5px 12px;
+  }
+
+  .sperr-was { margin: 10px 0 20px; color: var(--schrift-leise); line-height: 1.7; }
+  .sperr-satz { margin: 0 0 12px; color: var(--schrift-leise); line-height: 1.7; max-width: 62ch; }
+
+  .sperr-liste { list-style: none; margin: 0 0 22px; padding: 0; }
+  .sperr-liste li {
+    position: relative; padding: 8px 0 8px 22px;
+    color: var(--schrift-leise); line-height: 1.55;
+    border-bottom: 1px solid var(--linie);
+  }
+  .sperr-liste li::before { content: "+"; position: absolute; left: 0; color: var(--akzent); }
+
+  .sperr-wege { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .sperr-knopf {
+    font-size: 12px; padding: 11px 20px;
+    border-radius: 999px;
+    background: var(--akzent); color: var(--auf-akzent);
+    border: 1px solid var(--akzent);
+  }
+  .sperr-zurueck { font-size: 12px; color: var(--schrift-fein); }
+  .sperr-zurueck:hover { color: var(--schrift); }
+
+  .sperr-fuss { margin-top: 24px; font-size: 12px; color: var(--schrift-fein); }
+  .sperr-fuss a { color: var(--schrift-leise); text-decoration: underline; }
+  .sperr-fuss a:hover { color: var(--akzent); }
+</style>

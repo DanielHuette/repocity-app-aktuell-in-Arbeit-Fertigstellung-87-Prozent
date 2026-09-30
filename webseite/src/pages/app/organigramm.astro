@@ -1,0 +1,117 @@
+---
+/* Das Organigramm — seit dem 14.09.2026 in vier getrennten Bildern.
+
+   Warum vier statt eines: das alte Bild war 2200 breit, die Flaeche auf
+   dieser Seite ist 1111 px (an der laufenden Seite nachgemessen). Es wurde
+   also auf 50,5 % verkleinert, und eine Schrift von 12,5 kam als 6 px an.
+   Jedes Teil ist jetzt 1400 breit — derselbe Platz zeigt es auf 79 %, und
+   dieselbe Schrift kommt als 13 px an. Daniel: "generell ist die schrift
+   einfach zu klein".
+
+   Die Bilder werden nicht hier gezeichnet. Sie kommen als Rohlinge aus
+   mein_ki_gehirn/bilder/diagramme/bau_diagramm.py, der sie aus den
+   Auftragsarten, den Dateien der Agenten und den Design-Werten baut. Hier
+   wird nur das eingestellte Design eingesetzt — beim Bauen das Standard-
+   Design, im Browser dann das gewaehlte. Ein zweiter Farbsatz existiert
+   nicht. */
+import App from "../../layouts/App.astro";
+import { fuelle, liesKitsAusCss } from "../../skripte/organigramm-fuellen.js";
+/* Beide Seiten werden beim Bauen als Text hereingezogen, nicht zur Laufzeit
+   gelesen: so wandern die Rohlinge mit in das fertige Bündel und der Pfad
+   kann nicht danebengehen. */
+import struktur from "../../daten/organigramm-struktur.svg?raw";
+import weg from "../../daten/organigramm-weg.svg?raw";
+import automation from "../../daten/organigramm-automation.svg?raw";
+import werkstatt from "../../daten/organigramm-werkstatt.svg?raw";
+import kitsCss from "../../styles/kits.css?raw";
+
+const kits = liesKitsAusCss(kitsCss);
+
+/* Blende ist das Design, mit dem die Seite ausgeliefert wird — dasselbe, das
+   im Kopf von App.astro am Wurzelelement steht. Wer ein anderes eingestellt
+   hat, bekommt es vom Skript nachgereicht. */
+const GEBAUT_MIT = "blende";
+
+const teile = [
+  { id: "struktur", titel: "1 · Struktur",
+    zeile: "App und Webseite bedienen, der Hub nimmt an, der Server arbeitet — und das 2nd Brain lernt mit",
+    roh: struktur },
+  { id: "weg", titel: "2 · Der Weg des Auftrags",
+    zeile: "Was mit einem Auftrag der Reihe nach geschieht, von der Eingabe bis zurück ins Gedächtnis",
+    roh: weg },
+  { id: "automation", titel: "3 · Automation",
+    zeile: "Life Automation — und daneben Trading, dieselbe Idee mit eigenen Daten",
+    roh: automation },
+  { id: "werkstatt", titel: "4 · Kreativwerkstatt",
+    zeile: "Neun Straßen, ein Qualitätstor, ein Warenausgang — und was daraus nach draußen geht",
+    roh: werkstatt },
+].map((t) => ({ ...t, bild: fuelle(t.roh, kits[GEBAUT_MIT]) }));
+---
+
+<App titel="Das Organigramm" aktiv="organigramm"
+     beschreibung="Wie das RepoCity Universe aufgebaut ist — Struktur, der Weg jedes Auftrags, Automation und Kreativwerkstatt">
+  <section class="seite-kopf">
+    <h1>Das Organigramm</h1>
+    <p>Wer hier arbeitet und wem er berichtet</p>
+  </section>
+
+  {teile.map((t) => (
+    <section class="organigramm-teil">
+      <h2>{t.titel}</h2>
+      <p class="organigramm-zeile">{t.zeile}</p>
+      <div class="organigramm-rahmen">
+        <div class="organigramm-flaeche">
+          <div class="organigramm-bild" data-organigramm={t.id}
+               data-gebaut-mit={GEBAUT_MIT} set:html={t.bild}></div>
+        </div>
+      </div>
+      <script type="text/plain" data-organigramm-rohling={t.id} set:html={t.roh}></script>
+    </section>
+  ))}
+
+  <script src="../../skripte/organigramm.js"></script>
+</App>
+
+<style>
+  .organigramm-teil { margin-top: 2.2rem; }
+  .organigramm-teil:first-of-type { margin-top: 1.2rem; }
+  .organigramm-teil h2 {
+    font-size: 1.05rem; margin: 0 0 .25rem;
+    letter-spacing: .04em; text-transform: uppercase; color: var(--akzent);
+  }
+  .organigramm-zeile {
+    font-size: .85rem; color: var(--schrift-leise); margin: 0 0 .7rem; max-width: 74ch;
+  }
+
+  /* Der Rahmen traegt bewusst KEINE eigene Flaeche - nur Linie und
+     Schatten. Die Plastik bringt das Bild selbst mit: jeder Kasten darin
+     ist ein Feld mit Verlauf, Lichtkante und Schatten, genau wie eine
+     Kachel auf der Uebersicht.
+
+     Warum das wichtig ist: legte man hier noch einen Flaechenverlauf
+     darunter, laegen zwei halbdurchsichtige Lagen uebereinander. Bei den
+     dunklen Designs hellt das die Kastenflaeche so weit auf, dass die
+     Schrift darauf von 7,0 auf 3,0 faellt - lesbar ist sie dann nicht
+     mehr. Nachgerechnet in marke.organigramm-schrift-lesbar. */
+  .organigramm-rahmen {
+    position: relative;
+    padding: .6rem;
+    border-radius: 14px;
+    /* Der Schleier des Designs - derselbe, den die Seite ueber ihr
+       Hintergrundbild legt, damit Schrift darauf Halt hat. */
+    background: var(--schleier);
+    border: 1px solid var(--linie);
+    box-shadow: 0 14px 30px -18px var(--schatten);
+  }
+  .organigramm-flaeche {
+    position: relative;
+    border-radius: 9px;
+    /* Jedes Teil ist 1400 breit und passt damit fast in die Breite der
+       Seite. Auf einem schmalen Schirm bleibt es scrollbar, statt sich
+       unlesbar klein zu rechnen. */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .organigramm-bild { display: block; min-width: 900px; }
+  .organigramm-bild :global(svg) { display: block; width: 100%; height: auto; }
+</style>

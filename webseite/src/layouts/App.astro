@@ -1,0 +1,165 @@
+---
+import "../styles/marke.css";
+import "../styles/kits.css";
+import "../styles/oberflaeche.css";
+import { bereiche, zielVon } from "../daten/bereiche";
+import { STUFEN, STUFE_UNTEN } from "../daten/abo";
+import Fuehrungsdaten from "../komponenten/Fuehrungsdaten.astro";
+import Mia from "../komponenten/Mia.astro";
+
+/* Die Reihenfolge der Stufen wandert als JSON in die Seite, damit die
+   Anzeige weiss, was hoeher ist als was. Welche Stufe ein Bereich braucht,
+   steht als data-stufe an jedem Punkt - Quelle ist bereiche.ts. */
+const stufenRaenge = {
+  unten: STUFE_UNTEN,
+  raenge: Object.fromEntries(STUFEN.map((s) => [s.schluessel, s.rang])),
+  namen: Object.fromEntries(STUFEN.map((s) => [s.schluessel, s.name])),
+};
+
+interface Props {
+  titel: string;
+  aktiv?: string;
+  beschreibung?: string;
+}
+const { titel, aktiv = "", beschreibung = "RepoCity — ein Agentenschwarm, der Wissen sammelt, anwendet und produziert." } = Astro.props;
+const jahr = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="de" data-kit="rechenwerk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titel}</title>
+    <meta name="description" content={beschreibung} />
+    <meta property="og:title" content={titel} />
+    <meta property="og:description" content={beschreibung} />
+    <meta property="og:image" content="/repocity_logo_1920.png" />
+    <meta name="theme-color" content="#030304" />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=DM+Mono:wght@400;500&family=Chakra+Petch:wght@500;600&family=Sora:wght@500;600&display=swap" />
+    <script is:inline>
+      /* Kit vor dem ersten Bild setzen, damit nichts umspringt.
+
+         VORGABE ist, was ohne eigene Wahl gilt - dieselbe wie in der App.
+         VORGABE_STAND ist der Tag, an dem sie zuletzt gewechselt hat.
+
+         Warum das Datum: eine Wahl liegt im Browser und ueberlebt alles.
+         Wer irgendwann einmal ein anderes Design angeklickt hat, sieht es
+         fuer immer - eine neue Vorgabe kaeme bei ihm nie an. Wechselt das
+         Datum, faengt jeder Browser genau einmal wieder bei der Vorgabe an;
+         was er danach waehlt, bleibt. */
+      var VORGABE = "rechenwerk";
+      var VORGABE_STAND = "2026-09-14";
+      try {
+        if (localStorage.getItem("rc_kit_stand") !== VORGABE_STAND) {
+          localStorage.removeItem("rc_kit");
+          localStorage.setItem("rc_kit_stand", VORGABE_STAND);
+        }
+        var k = localStorage.getItem("rc_kit");
+        /* Das Kit hiess bis zum 10.09. anders; wer es gewaehlt hatte,
+           behaelt es unter dem neuen Namen. */
+        if (k === "rocinante") { k = "rossi"; localStorage.setItem("rc_kit", k); }
+        document.documentElement.setAttribute("data-kit", k || VORGABE);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div class="gerippe">
+      <aside class="leiste" id="leiste">
+        <a href="/app/" class="leiste-marke">
+          <img src="/favicon.png" alt="" width="66" height="40" />
+          <span>RepoCity</span>
+        </a>
+
+        <nav class="leiste-punkte">
+          {bereiche.map((b) => (
+            <a
+              href={zielVon(b)}
+              class:list={["leiste-punkt", { an: aktiv === b.route }]}
+              data-stufe={b.stufe}
+            >
+              <span class="nr">{String(b.nr).padStart(2, "0")}</span>
+              <span class="txt">{b.titel}</span>
+            </a>
+          ))}
+        </nav>
+
+        <div class="leiste-fuss">
+          <div class="kit-wahl" role="group" aria-label="Design">
+            <button type="button" data-kit-knopf="blende">Blende</button>
+            <button type="button" data-kit-knopf="rossi">Rossi</button>
+            <button type="button" data-kit-knopf="glashaus">Glashaus</button>
+            <button type="button" data-kit-knopf="karawane">Karawane</button>
+            <button type="button" data-kit-knopf="silberblatt">Silberblatt</button>
+            <button type="button" data-kit-knopf="schmiede">Schmiede</button>
+            <button type="button" data-kit-knopf="stadtkrone">Stadtkrone</button>
+            <button type="button" data-kit-knopf="wunderwald">Wunderwald</button>
+            <button type="button" data-kit-knopf="rechenwerk">Rechenwerk</button>
+            <button type="button" data-kit-knopf="gipfelsturm">Gipfelsturm</button>
+            <button type="button" data-kit-knopf="morgentau">Morgentau</button>
+          </div>
+        </div>
+      </aside>
+
+      <div class="rumpf">
+        <header class="kopf">
+          <button type="button" class="leiste-schalter" id="leiste-schalter" aria-label="Menü">☰</button>
+          {titel !== "RepoCity" && <span class="kopf-titel">{titel}</span>}
+          <!-- Platzhalter, bis die App zum Herunterladen bereitliegt (Daniel, 10.09.). -->
+          <a href="/app/einstellungen/#app" class="kopf-app" title="Die App kommt bald zum Herunterladen">RepoCity App for Android</a>
+          <a href="/zugang/" class="kopf-zugang">Registrieren &amp; Login</a>
+        </header>
+
+        <main class="inhalt">
+          <slot />
+        </main>
+
+        <footer class="fuss">
+          <div class="fuss-raster">
+            <div>
+              <b>RepoCity</b>
+              <a href="/app/">Oberfläche</a>
+              <a href="/app/organigramm/">Organigramm</a>
+              <a href="/app/abo/">Abo-Plan</a>
+              <a href="/faq/">Fragen und Antworten</a>
+              <a href="/intro/">Intro</a>
+            </div>
+            <div>
+              <b>Projekt</b>
+              <a href="/funktionsweise/">Funktionsdokumentation</a>
+              <a href="/credits/">Credits</a>
+              <a href="https://github.com/DanielHuette" rel="noopener" target="_blank">GitHub</a>
+              <a href="/support/">Support</a>
+            </div>
+            <div>
+              <b>Autor</b>
+              <a href="/kontakt/">Kontakt</a>
+              <a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a>
+            </div>
+            <div>
+              <b>Rechtliches</b>
+              <a href="/impressum/">Impressum</a>
+              <a href="/datenschutz/">Datenschutz</a>
+              <a href="/ki-verordnung/">EU KI-Verordnung</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Mia: rechts unten, von Anfang an offen. Wer sie schliesst, bekommt sie
+         in dieser Sitzung nicht wieder aufgedraengt - der Knopf bleibt. -->
+    <Mia />
+
+    <Fuehrungsdaten />
+
+    <script>
+      import "../skripte/oberflaeche.js";
+      import "../skripte/abo-sperre.js";
+      import "../skripte/fuehrung.js";
+    </script>
+  </body>
+</html>

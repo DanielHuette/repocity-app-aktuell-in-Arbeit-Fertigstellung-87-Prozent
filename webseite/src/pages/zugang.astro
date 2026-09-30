@@ -1,0 +1,204 @@
+---
+import App from "../layouts/App.astro";
+---
+
+<App titel="Zugang" beschreibung="Drei Ebenen: Admin, Beta-Tester, Nutzer.">
+  <section class="seite-kopf">
+    <h1>Zugang</h1>
+    <p>Drei Ebenen: Admin, Beta-Tester, Nutzer.</p>
+  </section>
+  <div class="text-block">
+    <div class="ebenen">
+      <div class="ebene">
+        <b>Admin</b>
+        <p>Steuerung des ganzen Universe: Agenten an und aus, Aufträge, Kosten,
+        Zugangsdaten. Nur für mich.</p>
+      </div>
+      <div class="ebene">
+        <b>Beta-Tester</b>
+        <p>Zugriff auf fertige Produktionsstraßen und die App, bevor sie öffentlich sind.
+        Rückmeldungen fließen direkt in die Ausbildung der Agenten.</p>
+      </div>
+      <div class="ebene">
+        <b>Nutzer</b>
+        <p>Die öffentliche Seite: Was RepoCity ist, was es herstellt, und der Abo-Plan.</p>
+      </div>
+    </div>
+    <div id="anmeldung" class="kasten">
+      <h2 id="anmelden">Anmelden</h2>
+      <p id="an-stand" class="hinweis">wird geladen&nbsp;&hellip;</p>
+      <div id="an-formular" hidden>
+        <div class="zeile-breit">
+          <input type="email" id="an-email" autocomplete="email"
+                 placeholder="E-Mail-Adresse" />
+        </div>
+        <div class="zeile-breit">
+          <input type="password" id="an-passwort" autocomplete="current-password"
+                 placeholder="Passwort" />
+        </div>
+        <div class="zeile-breit" id="an-zeile-passwort2" hidden>
+          <input type="password" id="an-passwort2" autocomplete="new-password"
+                 placeholder="Passwort noch einmal" />
+        </div>
+        <div class="zeile-breit" id="an-zeile-code" hidden>
+          <input type="text" id="an-code" placeholder="Einladungscode (nur f&uuml;r Beta-Tester)" />
+        </div>
+        <button type="button" id="an-anmelden">Anmelden</button>
+        <button type="button" id="an-anlegen" hidden>Konto anlegen</button>
+        <button type="button" id="an-umschalten" class="leise">Ich brauche ein Konto</button>
+      </div>
+      <button type="button" id="an-abmelden" hidden>Abmelden</button>
+      <p id="an-meldung" class="hinweis"></p>
+    </div>
+    <script src="../skripte/anmeldung.js"></script>
+
+    <p class="hinweis">Dieselbe Anmeldung gilt in der App. Beta-Tester wird
+    man mit einem Einladungscode &mdash; wer einen m&ouml;chte:
+    <a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a></p>
+
+    <div id="konto-kasten" class="kasten" hidden>
+      <h2 id="dein-konto">Dein Konto</h2>
+      <p id="konto-meldung" class="hinweis"></p>
+      <div id="konto-formular" hidden>
+        <div class="zeile-breit">
+          <input type="password" id="konto-passwort" autocomplete="new-password"
+                 placeholder="neues Passwort" />
+        </div>
+        <div class="zeile-breit">
+          <input type="password" id="konto-passwort2" autocomplete="new-password"
+                 placeholder="noch einmal" />
+        </div>
+        <button type="button" id="konto-setzen">Passwort setzen</button>
+      </div>
+    </div>
+    <script src="../skripte/konto.js"></script>
+
+    <div id="zweifaktor" class="zweifaktor">
+      <h2 id="zweiter-faktor">Zweiter Faktor</h2>
+      <p>Die Anmeldung sagt, wer anklopft. Der zweite Faktor beweist, dass
+      auch das Ger&auml;t dazugeh&ouml;rt: eine sechsstellige Zahl aus Google
+      Authenticator, die sich alle 30 Sekunden &auml;ndert.</p>
+      <p id="zf-stand" class="hinweis">wird geladen&nbsp;&hellip;</p>
+
+      <button type="button" id="zf-einrichten" hidden>Einrichten</button>
+
+      <div id="zf-kasten" class="kasten" hidden>
+        <p class="hinweis">In Google Authenticator auf Plus, dann
+        <b>QR-Code scannen</b>:</p>
+        <div id="zf-qr" class="qr"></div>
+        <p class="hinweis">Geht das Scannen nicht, stattdessen
+        <b>Einrichtungsschl&uuml;ssel eingeben</b>, Name <b>RepoCity</b>,
+        Typ <b>Zeitbasiert</b>, und diesen Schl&uuml;ssel eintippen:</p>
+        <code id="zf-geheimnis"></code>
+        <p class="hinweis">Danach die sechs Ziffern hier eingeben. Vorher
+        gilt der zweite Faktor nicht.</p>
+        <div class="zeile">
+          <input type="text" id="zf-code" inputmode="numeric" maxlength="6"
+                 autocomplete="one-time-code" placeholder="000000" />
+          <button type="button" id="zf-bestaetigen">Best&auml;tigen</button>
+        </div>
+      </div>
+
+      <div id="zf-codes" class="kasten" hidden>
+        <p><b>Acht Wiederherstellungscodes.</b> Sie sind der einzige Weg
+        zur&uuml;ck, wenn dein Handy weg ist. Jetzt ausdrucken oder
+        abschreiben und <b>getrennt vom Handy</b> aufbewahren &mdash; sie
+        werden nie wieder gezeigt. Jeder Code gilt genau einmal.</p>
+        <code id="zf-codes-liste"></code>
+      </div>
+
+      <p id="zf-meldung" class="hinweis"></p>
+
+      <div class="zurueck">
+        <h3 id="ich-komme-nicht-rein">Ich komme nicht rein</h3>
+        <p><b>Passwort vergessen?</b> In der App auf
+        &bdquo;Passwort vergessen&ldquo; tippen. Dann geht ein Link an deine
+        Adresse, und &uuml;ber den setzt du hier ein neues. Der Link gilt eine
+        halbe Stunde; danach forderst du einen neuen an.</p>
+        <p>Verlieren kannst du auch den <b>zweiten Faktor</b> &mdash; das
+        Handy mit der App. Daf&uuml;r sind die Wiederherstellungscodes da.
+        Gib einen davon hier ein: der zweite Faktor wird entfernt, danach
+        richtest du ihn neu ein und bekommst acht neue Codes.</p>
+        <div class="zeile">
+          <input type="text" id="zf-wh" maxlength="11" placeholder="ABCDE-FGHIJ" />
+          <button type="button" id="zf-wh-knopf">Zweiten Faktor entfernen</button>
+        </div>
+        <p class="hinweis">F&uuml;nf Fehlversuche je Stunde, danach ist eine
+        Stunde Ruhe. Hast du auch die Codes nicht mehr:
+        <a href="mailto:info@speedofthespirit.dev">info@speedofthespirit.dev</a></p>
+      </div>
+    </div>
+
+    <script src="../skripte/zweifaktor.js"></script>
+  </div>
+</App>
+
+<style>
+  .text-block { margin-top: 26px; max-width: 68ch; line-height: 1.75; color: var(--schrift-leise); }
+  .text-block p { margin: 0 0 16px; }
+  .text-block b { color: var(--schrift); }
+  .text-block a { color: var(--akzent); }
+  .hinweis { font-size: 13px; color: var(--schrift-fein); }
+  .liste, .verlauf { margin: 0 0 16px; padding-left: 20px; }
+  .liste li, .verlauf li { margin-bottom: 8px; }
+  .knopf {
+    display: inline-block; padding: 12px 20px; border-radius: 10px;
+    border: 1px solid var(--akzent-matt); color: var(--akzent);
+  }
+  .ebenen { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 22px; }
+  .ebene { padding: 18px; border: 1px solid var(--linie); border-radius: 12px; }
+  .ebene b { display: block; margin-bottom: 8px; color: var(--akzent); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; }
+  .ebene p { margin: 0; font-size: 13px; }
+</style>
+
+<style>
+  .zweifaktor { margin-top: 34px; padding-top: 22px;
+                border-top: 1px solid var(--linie); max-width: 68ch; }
+  .zweifaktor h2 { font-size: 1.15rem; margin: 0 0 10px; }
+  .zweifaktor p { margin: 0 0 12px; }
+  .zweifaktor button { font: inherit; padding: 9px 18px; border-radius: 9px;
+                       border: 1px solid var(--akzent); background: transparent;
+                       color: var(--akzent); cursor: pointer; }
+  .zweifaktor button:hover { background: var(--marker); }
+  .kasten { border: 1px solid var(--linie); border-radius: 12px;
+            padding: 14px 16px; margin: 14px 0; }
+  .qr { width: 220px; margin: 12px 0 16px; background: #fff;
+        border-radius: 10px; padding: 8px; }
+  .qr svg { display: block; width: 100%; height: auto; }
+  .kasten code { display: block; margin: 8px 0 14px; padding: 10px 12px;
+                 border-radius: 8px; background: var(--tupfer, var(--flaeche-unten));
+                 font-family: "DM Mono", ui-monospace, monospace;
+                 letter-spacing: .12em; word-break: break-all; }
+  .zeile { display: flex; gap: 10px; align-items: center; }
+  .zeile-breit { margin: 0 0 10px; }
+  .zeile-breit input { font: inherit; width: 100%; max-width: 32ch;
+                       padding: 10px 12px; border-radius: 9px;
+                       border: 1px solid var(--linie); background: transparent;
+                       color: var(--schrift); }
+  #konto-meldung[data-schlimm="ja"] { color: var(--alarm); }
+  #an-meldung[data-schlimm="ja"] { color: var(--alarm); }
+  #anmeldung h2 { font-size: 1.1rem; margin: 0 0 10px; }
+  #anmeldung button { font: inherit; padding: 9px 18px; border-radius: 9px;
+                      border: 1px solid var(--akzent); background: transparent;
+                      color: var(--akzent); cursor: pointer; margin-right: 8px; }
+  #anmeldung button.leise { border-color: var(--linie); color: var(--schrift-fein); }
+  #anmeldung button.leise:hover { border-color: var(--akzent); color: var(--akzent); }
+  #konto-kasten h2 { font-size: 1.1rem; margin: 0 0 10px; }
+  #konto-kasten button { font: inherit; padding: 9px 18px; border-radius: 9px;
+                         border: 1px solid var(--akzent); background: transparent;
+                         color: var(--akzent); cursor: pointer; }
+  .zeile input { font: inherit; width: 8ch; padding: 9px 12px; border-radius: 9px;
+                 border: 1px solid var(--linie); background: transparent;
+                 color: var(--schrift); letter-spacing: .28em; text-align: center; }
+  #zf-meldung[data-schlimm="ja"] { color: var(--alarm); }
+  .zurueck { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--linie); }
+  .zurueck h3 { font-size: 1rem; margin: 0 0 10px; color: var(--akzent); }
+  .zurueck input { font: inherit; width: 14ch; padding: 9px 12px; border-radius: 9px;
+                   border: 1px solid var(--linie); background: transparent;
+                   color: var(--schrift); letter-spacing: .14em; text-transform: uppercase; }
+  .zurueck button { font: inherit; padding: 9px 18px; border-radius: 9px;
+                    border: 1px solid var(--linie); background: transparent;
+                    color: var(--schrift-leise); cursor: pointer; }
+  .zurueck button:hover { border-color: var(--akzent); color: var(--akzent); }
+  #zf-codes-liste { line-height: 2; letter-spacing: .16em; }
+</style>
