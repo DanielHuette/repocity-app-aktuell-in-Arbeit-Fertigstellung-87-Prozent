@@ -1,82 +1,82 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="982" viewBox="0 0 1400 982" font-family="'Chakra Petch','DejaVu Sans',sans-serif">
 <defs>
-<linearGradient id="flaeche" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%%c:flaeche-oben%%" stop-opacity="%%a:flaeche-oben%%"/><stop offset="1" stop-color="%%c:flaeche-unten%%" stop-opacity="%%a:flaeche-unten%%"/></linearGradient>
-<linearGradient id="glanz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%%c:glanz-farbe%%" stop-opacity="%%a:glanz%%"/><stop offset="1" stop-color="%%c:glanz-farbe%%" stop-opacity="0"/></linearGradient>
-<radialGradient id="vignette" cx="0.5" cy="0.40" r="0.80"><stop offset="0.40" stop-color="%%c:grund%%" stop-opacity="0"/><stop offset="1" stop-color="%%c:grund%%" stop-opacity="0.80"/></radialGradient>
+<linearGradient id="flaeche" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#89a09c" stop-opacity="0.621"/><stop offset="1" stop-color="#6d8a85" stop-opacity="0.489"/></linearGradient>
+<linearGradient id="glanz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCF2EC" stop-opacity="0.19"/><stop offset="1" stop-color="#DCF2EC" stop-opacity="0"/></linearGradient>
+<radialGradient id="vignette" cx="0.5" cy="0.40" r="0.80"><stop offset="0.40" stop-color="#070707" stop-opacity="0"/><stop offset="1" stop-color="#070707" stop-opacity="0.80"/></radialGradient>
 <filter id="weich" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
 <filter id="schein" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
-<text x="60" y="64" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="34" font-weight="700" fill="%%c:akzent-hell%%" text-anchor="start" letter-spacing="0.4" opacity="1">RepoCity Universe · 2 — Der Weg des Auftrags</text>
-<text x="60" y="94" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="15" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">elf Stationen, jede im Code nachvollziehbar — von der Eingabe bis zurück ins Gedächtnis</text>
-<text x="1340" y="50" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="%%c:akzent%%" text-anchor="end" letter-spacing="0" opacity="1">speedofthespirit.dev</text>
-<text x="1340" y="76" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="%%c:diagramm-fein%%" text-anchor="end" letter-spacing="0" opacity="1">Stand 09/2026 · in Entwicklung</text>
+<text x="60" y="64" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="34" font-weight="700" fill="#BADED7" text-anchor="start" letter-spacing="0.4" opacity="1">RepoCity Universe · 2 — Der Weg des Auftrags</text>
+<text x="60" y="94" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="15" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">elf Stationen, jede im Code nachvollziehbar — von der Eingabe bis zurück ins Gedächtnis</text>
+<text x="1340" y="50" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="#95CCC1" text-anchor="end" letter-spacing="0" opacity="1">speedofthespirit.dev</text>
+<text x="1340" y="76" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="#93A39C" text-anchor="end" letter-spacing="0" opacity="1">Stand 09/2026 · in Entwicklung</text>
 <g>
-<rect x="60" y="148" width="1280" height="772" rx="14" fill="%%c:grund-tief%%" opacity="0.5"/>
+<rect x="60" y="148" width="1280" height="772" rx="14" fill="#040404" opacity="0.5"/>
 <mask id="schattenmaske1" maskUnits="userSpaceOnUse" x="20" y="108" width="1360" height="852">
 <rect x="20" y="108" width="1360" height="852" fill="#FFFFFF"/>
 <rect x="60" y="148" width="1280" height="772" rx="14" fill="#000000"/>
 </mask>
-<rect x="60" y="151" width="1280" height="772" rx="14" fill="%%c:schatten%%" opacity="0.5" filter="url(#weich)" mask="url(#schattenmaske1)"/>
+<rect x="60" y="151" width="1280" height="772" rx="14" fill="#010101" opacity="0.5" filter="url(#weich)" mask="url(#schattenmaske1)"/>
 <rect x="60" y="148" width="1280" height="772" rx="14" fill="url(#flaeche)"/>
 <rect x="61" y="149" width="1278" height="347" rx="14" fill="url(#glanz)"/>
-<rect x="60.5" y="148.5" width="1279" height="771" rx="14" fill="none" stroke="%%c:linie%%" stroke-opacity="%%a:linie%%" stroke-width="1"/>
-<path d="M74,148.8 L1326,148.8" stroke="%%c:kante%%" stroke-opacity="%%a:kante*0.85%%" stroke-width="1.5" stroke-linecap="round"/>
-<path d="M74,919.2 L1326,919.2" stroke="%%c:kante-unten%%" stroke-opacity="%%a:kante-unten%%" stroke-width="1.5" stroke-linecap="round"/>
-<rect x="60" y="155.7" width="3.5" height="756.6" rx="1.75" fill="%%c:akzent-hell%%"/>
+<rect x="60.5" y="148.5" width="1279" height="771" rx="14" fill="none" stroke="#d7efe4" stroke-opacity="0.18" stroke-width="1"/>
+<path d="M74,148.8 L1326,148.8" stroke="#f6f8f7" stroke-opacity="0.51" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M74,919.2 L1326,919.2" stroke="#020202" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="60" y="155.7" width="3.5" height="756.6" rx="1.75" fill="#BADED7"/>
 </g>
-<circle cx="122" cy="214" r="9" fill="%%c:akzent-matt%%"/>
-<path d="M122,228 L122,260" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,255.0 L122,273.0 L129.0,255.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="222" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Auftrag</text>
-<text x="600" y="222" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">App oder Webseite, mit Ausweis</text>
-<circle cx="122" cy="276" r="9" fill="%%c:akzent-matt%%"/>
-<path d="M122,290 L122,322" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,317.0 L122,335.0 L129.0,317.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="284" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Hub nimmt an</text>
-<text x="600" y="284" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">legt ihn ins Fach des Nutzers</text>
-<circle cx="122" cy="338" r="9" fill="%%c:akzent-matt%%"/>
-<path d="M122,352 L122,384" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,379.0 L122,397.0 L129.0,379.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="346" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Leitung holt ab</text>
-<text x="600" y="346" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">alle 30 s — der Server wird nie gerufen</text>
-<circle cx="122" cy="400" r="9" fill="%%c:akzent-matt%%"/>
-<path d="M122,414 L122,446" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,441.0 L122,459.0 L129.0,441.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="408" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Rückfrage, wenn etwas fehlt</text>
-<text x="600" y="408" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">höchstens drei, sonst läuft er mit Annahmen</text>
-<circle cx="122" cy="462" r="9" fill="%%c:akzent-matt%%"/>
-<path d="M122,476 L122,508" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,503.0 L122,521.0 L129.0,503.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="470" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Sekretär verteilt</text>
-<text x="600" y="470" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">auftragsarten.json › Eingang der Werkstatt</text>
-<circle cx="122" cy="524" r="9" fill="%%c:akzent-matt%%"/>
-<path d="M122,538 L122,570" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,565.0 L122,583.0 L129.0,565.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="532" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Zugangswächter prüft</text>
-<text x="600" y="532" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">tragen die Zugänge für genau diesen Auftrag?</text>
-<circle cx="122" cy="586" r="9" fill="%%c:akzent-matt%%"/>
-<path d="M122,600 L122,632" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,627.0 L122,645.0 L129.0,627.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="594" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Werkstatt arbeitet</text>
-<text x="600" y="594" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">meldet jede Station zurück an den Hub</text>
-<circle cx="122" cy="648" r="9" fill="%%c:akzent%%" filter="url(#schein)"/>
-<path d="M122,662 L122,694" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,689.0 L122,707.0 L129.0,689.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="656" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Qualitätsmanager</text>
-<text x="600" y="656" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">harte Messung, kein Urteil</text>
-<circle cx="122" cy="710" r="9" fill="%%c:akzent-matt%%"/>
-<path d="M122,724 L122,756" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,751.0 L122,769.0 L129.0,751.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="718" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Warenausgang</text>
-<text x="600" y="718" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">erst hier verlässt etwas das Universe</text>
-<circle cx="122" cy="772" r="9" fill="%%c:akzent%%" filter="url(#schein)"/>
-<path d="M122,786 L122,818" stroke="%%c:akzent%%" stroke-width="3.2"/>
-<path d="M115.0,813.0 L122,831.0 L129.0,813.0 Z" fill="%%c:akzent%%"/>
-<text x="156" y="780" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Freigabe beim Auftraggeber</text>
-<text x="600" y="780" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">Ja oder Nein — ein Nein nur mit Grund</text>
-<circle cx="122" cy="834" r="9" fill="%%c:akzent%%" filter="url(#schein)"/>
-<text x="156" y="842" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Erfahrung ins 2nd Brain</text>
-<text x="600" y="842" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">Lehrsatz ab drei gleichen Urteilen</text>
-<text x="122" y="876" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">Nichts überspringt eine Station. Was der Qualitätsmanager misst, misst er an Zahlen —</text>
-<text x="122" y="904" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">und was du ablehnst, wird zur Erfahrung, nicht zur Ausrede.</text>
+<circle cx="122" cy="214" r="9" fill="#52706A"/>
+<path d="M122,228 L122,260" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,255.0 L122,273.0 L129.0,255.0 Z" fill="#95CCC1"/>
+<text x="156" y="222" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Auftrag</text>
+<text x="600" y="222" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">App oder Webseite, mit Ausweis</text>
+<circle cx="122" cy="276" r="9" fill="#52706A"/>
+<path d="M122,290 L122,322" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,317.0 L122,335.0 L129.0,317.0 Z" fill="#95CCC1"/>
+<text x="156" y="284" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Hub nimmt an</text>
+<text x="600" y="284" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">legt ihn ins Fach des Nutzers</text>
+<circle cx="122" cy="338" r="9" fill="#52706A"/>
+<path d="M122,352 L122,384" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,379.0 L122,397.0 L129.0,379.0 Z" fill="#95CCC1"/>
+<text x="156" y="346" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Leitung holt ab</text>
+<text x="600" y="346" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">alle 30 s — der Server wird nie gerufen</text>
+<circle cx="122" cy="400" r="9" fill="#52706A"/>
+<path d="M122,414 L122,446" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,441.0 L122,459.0 L129.0,441.0 Z" fill="#95CCC1"/>
+<text x="156" y="408" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Rückfrage, wenn etwas fehlt</text>
+<text x="600" y="408" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">höchstens drei, sonst läuft er mit Annahmen</text>
+<circle cx="122" cy="462" r="9" fill="#52706A"/>
+<path d="M122,476 L122,508" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,503.0 L122,521.0 L129.0,503.0 Z" fill="#95CCC1"/>
+<text x="156" y="470" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Sekretär verteilt</text>
+<text x="600" y="470" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">auftragsarten.json › Eingang der Werkstatt</text>
+<circle cx="122" cy="524" r="9" fill="#52706A"/>
+<path d="M122,538 L122,570" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,565.0 L122,583.0 L129.0,565.0 Z" fill="#95CCC1"/>
+<text x="156" y="532" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Zugangswächter prüft</text>
+<text x="600" y="532" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">tragen die Zugänge für genau diesen Auftrag?</text>
+<circle cx="122" cy="586" r="9" fill="#52706A"/>
+<path d="M122,600 L122,632" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,627.0 L122,645.0 L129.0,627.0 Z" fill="#95CCC1"/>
+<text x="156" y="594" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Werkstatt arbeitet</text>
+<text x="600" y="594" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">meldet jede Station zurück an den Hub</text>
+<circle cx="122" cy="648" r="9" fill="#95CCC1" filter="url(#schein)"/>
+<path d="M122,662 L122,694" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,689.0 L122,707.0 L129.0,689.0 Z" fill="#95CCC1"/>
+<text x="156" y="656" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Qualitätsmanager</text>
+<text x="600" y="656" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">harte Messung, kein Urteil</text>
+<circle cx="122" cy="710" r="9" fill="#52706A"/>
+<path d="M122,724 L122,756" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,751.0 L122,769.0 L129.0,751.0 Z" fill="#95CCC1"/>
+<text x="156" y="718" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Warenausgang</text>
+<text x="600" y="718" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">erst hier verlässt etwas das Universe</text>
+<circle cx="122" cy="772" r="9" fill="#95CCC1" filter="url(#schein)"/>
+<path d="M122,786 L122,818" stroke="#95CCC1" stroke-width="3.2"/>
+<path d="M115.0,813.0 L122,831.0 L129.0,813.0 Z" fill="#95CCC1"/>
+<text x="156" y="780" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Freigabe beim Auftraggeber</text>
+<text x="600" y="780" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">Ja oder Nein — ein Nein nur mit Grund</text>
+<circle cx="122" cy="834" r="9" fill="#95CCC1" filter="url(#schein)"/>
+<text x="156" y="842" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="22" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Erfahrung ins 2nd Brain</text>
+<text x="600" y="842" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">Lehrsatz ab drei gleichen Urteilen</text>
+<text x="122" y="876" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">Nichts überspringt eine Station. Was der Qualitätsmanager misst, misst er an Zahlen —</text>
+<text x="122" y="904" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="17" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">und was du ablehnst, wird zur Erfahrung, nicht zur Ausrede.</text>
 </svg>

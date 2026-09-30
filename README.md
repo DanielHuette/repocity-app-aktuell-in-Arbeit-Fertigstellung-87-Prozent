@@ -20,19 +20,19 @@ eigener Zuständigkeit; die Linien sind die Wege, auf denen Aufträge laufen.
 
 ### Struktur — wer gehört wozu
 
-![Organigramm Struktur](docs/organigramm/organigramm-struktur.svg)
+![Organigramm Struktur](docs/organigramm/organigramm-struktur.png)
 
 ### Der Weg eines Auftrags
 
-![Organigramm Weg](docs/organigramm/organigramm-weg.svg)
+![Organigramm Weg](docs/organigramm/organigramm-weg.png)
 
 ### Automation — was ohne Zutun läuft
 
-![Organigramm Automation](docs/organigramm/organigramm-automation.svg)
+![Organigramm Automation](docs/organigramm/organigramm-automation.png)
 
 ### Werkstatt — wo gebaut wird
 
-![Organigramm Werkstatt](docs/organigramm/organigramm-werkstatt.svg)
+![Organigramm Werkstatt](docs/organigramm/organigramm-werkstatt.png)
 
 > Die vier Tafeln in groß, mit Erklärung je Kasten: **[docs/ORGANIGRAMM.md](docs/ORGANIGRAMM.md)**
 

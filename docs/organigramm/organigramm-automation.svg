@@ -1,196 +1,196 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1024" viewBox="0 0 1400 1024" font-family="'Chakra Petch','DejaVu Sans',sans-serif">
 <defs>
-<linearGradient id="flaeche" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%%c:flaeche-oben%%" stop-opacity="%%a:flaeche-oben%%"/><stop offset="1" stop-color="%%c:flaeche-unten%%" stop-opacity="%%a:flaeche-unten%%"/></linearGradient>
-<linearGradient id="glanz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%%c:glanz-farbe%%" stop-opacity="%%a:glanz%%"/><stop offset="1" stop-color="%%c:glanz-farbe%%" stop-opacity="0"/></linearGradient>
-<radialGradient id="vignette" cx="0.5" cy="0.40" r="0.80"><stop offset="0.40" stop-color="%%c:grund%%" stop-opacity="0"/><stop offset="1" stop-color="%%c:grund%%" stop-opacity="0.80"/></radialGradient>
+<linearGradient id="flaeche" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#89a09c" stop-opacity="0.621"/><stop offset="1" stop-color="#6d8a85" stop-opacity="0.489"/></linearGradient>
+<linearGradient id="glanz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCF2EC" stop-opacity="0.19"/><stop offset="1" stop-color="#DCF2EC" stop-opacity="0"/></linearGradient>
+<radialGradient id="vignette" cx="0.5" cy="0.40" r="0.80"><stop offset="0.40" stop-color="#070707" stop-opacity="0"/><stop offset="1" stop-color="#070707" stop-opacity="0.80"/></radialGradient>
 <filter id="weich" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
 <filter id="schein" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
-<text x="60" y="64" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="34" font-weight="700" fill="%%c:akzent-hell%%" text-anchor="start" letter-spacing="0.4" opacity="1">RepoCity Universe · 3 — Automation</text>
-<text x="60" y="94" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="15" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">Life Automation: vier Agenten auf einer Postschiene. Daneben Trading — dieselbe Idee, eigene Daten</text>
-<text x="1340" y="50" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="%%c:akzent%%" text-anchor="end" letter-spacing="0" opacity="1">speedofthespirit.dev</text>
-<text x="1340" y="76" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="%%c:diagramm-fein%%" text-anchor="end" letter-spacing="0" opacity="1">Stand 09/2026 · in Entwicklung</text>
+<text x="60" y="64" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="34" font-weight="700" fill="#BADED7" text-anchor="start" letter-spacing="0.4" opacity="1">RepoCity Universe · 3 — Automation</text>
+<text x="60" y="94" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="15" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">Life Automation: vier Agenten auf einer Postschiene. Daneben Trading — dieselbe Idee, eigene Daten</text>
+<text x="1340" y="50" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="#95CCC1" text-anchor="end" letter-spacing="0" opacity="1">speedofthespirit.dev</text>
+<text x="1340" y="76" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="#93A39C" text-anchor="end" letter-spacing="0" opacity="1">Stand 09/2026 · in Entwicklung</text>
 <g>
-<rect x="48" y="148" width="1304" height="512" rx="14" fill="%%c:grund-tief%%" opacity="0.74"/>
+<rect x="48" y="148" width="1304" height="512" rx="14" fill="#040404" opacity="0.74"/>
 <mask id="schattenmaske1" maskUnits="userSpaceOnUse" x="8" y="108" width="1384" height="592">
 <rect x="8" y="108" width="1384" height="592" fill="#FFFFFF"/>
 <rect x="48" y="148" width="1304" height="512" rx="14" fill="#000000"/>
 </mask>
-<rect x="48" y="151" width="1304" height="512" rx="14" fill="%%c:schatten%%" opacity="0.375" filter="url(#weich)" mask="url(#schattenmaske1)"/>
+<rect x="48" y="151" width="1304" height="512" rx="14" fill="#010101" opacity="0.375" filter="url(#weich)" mask="url(#schattenmaske1)"/>
 <rect x="48" y="148" width="1304" height="512" rx="14" fill="url(#flaeche)"/>
 <rect x="49" y="149" width="1302" height="230" rx="14" fill="url(#glanz)"/>
-<rect x="48.5" y="148.5" width="1303" height="511" rx="14" fill="none" stroke="%%c:linie%%" stroke-opacity="%%a:linie%%" stroke-width="1"/>
-<path d="M62,148.8 L1338,148.8" stroke="%%c:kante%%" stroke-opacity="%%a:kante*0.85%%" stroke-width="1.5" stroke-linecap="round"/>
-<path d="M62,659.2 L1338,659.2" stroke="%%c:kante-unten%%" stroke-opacity="%%a:kante-unten%%" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="48.5" y="148.5" width="1303" height="511" rx="14" fill="none" stroke="#d7efe4" stroke-opacity="0.18" stroke-width="1"/>
+<path d="M62,148.8 L1338,148.8" stroke="#f6f8f7" stroke-opacity="0.51" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M62,659.2 L1338,659.2" stroke="#020202" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
 </g>
-<text x="74" y="184" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="16" font-weight="600" fill="%%c:akzent%%" text-anchor="start" letter-spacing="2.4" opacity="1">LIFE AUTOMATION — VIER BEREICHE, EIN MUSTER JE BEREICH</text>
-<text x="74" y="208" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">du gibst vor, wonach gearbeitet wird, und liest gegen — gebaut wird hier nichts</text>
-<text x="74" y="264.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">E-Mail</text>
-<text x="74" y="296" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="%%c:diagramm-fein%%" text-anchor="start" letter-spacing="0" opacity="1">email_manager</text>
-<rect x="324" y="238" width="183" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="324.5" y="238.5" width="182" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M331,238.9 L500,238.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="339" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">IMAP je Postfach</text>
-<path d="M510.0,250.0 L528.0,257.0 L510.0,264.0 Z" fill="%%c:akzent%%"/>
-<rect x="531" y="238" width="116" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="531.5" y="238.5" width="115" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M538,238.9 L640,238.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="546" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">sortieren</text>
-<path d="M650.0,250.0 L668.0,257.0 L650.0,264.0 Z" fill="%%c:akzent%%"/>
-<rect x="671" y="238" width="154" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="671.5" y="238.5" width="153" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M678,238.9 L818,238.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="686" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">drei Tonlagen</text>
-<path d="M828.0,250.0 L846.0,257.0 L828.0,264.0 Z" fill="%%c:akzent%%"/>
-<rect x="849" y="238" width="183" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="849.5" y="238.5" width="182" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M856,238.9 L1025,238.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="864" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Antwort vorlegen</text>
-<path d="M1035.0,250.0 L1053.0,257.0 L1035.0,264.0 Z" fill="%%c:akzent%%"/>
-<rect x="1056" y="238" width="222" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="1056.5" y="238.5" width="221" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M1063,238.9 L1271,238.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="1071" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Postbote alle 10 min</text>
-<text x="74" y="340.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Bewerbungen</text>
-<text x="74" y="372" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="%%c:diagramm-fein%%" text-anchor="start" letter-spacing="0" opacity="1">bewerbungs_agent</text>
-<rect x="324" y="314" width="202" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="324.5" y="314.5" width="201" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M331,314.9 L519,314.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="339" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Muster des Nutzers</text>
-<path d="M529.0,326.0 L547.0,333.0 L529.0,340.0 Z" fill="%%c:akzent%%"/>
-<rect x="550" y="314" width="87" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="550.5" y="314.5" width="86" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M557,314.9 L630,314.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="565" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">suchen</text>
-<path d="M640.0,326.0 L658.0,333.0 L640.0,340.0 Z" fill="%%c:akzent%%"/>
-<rect x="661" y="314" width="97" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="661.5" y="314.5" width="96" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M668,314.9 L751,314.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="676" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">filtern</text>
-<path d="M761.0,326.0 L779.0,333.0 L761.0,340.0 Z" fill="%%c:akzent%%"/>
-<rect x="782" y="314" width="260" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="782.5" y="314.5" width="259" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M789,314.9 L1035,314.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="797" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Anschreiben + Lebenslauf</text>
-<path d="M1045.0,326.0 L1063.0,333.0 L1045.0,340.0 Z" fill="%%c:akzent%%"/>
-<rect x="1066" y="314" width="164" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="1066.5" y="314.5" width="163" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="1081" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">zum Gegenlesen</text>
-<text x="74" y="416.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Wohnungssuche</text>
-<text x="74" y="448" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="%%c:diagramm-fein%%" text-anchor="start" letter-spacing="0" opacity="1">wohnungs_agent</text>
-<rect x="324" y="390" width="145" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="324.5" y="390.5" width="144" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M331,390.9 L462,390.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="339" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">fünf Quellen</text>
-<path d="M472.0,402.0 L490.0,409.0 L472.0,416.0 Z" fill="%%c:akzent%%"/>
-<rect x="493" y="390" width="116" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="493.5" y="390.5" width="115" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M500,390.9 L602,390.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="508" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">drei Tore</text>
-<path d="M612.0,402.0 L630.0,409.0 L612.0,416.0 Z" fill="%%c:akzent%%"/>
-<rect x="633" y="390" width="212" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="633.5" y="390.5" width="211" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M640,390.9 L838,390.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="648" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Antwort nach Muster</text>
-<path d="M848.0,402.0 L866.0,409.0 L848.0,416.0 Z" fill="%%c:akzent%%"/>
-<rect x="869" y="390" width="193" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="869.5" y="390.5" width="192" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="884" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">postausgang.jsonl</text>
-<path d="M1065.0,402.0 L1083.0,409.0 L1065.0,416.0 Z" fill="%%c:akzent%%"/>
-<rect x="1086" y="390" width="193" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="1086.5" y="390.5" width="192" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M1093,390.9 L1272,390.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="1101" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Weckruf ans Handy</text>
-<text x="74" y="492.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Termine</text>
-<text x="74" y="524" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="%%c:diagramm-fein%%" text-anchor="start" letter-spacing="0" opacity="1">sekretaer</text>
-<rect x="324" y="466" width="174" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="324.5" y="466.5" width="173" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M331,466.9 L491,466.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="339" y="490.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Kalender führen</text>
-<path d="M501.0,478.0 L519.0,485.0 L501.0,492.0 Z" fill="%%c:akzent%%"/>
-<rect x="522" y="466" width="106" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="522.5" y="466.5" width="105" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M529,466.9 L621,466.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="537" y="490.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">erinnern</text>
-<path d="M631.0,478.0 L649.0,485.0 L631.0,492.0 Z" fill="%%c:akzent%%"/>
-<rect x="652" y="466" width="183" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="652.5" y="466.5" width="182" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M659,466.9 L828,466.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="667" y="490.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Konflikte melden</text>
-<path d="M838.0,478.0 L856.0,485.0 L838.0,492.0 Z" fill="%%c:akzent%%"/>
-<rect x="859" y="466" width="327" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="859.5" y="466.5" width="326" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="874" y="490.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Weckruf auf den Sperrbildschirm</text>
-<path d="M1288,257.0 L1300,257.0" fill="none" stroke="%%c:akzent%%" stroke-width="2.6" opacity="1.0"/>
-<circle cx="1300" cy="257.0" r="4.5" fill="%%c:akzent%%"/>
-<path d="M1240,333.0 L1300,333.0" fill="none" stroke="%%c:akzent%%" stroke-width="2.6" opacity="1.0"/>
-<circle cx="1300" cy="333.0" r="4.5" fill="%%c:akzent%%"/>
-<path d="M1289,409.0 L1300,409.0" fill="none" stroke="%%c:akzent%%" stroke-width="2.6" opacity="1.0"/>
-<circle cx="1300" cy="409.0" r="4.5" fill="%%c:akzent%%"/>
-<path d="M1196,485.0 L1300,485.0" fill="none" stroke="%%c:akzent%%" stroke-width="2.6" opacity="1.0"/>
-<circle cx="1300" cy="485.0" r="4.5" fill="%%c:akzent%%"/>
-<path d="M1300,257.0 L1300,550" stroke="%%c:akzent%%" stroke-width="3.4" fill="none" stroke-linecap="round"/>
-<path d="M1300,550 L166,550" stroke="%%c:akzent%%" stroke-width="3.4" fill="none" stroke-linecap="round"/>
-<path d="M166,550 L166,580" fill="none" stroke="%%c:akzent%%" stroke-width="3.4" opacity="1.0"/>
-<path d="M159.0,571.0 L166,589.0 L173.0,571.0 Z" fill="%%c:akzent%%"/>
-<rect x="74" y="584" width="183" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="74.5" y="584.5" width="182" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="89" y="608.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Qualitätsmanager</text>
-<path d="M260.0,596.0 L278.0,603.0 L260.0,610.0 Z" fill="%%c:akzent%%"/>
-<rect x="281" y="584" width="145" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="281.5" y="584.5" width="144" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="296" y="608.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Warenausgang</text>
-<path d="M429.0,596.0 L447.0,603.0 L429.0,610.0 Z" fill="%%c:akzent%%"/>
-<rect x="450" y="584" width="279" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="450.5" y="584.5" width="278" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="465" y="608.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Freigabe beim Auftraggeber</text>
-<text x="74" y="648" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">Muster, Vorlagen und Termine liegen im Hub — der Server holt sie ab, kein Agent hält eine eigene Kopie.</text>
+<text x="74" y="184" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="16" font-weight="600" fill="#95CCC1" text-anchor="start" letter-spacing="2.4" opacity="1">LIFE AUTOMATION — VIER BEREICHE, EIN MUSTER JE BEREICH</text>
+<text x="74" y="208" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">du gibst vor, wonach gearbeitet wird, und liest gegen — gebaut wird hier nichts</text>
+<text x="74" y="264.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">E-Mail</text>
+<text x="74" y="296" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="#93A39C" text-anchor="start" letter-spacing="0" opacity="1">email_manager</text>
+<rect x="324" y="238" width="183" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="324.5" y="238.5" width="182" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M331,238.9 L500,238.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="339" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">IMAP je Postfach</text>
+<path d="M510.0,250.0 L528.0,257.0 L510.0,264.0 Z" fill="#95CCC1"/>
+<rect x="531" y="238" width="116" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="531.5" y="238.5" width="115" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M538,238.9 L640,238.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="546" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">sortieren</text>
+<path d="M650.0,250.0 L668.0,257.0 L650.0,264.0 Z" fill="#95CCC1"/>
+<rect x="671" y="238" width="154" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="671.5" y="238.5" width="153" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M678,238.9 L818,238.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="686" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">drei Tonlagen</text>
+<path d="M828.0,250.0 L846.0,257.0 L828.0,264.0 Z" fill="#95CCC1"/>
+<rect x="849" y="238" width="183" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="849.5" y="238.5" width="182" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M856,238.9 L1025,238.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="864" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Antwort vorlegen</text>
+<path d="M1035.0,250.0 L1053.0,257.0 L1035.0,264.0 Z" fill="#95CCC1"/>
+<rect x="1056" y="238" width="222" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="1056.5" y="238.5" width="221" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M1063,238.9 L1271,238.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="1071" y="262.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Postbote alle 10 min</text>
+<text x="74" y="340.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Bewerbungen</text>
+<text x="74" y="372" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="#93A39C" text-anchor="start" letter-spacing="0" opacity="1">bewerbungs_agent</text>
+<rect x="324" y="314" width="202" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="324.5" y="314.5" width="201" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M331,314.9 L519,314.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="339" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Muster des Nutzers</text>
+<path d="M529.0,326.0 L547.0,333.0 L529.0,340.0 Z" fill="#95CCC1"/>
+<rect x="550" y="314" width="87" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="550.5" y="314.5" width="86" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M557,314.9 L630,314.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="565" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">suchen</text>
+<path d="M640.0,326.0 L658.0,333.0 L640.0,340.0 Z" fill="#95CCC1"/>
+<rect x="661" y="314" width="97" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="661.5" y="314.5" width="96" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M668,314.9 L751,314.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="676" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">filtern</text>
+<path d="M761.0,326.0 L779.0,333.0 L761.0,340.0 Z" fill="#95CCC1"/>
+<rect x="782" y="314" width="260" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="782.5" y="314.5" width="259" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M789,314.9 L1035,314.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="797" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Anschreiben + Lebenslauf</text>
+<path d="M1045.0,326.0 L1063.0,333.0 L1045.0,340.0 Z" fill="#95CCC1"/>
+<rect x="1066" y="314" width="164" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="1066.5" y="314.5" width="163" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="1081" y="338.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">zum Gegenlesen</text>
+<text x="74" y="416.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Wohnungssuche</text>
+<text x="74" y="448" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="#93A39C" text-anchor="start" letter-spacing="0" opacity="1">wohnungs_agent</text>
+<rect x="324" y="390" width="145" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="324.5" y="390.5" width="144" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M331,390.9 L462,390.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="339" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">fünf Quellen</text>
+<path d="M472.0,402.0 L490.0,409.0 L472.0,416.0 Z" fill="#95CCC1"/>
+<rect x="493" y="390" width="116" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="493.5" y="390.5" width="115" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M500,390.9 L602,390.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="508" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">drei Tore</text>
+<path d="M612.0,402.0 L630.0,409.0 L612.0,416.0 Z" fill="#95CCC1"/>
+<rect x="633" y="390" width="212" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="633.5" y="390.5" width="211" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M640,390.9 L838,390.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="648" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Antwort nach Muster</text>
+<path d="M848.0,402.0 L866.0,409.0 L848.0,416.0 Z" fill="#95CCC1"/>
+<rect x="869" y="390" width="193" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="869.5" y="390.5" width="192" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="884" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">postausgang.jsonl</text>
+<path d="M1065.0,402.0 L1083.0,409.0 L1065.0,416.0 Z" fill="#95CCC1"/>
+<rect x="1086" y="390" width="193" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="1086.5" y="390.5" width="192" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M1093,390.9 L1272,390.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="1101" y="414.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Weckruf ans Handy</text>
+<text x="74" y="492.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Termine</text>
+<text x="74" y="524" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="#93A39C" text-anchor="start" letter-spacing="0" opacity="1">sekretaer</text>
+<rect x="324" y="466" width="174" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="324.5" y="466.5" width="173" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M331,466.9 L491,466.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="339" y="490.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Kalender führen</text>
+<path d="M501.0,478.0 L519.0,485.0 L501.0,492.0 Z" fill="#95CCC1"/>
+<rect x="522" y="466" width="106" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="522.5" y="466.5" width="105" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M529,466.9 L621,466.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="537" y="490.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">erinnern</text>
+<path d="M631.0,478.0 L649.0,485.0 L631.0,492.0 Z" fill="#95CCC1"/>
+<rect x="652" y="466" width="183" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="652.5" y="466.5" width="182" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M659,466.9 L828,466.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="667" y="490.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Konflikte melden</text>
+<path d="M838.0,478.0 L856.0,485.0 L838.0,492.0 Z" fill="#95CCC1"/>
+<rect x="859" y="466" width="327" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="859.5" y="466.5" width="326" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="874" y="490.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Weckruf auf den Sperrbildschirm</text>
+<path d="M1288,257.0 L1300,257.0" fill="none" stroke="#95CCC1" stroke-width="2.6" opacity="1.0"/>
+<circle cx="1300" cy="257.0" r="4.5" fill="#95CCC1"/>
+<path d="M1240,333.0 L1300,333.0" fill="none" stroke="#95CCC1" stroke-width="2.6" opacity="1.0"/>
+<circle cx="1300" cy="333.0" r="4.5" fill="#95CCC1"/>
+<path d="M1289,409.0 L1300,409.0" fill="none" stroke="#95CCC1" stroke-width="2.6" opacity="1.0"/>
+<circle cx="1300" cy="409.0" r="4.5" fill="#95CCC1"/>
+<path d="M1196,485.0 L1300,485.0" fill="none" stroke="#95CCC1" stroke-width="2.6" opacity="1.0"/>
+<circle cx="1300" cy="485.0" r="4.5" fill="#95CCC1"/>
+<path d="M1300,257.0 L1300,550" stroke="#95CCC1" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+<path d="M1300,550 L166,550" stroke="#95CCC1" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+<path d="M166,550 L166,580" fill="none" stroke="#95CCC1" stroke-width="3.4" opacity="1.0"/>
+<path d="M159.0,571.0 L166,589.0 L173.0,571.0 Z" fill="#95CCC1"/>
+<rect x="74" y="584" width="183" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="74.5" y="584.5" width="182" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="89" y="608.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Qualitätsmanager</text>
+<path d="M260.0,596.0 L278.0,603.0 L260.0,610.0 Z" fill="#95CCC1"/>
+<rect x="281" y="584" width="145" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="281.5" y="584.5" width="144" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="296" y="608.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Warenausgang</text>
+<path d="M429.0,596.0 L447.0,603.0 L429.0,610.0 Z" fill="#95CCC1"/>
+<rect x="450" y="584" width="279" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="450.5" y="584.5" width="278" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="465" y="608.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Freigabe beim Auftraggeber</text>
+<text x="74" y="648" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">Muster, Vorlagen und Termine liegen im Hub — der Server holt sie ab, kein Agent hält eine eigene Kopie.</text>
 <g>
-<rect x="48" y="692" width="1304" height="272" rx="14" fill="%%c:grund-tief%%" opacity="0.74"/>
+<rect x="48" y="692" width="1304" height="272" rx="14" fill="#040404" opacity="0.74"/>
 <mask id="schattenmaske2" maskUnits="userSpaceOnUse" x="8" y="652" width="1384" height="352">
 <rect x="8" y="652" width="1384" height="352" fill="#FFFFFF"/>
 <rect x="48" y="692" width="1304" height="272" rx="14" fill="#000000"/>
 </mask>
-<rect x="48" y="695" width="1304" height="272" rx="14" fill="%%c:schatten%%" opacity="0.375" filter="url(#weich)" mask="url(#schattenmaske2)"/>
+<rect x="48" y="695" width="1304" height="272" rx="14" fill="#010101" opacity="0.375" filter="url(#weich)" mask="url(#schattenmaske2)"/>
 <rect x="48" y="692" width="1304" height="272" rx="14" fill="url(#flaeche)"/>
 <rect x="49" y="693" width="1302" height="122" rx="14" fill="url(#glanz)"/>
-<rect x="48.5" y="692.5" width="1303" height="271" rx="14" fill="none" stroke="%%c:linie%%" stroke-opacity="%%a:linie%%" stroke-width="1"/>
-<path d="M62,692.8 L1338,692.8" stroke="%%c:kante%%" stroke-opacity="%%a:kante*0.85%%" stroke-width="1.5" stroke-linecap="round"/>
-<path d="M62,963.2 L1338,963.2" stroke="%%c:kante-unten%%" stroke-opacity="%%a:kante-unten%%" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="48.5" y="692.5" width="1303" height="271" rx="14" fill="none" stroke="#d7efe4" stroke-opacity="0.18" stroke-width="1"/>
+<path d="M62,692.8 L1338,692.8" stroke="#f6f8f7" stroke-opacity="0.51" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M62,963.2 L1338,963.2" stroke="#020202" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
 </g>
-<text x="74" y="728" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="16" font-weight="600" fill="%%c:akzent%%" text-anchor="start" letter-spacing="2.4" opacity="1">TRADING — BEOBACHTET UND RECHNET, HANDELT NICHT SELBST</text>
-<text x="74" y="752" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">Setups, liegende Orders und offene Positionen stehen in App und Webseite; der Agent hat keinen Schlüssel</text>
-<text x="74" y="810.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">SK-System</text>
-<text x="74" y="842" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="%%c:diagramm-fein%%" text-anchor="start" letter-spacing="0" opacity="1">handelsbeobachter</text>
-<rect x="324" y="784" width="183" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="324.5" y="784.5" width="182" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M331,784.9 L500,784.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="339" y="808.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">Kerzen (Binance)</text>
-<path d="M510.0,796.0 L528.0,803.0 L510.0,810.0 Z" fill="%%c:akzent%%"/>
-<rect x="531" y="784" width="116" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="531.5" y="784.5" width="115" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M538,784.9 L640,784.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="546" y="808.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">SK-Regeln</text>
-<path d="M650.0,796.0 L668.0,803.0 L650.0,810.0 Z" fill="%%c:akzent%%"/>
-<rect x="671" y="784" width="174" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="671.5" y="784.5" width="173" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M678,784.9 L838,784.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="686" y="808.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">erkannte Setups</text>
-<path d="M848.0,796.0 L866.0,803.0 L848.0,810.0 Z" fill="%%c:akzent%%"/>
-<rect x="869" y="784" width="298" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="869.5" y="784.5" width="297" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="884" y="808.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">liegende Orders · Stop · TPs</text>
-<rect x="324" y="862" width="193" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="324.5" y="862.5" width="192" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="339" y="886.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">offene Positionen</text>
-<path d="M520.0,874.0 L538.0,881.0 L520.0,888.0 Z" fill="%%c:akzent%%"/>
-<rect x="541" y="862" width="289" height="38" rx="8" fill="%%c:flaeche-oben%%" opacity="0.20"/>
-<rect x="541.5" y="862.5" width="288" height="37" rx="7.5" fill="none" stroke="%%c:linie%%" stroke-opacity="0.5"/>
-<path d="M548,862.9 L823,862.9" stroke="%%c:kante%%" stroke-opacity="0.32" stroke-width="1"/>
-<text x="556" y="886.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">realized und unrealized PnL</text>
-<path d="M833.0,874.0 L851.0,881.0 L833.0,888.0 Z" fill="%%c:akzent%%"/>
-<rect x="854" y="862" width="375" height="38" rx="8" fill="%%c:akzent-matt%%" opacity="0.42"/>
-<rect x="854.5" y="862.5" width="374" height="37" rx="7.5" fill="none" stroke="%%c:akzent%%" stroke-opacity="0.65"/>
-<text x="869" y="886.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="%%c:schrift%%" text-anchor="start" letter-spacing="0" opacity="1">meldet — kein Schlüssel, keine Order</text>
-<text x="74" y="938" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="%%c:diagramm-leise%%" text-anchor="start" letter-spacing="0" opacity="1">Der Massstab sind 25 Belege aus 19 Lehrvideos, auf Binance nachgemessen — nicht eine erfundene Regel.</text>
+<text x="74" y="728" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="16" font-weight="600" fill="#95CCC1" text-anchor="start" letter-spacing="2.4" opacity="1">TRADING — BEOBACHTET UND RECHNET, HANDELT NICHT SELBST</text>
+<text x="74" y="752" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">Setups, liegende Orders und offene Positionen stehen in App und Webseite; der Agent hat keinen Schlüssel</text>
+<text x="74" y="810.0" font-family="'Chakra Petch','DejaVu Sans',sans-serif" font-size="20" font-weight="600" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">SK-System</text>
+<text x="74" y="842" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="14" font-weight="400" fill="#93A39C" text-anchor="start" letter-spacing="0" opacity="1">handelsbeobachter</text>
+<rect x="324" y="784" width="183" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="324.5" y="784.5" width="182" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M331,784.9 L500,784.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="339" y="808.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">Kerzen (Binance)</text>
+<path d="M510.0,796.0 L528.0,803.0 L510.0,810.0 Z" fill="#95CCC1"/>
+<rect x="531" y="784" width="116" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="531.5" y="784.5" width="115" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M538,784.9 L640,784.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="546" y="808.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">SK-Regeln</text>
+<path d="M650.0,796.0 L668.0,803.0 L650.0,810.0 Z" fill="#95CCC1"/>
+<rect x="671" y="784" width="174" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="671.5" y="784.5" width="173" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M678,784.9 L838,784.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="686" y="808.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">erkannte Setups</text>
+<path d="M848.0,796.0 L866.0,803.0 L848.0,810.0 Z" fill="#95CCC1"/>
+<rect x="869" y="784" width="298" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="869.5" y="784.5" width="297" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="884" y="808.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">liegende Orders · Stop · TPs</text>
+<rect x="324" y="862" width="193" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="324.5" y="862.5" width="192" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="339" y="886.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">offene Positionen</text>
+<path d="M520.0,874.0 L538.0,881.0 L520.0,888.0 Z" fill="#95CCC1"/>
+<rect x="541" y="862" width="289" height="38" rx="8" fill="#89a09c" opacity="0.20"/>
+<rect x="541.5" y="862.5" width="288" height="37" rx="7.5" fill="none" stroke="#d7efe4" stroke-opacity="0.5"/>
+<path d="M548,862.9 L823,862.9" stroke="#f6f8f7" stroke-opacity="0.32" stroke-width="1"/>
+<text x="556" y="886.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">realized und unrealized PnL</text>
+<path d="M833.0,874.0 L851.0,881.0 L833.0,888.0 Z" fill="#95CCC1"/>
+<rect x="854" y="862" width="375" height="38" rx="8" fill="#52706A" opacity="0.42"/>
+<rect x="854.5" y="862.5" width="374" height="37" rx="7.5" fill="none" stroke="#95CCC1" stroke-opacity="0.65"/>
+<text x="869" y="886.8" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="16" font-weight="400" fill="#D7EFE4" text-anchor="start" letter-spacing="0" opacity="1">meldet — kein Schlüssel, keine Order</text>
+<text x="74" y="938" font-family="'Space Mono','DejaVu Sans Mono',monospace" font-size="15" font-weight="400" fill="#92A39B" text-anchor="start" letter-spacing="0" opacity="1">Der Massstab sind 25 Belege aus 19 Lehrvideos, auf Binance nachgemessen — nicht eine erfundene Regel.</text>
 </svg>
